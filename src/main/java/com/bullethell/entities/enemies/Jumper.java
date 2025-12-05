@@ -12,8 +12,8 @@ public class Jumper extends Enemy {
     private volatile boolean jumping = false;
     private double jumpRadius = 150;   // distance enemy is allowed to jump
 
-    public Jumper(double x, double y, Room room, int hp) {
-        super(x, y, hp);
+    public Jumper(double x, double y, Room room, int hp, int power) {
+        super(x, y, hp, power);
         this.room = room;
 
         Thread behavior = new Thread(this::loopBehavior);
@@ -23,7 +23,11 @@ public class Jumper extends Enemy {
 
     private void loopBehavior() {
         try {
-            while (alive) {
+            while (isAlive) {
+                if (!room.isActive()){
+                    Thread.sleep(50);
+                    continue;
+                }
 
                 // Wait before next jump
                 Thread.sleep(1000 + (int) (Math.random() * 600));
@@ -31,12 +35,9 @@ public class Jumper extends Enemy {
                 pickRandomTarget();
                 jumping = true;
 
-                // Smooth movement to target (duration 0.4s)
                 smoothMove(0.4);
-
                 jumping = false;
 
-                // Fire 4 bullets
                 shoot4Directions();
             }
 
@@ -89,6 +90,10 @@ public class Jumper extends Enemy {
         room.spawnBullet(new Bullet(x, y, -300, 0));   // Left
         room.spawnBullet(new Bullet(x, y, 0, 300));    // Down
         room.spawnBullet(new Bullet(x, y, 0, -300));   // Up
+    }
+    @Override
+    public void onDead(){
+        return;
     }
 
     @Override

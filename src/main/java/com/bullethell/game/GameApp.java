@@ -31,10 +31,12 @@ public class GameApp extends Application {
 
         Input.initialize();
 
+        Player player = new Player(400, 300, 10, 5, 5,"Player");
+
         // Create RoomManager with grid size (example: 3×3 = 9 rooms)
         roomManager = new RoomManager(3, 3);
 
-        roomManager.createRooms();
+        roomManager.createRooms(player);
 
         // --- Generate doors AFTER rooms are added ---
         roomManager.generateDoors();
@@ -42,7 +44,6 @@ public class GameApp extends Application {
         // --- Set starting room ---
         roomManager.setCurrentRoom(0);
 
-        Player player = new Player(400, 300);
         Scene scene = new Scene(new StackPane(canvas));
         Input.attach(scene);
 

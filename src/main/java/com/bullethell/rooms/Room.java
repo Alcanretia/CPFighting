@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class Room {
+    public boolean active = false;
 
     public enum Direction { UP, DOWN, LEFT, RIGHT }
 
@@ -70,6 +71,14 @@ public abstract class Room {
     public void renderEntities(GraphicsContext gc){
         for (Bullet b : bullets) b.render(gc);
         for (Enemy e : enemies) e.render(gc);
+    }
+
+    public void setActive(boolean active){
+        this.active = active;
+    }
+
+    public boolean isActive(){
+        return active;
     }
 
     public void render(GraphicsContext gc) {

@@ -1,9 +1,8 @@
 package com.bullethell.core;
 
 public interface Hittable {
-    void hit(int damage);
+    void onHit(int damage);
+    void onDead();
     boolean isAlive();
-    double getX();
-    double getY();
     double getHitRadius();
 }

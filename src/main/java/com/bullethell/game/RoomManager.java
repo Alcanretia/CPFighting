@@ -1,5 +1,6 @@
 package com.bullethell.game;
 
+import com.bullethell.entities.enemies.Chaser;
 import com.bullethell.entities.enemies.Jumper;
 import com.bullethell.entities.player.Player;
 import com.bullethell.rooms.CombatRoom;
@@ -8,9 +9,7 @@ import com.bullethell.rooms.NormalRoom;
 import com.bullethell.rooms.Room;
 import javafx.scene.canvas.GraphicsContext;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class RoomManager {
@@ -26,7 +25,7 @@ public class RoomManager {
         this.rows = rows;
     }
 
-    public void createRooms() {
+    public void createRooms(Player player) {
 
         for (int id = 0; id < cols * rows; id++) {
 
@@ -50,7 +49,9 @@ public class RoomManager {
                         double ex = 200 + Math.random() * 400;
                         double ey = 150 + Math.random() * 300;
 
-                        cr.spawnEnemy(new Jumper(ex, ey, room, 3));
+                        double choice = Math.random();
+                        if (choice > 0.5) cr.spawnEnemy(new Jumper(ex, ey, room, 3, 1));
+                        else cr.spawnEnemy(new Chaser(ex,ey, 20, 20,room, player));
                     }
 
 
@@ -79,18 +80,22 @@ public class RoomManager {
     }
 
     public void setCurrentRoom(int id) {
+        if (currentRoom != null) currentRoom.setActive(false);
+
         currentRoom = rooms.get(id);
+        currentRoom.setActive(true);
+
+        currentRoom.getBullets().clear();
     }
 
     public void update(double dt, Player player) {
         if (currentRoom == null) return;
-        currentRoom.update(dt);
-        player.update(dt);
 
         Door door = currentRoom.getDoorAtPlayer(player.getHitbox());
         if (door != null){
             setCurrentRoom(door.getDestination());
         }
+        currentRoom.update(dt);
     }
 
     public void render(GraphicsContext gc, Player player) {
