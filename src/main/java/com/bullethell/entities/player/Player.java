@@ -116,6 +116,8 @@ public class Player implements Hittable, SpecialAbilityCapable {
         return y;
     }
 
+
+    /// Added for movement testing ///
     public void update(double dt) {
         double dx = 0, dy = 0;
 
