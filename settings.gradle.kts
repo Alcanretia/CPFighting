@@ -1,0 +1,1 @@
+rootProject.name = "Binding_of_my_life"
