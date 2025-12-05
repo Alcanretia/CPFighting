@@ -4,7 +4,6 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.1.0'
 }
 
-group = 'progmeth_2025_1'
 version = '1'
 
 repositories {
@@ -29,11 +28,8 @@ dependencies {
 }
 
 javafx {
-    // 2. The version must match your JDK's compatibility or be recent
-    version = '21' // Example: Use a modern JavaFX version
-
-    // 3. List ALL modules you use (Controls and Graphics are mandatory)
-    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.graphics', 'javafx.web', 'javafx.media', 'javafx.swing' ]
+    version = '24.0.1'
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.graphics', 'javafx.media', 'javafx.web', 'javafx.swing']
 }
 
 application {
