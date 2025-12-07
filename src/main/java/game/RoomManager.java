@@ -11,85 +11,72 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RoomManager {
+    private static final int BOSS_INTERVAL = 10;
+    private static final int TREASURE_INTERVAL = 5;
+    private static final int SHOP_INTERVAL = 7;
 
-    private Map<Integer, Room> rooms = new HashMap<>();
+    private int roomCleared = 0;
     private Room currentRoom;
 
-    // grid size for door generation
-    private int cols, rows;
+    private Player player;
 
-    public RoomManager(int cols, int rows) {
-        this.cols = cols;
-        this.rows = rows;
+    public RoomManager(Player player) {
+        this.player = player;
+        currentRoom = new NormalRoom(0, 0, 800, 600, player);
+        createTopDoor(currentRoom);
+
+        currentRoom.setActive(true);
     }
 
-    public void createRooms(Player player) {
+    public void createTopDoor(Room room){
+        double w = room.getWidth();
+        room.addDoor(new Door(w/2 - 30, 0, 60, 20));
+    }
 
-        for (int id = 0; id < cols * rows; id++) {
-
-            Room room;
-
-            if (id == 0) {
-                // Starting room (not combat)
-                room = new NormalRoom(id, 0, 0, 800, 600);
-            } else {
-
-                double chance = Math.random(); // 0.0 → 1.0
-
-                if (chance < 0.7) {
-                    // 70% chance combat room
-                    CombatRoom cr = new CombatRoom(id, 0, 0, 800, 600);
-                    room = cr;
-                    // spawn 1–3 enemies
-                    int count = 1 + (int) (Math.random() * 3); // 1–3 enemies
-
-                    for (int i = 0; i < count; i++) {
-                        double ex = 200 + Math.random() * 400;
-                        double ey = 150 + Math.random() * 300;
-
-                        double choice = Math.random();
-                        if (choice > 0.5) cr.spawnEnemy(new Jumper(ex, ey, room, 3, 1));
-                        else cr.spawnEnemy(new Chaser(ex, ey, room, player, 5, 1));
-                    }
-
-
-                /*} else {
-                    // normal room
-                    room = new NormalRoom(id, 0, 0, 800, 600);
-                }*/
-                // FOR BOSS TESTING
-                } else {
-                    BossRoom br = new BossRoom(id, 0, 0, 800, 600);
-                    room = br;
-                    br.spawnEnemy(new Boss(400,300,room, 10, 1, player));
-                }
-            }
-
-            addRoom(room);
+    public Room createNextRoom() {
+        roomCleared++;
+        Room room;
+        if (roomCleared % BOSS_INTERVAL == 0){
+            BossRoom br = new BossRoom(0, 0, 800, 600, player);
+            room = br;
+            br.spawnEnemy(new Boss(400,300,room, 10, 1, player));
         }
+        else if (roomCleared % TREASURE_INTERVAL == 0){
+            TreasureRoom tr = new TreasureRoom(0,0,800,600, player);
+            room = tr;
+        }
+        else if (roomCleared % SHOP_INTERVAL == 0){
+            StoreRoom sr = new StoreRoom(0,0,800,600, player);
+            room = sr;
+        }
+        else {
+            CombatRoom cr = new CombatRoom(0, 0, 800, 600, player);
+            room = cr;
+            // spawn 1–3 enemies
+            int count = 1 + (int) (Math.random() * 3); // 1–3 enemies
 
-        currentRoom = rooms.get(0); // start in room 0
+            for (int i = 0; i < count; i++) {
+                double ex = 200 + Math.random() * 400;
+                double ey = 150 + Math.random() * 300;
+
+                double choice = Math.random();
+                if (choice > 0.5) cr.spawnEnemy(new Jumper(ex, ey, room, 3, 1));
+                else cr.spawnEnemy(new Chaser(ex, ey, room, player, 5, 1));
+            }
+        }
+        return room;
     }
 
-    public void addRoom(Room room) {
-        rooms.put(room.getId(), room);
-    }
+    public void enterNextRoom(){
+        Room newRoom = createNextRoom();
+        createTopDoor(newRoom);
 
-    public Room getRoom(int id) {
-        return rooms.get(id);
-    }
-
-    public Room getCurrentRoom() {
-        return currentRoom;
-    }
-
-    public void setCurrentRoom(int id) {
-        if (currentRoom != null) currentRoom.setActive(false);
-
-        currentRoom = rooms.get(id);
+        currentRoom.setActive(false);
+        currentRoom = newRoom;
         currentRoom.setActive(true);
 
-        currentRoom.getBullets().clear();
+        player.setX(GameApp.WIDTH / 2 - player.getWidth() / 2);
+        player.setY(GameApp.HEIGHT - 80);
     }
 
     public void update(double dt, Player player) {
@@ -97,7 +84,7 @@ public class RoomManager {
 
         Door door = currentRoom.getDoorAtPlayer(player.getHitbox());
         if (door != null){
-            setCurrentRoom(door.getDestination());
+            enterNextRoom();
         }
         currentRoom.update(dt);
     }
@@ -106,48 +93,6 @@ public class RoomManager {
         if (currentRoom != null) {
             currentRoom.render(gc);
             player.render(gc);
-        }
-    }
-
-    public void generateDoors() {
-        for (Room room : rooms.values()) {
-
-            int id = room.getId();
-            int cx = id % cols;
-            int cy = id / cols;
-
-            double W = room.getWidth();
-            double H = room.getHeight();
-
-            // UP
-            if (cy > 0) {
-                int upId = id - cols;
-                room.addDoor(Room.Direction.UP,
-                        new Door(W/2 - 30, 0, 60, 20, upId));
-            }
-
-            // DOWN
-            if (cy < rows - 1) {
-                int downId = id + cols;
-                room.addDoor(Room.Direction.DOWN,
-                        new Door(W/2 - 30, H - 20, 60, 20, downId));
-            }
-
-            // LEFT
-            if (cx > 0) {
-                int leftId = id - 1;
-
-                room.addDoor(Room.Direction.LEFT,
-                        new Door(0, H/2 - 30, 20, 60, leftId));
-            }
-
-            // RIGHT
-            if (cx < cols - 1) {
-                int rightId = id + 1;
-
-                room.addDoor(Room.Direction.RIGHT,
-                        new Door(W - 20, H/2 - 30, 20, 60, rightId));
-            }
         }
     }
 }

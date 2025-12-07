@@ -4,7 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5981013e-5d90-4f57-83bd-68a94443fb5e" name="Changes" comment="" />
+    <list default="true" id="5981013e-5d90-4f57-83bd-68a94443fb5e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/entities/items/Coin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rooms/StoreRoom.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rooms/TreasureRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/Collectible.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Collectible.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/enemies/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/enemies/Boss.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/enemies/Chaser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/enemies/Chaser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/enemies/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/enemies/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/player/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/GameApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/GameApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/RoomManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/RoomManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rooms/BossRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rooms/BossRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rooms/CombatRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rooms/CombatRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rooms/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rooms/Door.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rooms/NormalRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rooms/NormalRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rooms/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rooms/Room.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,6 +60,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -57,9 +79,11 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Gradle.Binding_of_my_life [dependencies].executor": "Run",
+    "Gradle.FinalProject [:main.Main.main()].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "jumper-bootlegRoom",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "feature/added-boss",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/velys/IdeaProjects/BindingOfMyLife"

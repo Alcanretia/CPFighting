@@ -1,6 +1,7 @@
 package entities.enemies;
 
 import core.SpecialAbilityCapable;
+import entities.items.Coin;
 import entities.player.Player;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -239,6 +240,11 @@ public class Boss extends Enemy implements SpecialAbilityCapable {
     @Override
     public void onDead(){
         // Increase Difficulty?
+        room.spawnItems(new Coin(x-10,y));
+        room.spawnItems(new Coin(x,y+10));
+        room.spawnItems(new Coin(x,y));
+        room.spawnItems(new Coin(x+10,y));
+        room.spawnItems(new Coin(x,y-10));
     }
 
 

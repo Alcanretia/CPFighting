@@ -1,13 +1,14 @@
 package rooms;
 
 import entities.enemies.Enemy;
+import entities.player.Player;
 import javafx.scene.canvas.GraphicsContext;
 
 public class CombatRoom extends Room {
     private boolean doorsLocked = false;
 
-    public CombatRoom(int id, double x, double y, double w, double h) {
-        super(id, x, y, w, h);
+    public CombatRoom(double x, double y, double w, double h, Player player) {
+        super(x, y, w, h, player);
     }
 
     public void spawnEnemy(Enemy e) {

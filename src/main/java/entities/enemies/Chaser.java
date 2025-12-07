@@ -1,6 +1,7 @@
 package entities.enemies;
 
 import bullets.Bullet;
+import entities.items.Coin;
 import entities.player.Player;
 import rooms.Room;
 import javafx.scene.canvas.GraphicsContext;
@@ -35,6 +36,7 @@ public class Chaser extends Enemy {
         room.spawnBullet(new Bullet(x, y, -300, 0));   // Left
         room.spawnBullet(new Bullet(x, y, 0, 300));    // Down
         room.spawnBullet(new Bullet(x, y, 0, -300));   // Up
+        room.spawnItems(new Coin(x,y));
     }
 
     @Override

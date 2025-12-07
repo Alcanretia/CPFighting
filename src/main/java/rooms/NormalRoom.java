@@ -1,11 +1,12 @@
 package rooms;
 
+import entities.player.Player;
 import javafx.scene.canvas.GraphicsContext;
 
 public class NormalRoom extends Room {
 
-    public NormalRoom(int id, double x, double y, double w, double h) {
-        super(id, x, y, w, h);
+    public NormalRoom(double x, double y, double w, double h, Player player) {
+        super(x, y, w, h, player);
     }
 
     @Override

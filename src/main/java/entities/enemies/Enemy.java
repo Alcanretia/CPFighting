@@ -2,6 +2,7 @@ package entities.enemies;
 
 import core.GameObject;
 import core.Hittable;
+import entities.items.Coin;
 import javafx.scene.canvas.GraphicsContext;
 import rooms.Room;
 
@@ -40,7 +41,9 @@ public abstract class Enemy extends GameObject implements Hittable {
     }
 
     @Override
-    public void onDead(){}
+    public void onDead(){
+        room.spawnItems(new Coin(x,y));
+    }
 
     public void setAlive(boolean alive) {
         this.isAlive = alive;
