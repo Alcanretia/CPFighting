@@ -2,6 +2,7 @@ package com.bullethell.rooms;
 
 import com.bullethell.entities.bullets.Bullet;
 import com.bullethell.entities.enemies.Enemy;
+import com.bullethell.entities.player.Player;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -21,13 +22,13 @@ public abstract class Room {
     protected Map<Direction, Door> doors = new EnumMap<>(Direction.class);
     private List<Enemy> enemies = new ArrayList<>();
     private List<Bullet> bullets = new ArrayList<>();
-
     public Room(int id, double x, double y, double width, double height) {
         this.id = id;
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+
     }
 
     public void addEnemy(Enemy e) {
@@ -94,4 +95,52 @@ public abstract class Room {
 
     public abstract void update(double dt);
     public int getId() { return id; }
+    public boolean inside(Bullet b){
+        return false;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+    public void setEnemies(List<Enemy> enemies) {
+        this.enemies = enemies;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public Map<Direction, Door> getDoors() {
+        return doors;
+    }
+
+    public void setDoors(Map<Direction, Door> doors) {
+        this.doors = doors;
+    }
+
+    public void setBullets(List<Bullet> bullets) {
+        this.bullets = bullets;
+    }
 }

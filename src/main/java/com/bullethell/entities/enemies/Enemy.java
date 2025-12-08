@@ -24,7 +24,7 @@ public abstract class Enemy extends GameObject implements Hittable {
 
     @Override
     public void onHit(int damage){
-        return; // Change
+        this.setHp(getHp()-damage); // Change
     }
 
     @Override
@@ -46,4 +46,24 @@ public abstract class Enemy extends GameObject implements Hittable {
 
     public abstract void update(double dt);
     public abstract void render(GraphicsContext gc);
+
+    public int getHp() {
+        return hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public int getPower() {
+        return power;
+    }
+
+    public void setPower(int power) {
+        this.power = power;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
 }

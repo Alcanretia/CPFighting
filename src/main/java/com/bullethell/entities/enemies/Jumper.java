@@ -2,6 +2,7 @@ package com.bullethell.entities.enemies;
 
 import com.bullethell.entities.bullets.Bullet;
 import com.bullethell.rooms.Room;
+import com.bullethell.util.CharacterType;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -86,10 +87,10 @@ public class Jumper extends Enemy {
     }
 
     private void shoot4Directions() {
-        room.spawnBullet(new Bullet(x, y, 300, 0));    // Right
-        room.spawnBullet(new Bullet(x, y, -300, 0));   // Left
-        room.spawnBullet(new Bullet(x, y, 0, 300));    // Down
-        room.spawnBullet(new Bullet(x, y, 0, -300));   // Up
+        room.spawnBullet(new Bullet(x, y, 300, 0, CharacterType.JumperType));    // Right
+        room.spawnBullet(new Bullet(x, y, -300, 0,CharacterType.JumperType));   // Left
+        room.spawnBullet(new Bullet(x, y, 0, 300,CharacterType.JumperType));    // Down
+        room.spawnBullet(new Bullet(x, y, 0, -300,CharacterType.JumperType));   // Up
     }
     @Override
     public void onDead(){

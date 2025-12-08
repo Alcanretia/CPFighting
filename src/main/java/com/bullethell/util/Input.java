@@ -22,6 +22,16 @@ public class Input {
             keys.remove(k);
             released.add(k);
         });
+        scene.setOnMouseClicked(e -> {
+            String k = "MOUSE_" + e.getButton().toString();
+            if (!keys.contains(k)) pressed.add(k);
+            keys.add(k);
+        });
+        scene.setOnMouseReleased(e->{
+            String k="Mouse"+e.getButton().toString();
+            if (!keys.contains(k)) pressed.add(k);
+            keys.add(k);
+        });
     }
 
     public static void update() {

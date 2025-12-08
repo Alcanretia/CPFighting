@@ -14,8 +14,9 @@ import java.util.Map;
 
 public class RoomManager {
 
-    private Map<Integer, Room> rooms = new HashMap<>();
-    private Room currentRoom;
+    private static Map<Integer, Room> rooms = new HashMap<>();
+    private static Room currentRoom;
+    private static RoomManager instance;
 
     // grid size for door generation
     private int cols, rows;
@@ -24,7 +25,9 @@ public class RoomManager {
         this.cols = cols;
         this.rows = rows;
     }
-
+    public static RoomManager getInstance() {
+        return instance;
+    }
     public void createRooms(Player player) {
 
         for (int id = 0; id < cols * rows; id++) {
@@ -146,4 +149,5 @@ public class RoomManager {
             }
         }
     }
+
 }

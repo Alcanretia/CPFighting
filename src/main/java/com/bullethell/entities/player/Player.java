@@ -2,7 +2,10 @@ package com.bullethell.entities.player;
 
 import com.bullethell.core.Hittable;
 import com.bullethell.core.SpecialAbilityCapable;
+import com.bullethell.entities.bullets.Bullet;
 import com.bullethell.entities.enemies.Enemy;
+import com.bullethell.game.RoomManager;
+import com.bullethell.util.CharacterType;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.geometry.Rectangle2D;
@@ -28,13 +31,21 @@ public class Player implements Hittable, SpecialAbilityCapable {
         setName(name);
     }
 
-    public int attack(Enemy enemy){
-        return 1;
-    }
-    public void walk(){
+    public void attack(Enemy enemy){
+        if(Input.isHeld("w")) {
+            Bullet b=new Bullet(getX(),getY(),0,-speed, CharacterType.PlayerType);
+        }
+        else if(Input.isHeld("a")){
+            Bullet b = new Bullet(getX(),getY(),-speed,0, CharacterType.PlayerType);
+        }else if(Input.isHeld("s")){
+            Bullet b=new Bullet(getX(),getY(),0,speed,CharacterType.PlayerType);
+        }else if(Input.isHeld("d")){
+            Bullet b=new Bullet(getX(),getY(),0,speed,CharacterType.PlayerType);
+        }else {
+            Bullet b=new Bullet(getX(),getY(),speed,0,CharacterType.PlayerType);
+        }
 
     }
-
     @Override
     public void onHit(int damage) {
         this.setHp(getHp()-damage);
@@ -118,7 +129,7 @@ public class Player implements Hittable, SpecialAbilityCapable {
 
 
     /// Added for movement testing ///
-    public void update(double dt) {
+    public void walk(double dt) {
         double dx = 0, dy = 0;
 
         if (Input.isHeld("W")) dy -= speed * dt;

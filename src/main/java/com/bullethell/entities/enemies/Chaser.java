@@ -3,6 +3,7 @@ package com.bullethell.entities.enemies;
 import com.bullethell.entities.bullets.Bullet;
 import com.bullethell.entities.player.Player;
 import com.bullethell.rooms.Room;
+import com.bullethell.util.CharacterType;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -34,10 +35,10 @@ public class Chaser extends Enemy{
     }
 
     public void onDead(){
-        room.spawnBullet(new Bullet(x, y, 300, 0));    // Right
-        room.spawnBullet(new Bullet(x, y, -300, 0));   // Left
-        room.spawnBullet(new Bullet(x, y, 0, 300));    // Down
-        room.spawnBullet(new Bullet(x, y, 0, -300));   // Up
+        room.spawnBullet(new Bullet(x, y, 300, 0, CharacterType.ChaserType));    // Right
+        room.spawnBullet(new Bullet(x, y, -300, 0,CharacterType.ChaserType));   // Left
+        room.spawnBullet(new Bullet(x, y, 0, 300,CharacterType.ChaserType));    // Down
+        room.spawnBullet(new Bullet(x, y, 0, -300,CharacterType.ChaserType));   // Up
     }
 
     @Override

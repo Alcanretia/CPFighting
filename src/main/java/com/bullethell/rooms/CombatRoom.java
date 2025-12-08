@@ -2,6 +2,7 @@ package com.bullethell.rooms;
 
 import com.bullethell.entities.enemies.Enemy;
 import com.bullethell.entities.enemies.Jumper;
+import com.bullethell.entities.player.Player;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.List;
 public class CombatRoom extends Room {
     private boolean doorsLocked = false;
 
-    public CombatRoom(int id, double x, double y, double w, double h) {
+    public CombatRoom(int id, double x, double y, double w, double h ) {
         super(id, x, y, w, h);
     }
 
