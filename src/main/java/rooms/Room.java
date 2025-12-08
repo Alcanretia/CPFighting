@@ -1,6 +1,6 @@
 package rooms;
 
-import bullets.Bullet;
+import entities.bullets.Bullet;
 import core.Collectible;
 import entities.enemies.Enemy;
 import entities.player.Player;

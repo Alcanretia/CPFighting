@@ -3,10 +3,12 @@ package entities.enemies;
 import core.SpecialAbilityCapable;
 import entities.items.Coin;
 import entities.player.Player;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import rooms.Room;
-import bullets.Bullet;
+import entities.bullets.Bullet;
+import util.CharacterType;
 
 public class Boss extends Enemy implements SpecialAbilityCapable {
     private Player player;
@@ -15,14 +17,14 @@ public class Boss extends Enemy implements SpecialAbilityCapable {
     private volatile boolean acting = false;
 
     private double targetX, targetY;
-    private double walkSpeed = 80;
-    private double chargeSpeed = 400;
+    private static double walkSpeed = 80;
+    private static double chargeSpeed = 400;
 
-    private double specialAbilityCooldown = 20000;
+    private static double specialAbilityCooldown = 20000;
     private long lastSpecial = 0;
 
-    public Boss(double x, double y, Room room, int hp, int power, Player player){
-        super(x,y,hp,power,room);
+    public Boss(double x, double y, Room room, int hp, int power, Player player,double diameter){
+        super(x,y,hp,power,room,diameter);
         this.player = player;
         this.maxHp = hp;
 
@@ -84,7 +86,7 @@ public class Boss extends Enemy implements SpecialAbilityCapable {
                     double vx = Math.cos(angle) * 400;
                     double vy = Math.sin(angle) * 400;
 
-                    room.spawnBullet(new Bullet(x, y, vx, vy));
+                    room.spawnBullet(new Bullet(x, y, vx, vy,this.getPower(), CharacterType.BossType));
 
                     Thread.sleep(20); // frequency of bullets
                 }
@@ -147,7 +149,7 @@ public class Boss extends Enemy implements SpecialAbilityCapable {
             double angle = (Math.PI * 2) * (i / (double) count);
             double vx = Math.cos(angle) * 250;
             double vy = Math.sin(angle) * 250;
-            room.spawnBullet(new Bullet(x, y, vx, vy));
+            room.spawnBullet(new Bullet(x, y, vx, vy,this.getHp(),CharacterType.BossType));
         }
     }
 
@@ -178,7 +180,7 @@ public class Boss extends Enemy implements SpecialAbilityCapable {
             double angle = base + spread * (i - pellets / 2.0) / (pellets / 2.0);
             double vx = Math.cos(angle) * 350;
             double vy = Math.sin(angle) * 350;
-            room.spawnBullet(new Bullet(x, y, vx, vy));
+            room.spawnBullet(new Bullet(x, y, vx, vy,this.getHp(),CharacterType.BossType));
         }
     }
 
@@ -260,7 +262,7 @@ public class Boss extends Enemy implements SpecialAbilityCapable {
         gc.fillRect(x - 30, y - 30, 60, 60);
 
         // HP bar
-        double ratio = hp / maxHp;
+        double ratio = (double) this.getHp() / maxHp;
         ratio = Math.max(0, Math.min(1, ratio)); // clamp 0–1
 
         gc.setFill(Color.RED);
