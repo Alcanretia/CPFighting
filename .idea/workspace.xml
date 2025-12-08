@@ -5,25 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5981013e-5d90-4f57-83bd-68a94443fb5e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bullethell/game/BulletManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bullethell/util/CharacterType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bullethell/core/Character.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bullethell/entities/bullets/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bullethell/entities/bullets/Bullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bullethell/entities/enemies/Chaser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bullethell/entities/enemies/Chaser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bullethell/entities/enemies/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bullethell/entities/enemies/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bullethell/entities/enemies/Jumper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bullethell/entities/enemies/Jumper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bullethell/entities/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bullethell/entities/player/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bullethell/game/RoomManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bullethell/game/RoomManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bullethell/rooms/CombatRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bullethell/rooms/CombatRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bullethell/rooms/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bullethell/rooms/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bullethell/util/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bullethell/util/Input.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Enemy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Player.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interfaces/Collectable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interfaces/Hitable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interfaces/SpecialAbilityCapable.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,9 +43,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
         <option value="Enum" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -87,7 +72,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/room-system&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/player-attack,bullet-manager&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/velys/IdeaProjects/BindingOfMyLife&quot;,

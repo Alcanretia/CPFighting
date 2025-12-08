@@ -129,7 +129,7 @@ public class Player implements Hittable, SpecialAbilityCapable {
 
 
     /// Added for movement testing ///
-    public void walk(double dt) {
+    public void update(double dt) {
         double dx = 0, dy = 0;
 
         if (Input.isHeld("W")) dy -= speed * dt;
