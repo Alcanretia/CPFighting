@@ -101,7 +101,15 @@ public abstract class Room {
             i.update(dt, player);
         }
 
-        enemies.removeIf(Enemy::isDead);
+        Iterator<Enemy> it = enemies.iterator();
+        while (it.hasNext()) {
+            Enemy e = it.next();
+            if (e.isDead()) {
+                e.onDead();  // <-- run explosion, drop loot, spawn bullets ONCE
+                characters.remove(e);
+                it.remove();
+            }
+        }
         BulletUtil.filterAliveBullets(bullets,characters);
         characters.removeIf(ch -> (ch instanceof Enemy) && ch.isDead());
         bullets.removeIf(b-> !b.isAlive());

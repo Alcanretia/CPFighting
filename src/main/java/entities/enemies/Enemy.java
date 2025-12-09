@@ -24,6 +24,10 @@ public abstract class Enemy extends Character implements Hittable {
     @Override
     public void onHit(int damage){
         this.setHp(getHp()-damage);
+        if(getHp()==0){
+            isAlive=false;
+            onDead();
+        }
     }
 
     @Override

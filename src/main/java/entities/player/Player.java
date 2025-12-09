@@ -14,14 +14,36 @@ import util.CharacterType;
 import util.Input;
 
 public class Player extends Character implements Hittable, SpecialAbilityCapable {
+    //static property
+    private static final double SPEED = 250;
+    public static final int VX=400;
+    public static final int VY=400;
     private int maxHp;
+
+    //normal property
     private int cooldown;
     private boolean isUsedSpecialAbility;
     private String name;
-    private static final double SPEED = 250;
-    public static final int VX=200;
-    public static final int VY=200;
     private int coins;
+
+
+    //delay shoot
+    private long lastShotTime=0;
+    private static final double shootCooldown=200;
+
+
+    // Dash system
+    private boolean isDashing = false;
+    private double dashTime = 0;                        // How long current dash lasts
+    private static final double DASH_DURATION = 0.15;   // seconds
+    private static final double DASH_SPEED = 650;       // dash movement speed
+    private static final double DASH_COOLDOWN = 1.0;    // seconds
+    private double dashCooldownTimer = 0;               // cooldown tracker
+    private double dashDirX = 0;                        // dash direction
+    private double dashDirY = 0;
+
+
+
 
     private double damageFlash;
     public Player(double x, double y, int hp, int power, int cooldown, String name,double diameter) {
@@ -32,10 +54,63 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
         setCoin(0);
         damageFlash = 0;
     }
+    public void dash() {
+        // If already dashing or still cooling down, cannot dash
+        if (isDashing || dashCooldownTimer > 0) return;
 
+        // Get direction based on movement keys (WASD)
+        double dirX = 0;
+        double dirY = 0;
+        System.out.println("qqq1");
+        if (Input.isHeld("W")) dirY -= 1;
+        if (Input.isHeld("S")) dirY += 1;
+        if (Input.isHeld("A")) dirX -= 1;
+        if (Input.isHeld("D")) dirX += 1;
+
+        // No direction = no dash
+        if (dirX == 0 && dirY == 0) dirY-=1;
+
+        // Normalize direction vector
+        double len = Math.sqrt(dirX*dirX + dirY*dirY);
+        dirX /= len;
+        dirY /= len;
+
+        // Activate dash state
+        isDashing = true;
+        dashTime = DASH_DURATION;
+        dashCooldownTimer = DASH_COOLDOWN;
+
+        dashDirX = dirX;
+        dashDirY = dirY;
+        System.out.println("qqq");
+    }
     public void attack(){
-        Bullet b= new Bullet(getX(),getY(),VX,VY, this.getPower(),CharacterType.PlayerType);
+        long now = System.currentTimeMillis();
+        if (now - lastShotTime < shootCooldown) {
+            return; // still cooling down
+        }
+        lastShotTime = now;
 
+        Bullet b= new Bullet(getX(),getY(),0,0, this.getPower(),CharacterType.PlayerType);
+        if (Input.isHeld("LEFT")) {
+            b.setVy(0);
+            b.setVx(-1*SPEED);
+        }
+        else if (Input.isHeld("RIGHT")) {
+            b.setVx(SPEED);
+            b.setVy(0);
+        }
+        else if (Input.isHeld("UP")) {
+            b.setVx(0);
+            b.setVy(-1*SPEED);
+        }
+        else if (Input.isHeld("DOWN")) {
+            b.setVx(0);
+            b.setVy(SPEED);
+        }else {
+            return;
+        }
+        RoomManager.getInstance().getCurrentRoom().spawnBullet(b);
     }
 
     @Override
@@ -48,7 +123,8 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
 
     @Override
     public void useSpecialAbility() {
-        return;
+        if(!isUsedSpecialAbility)return;
+
     }
 
 
@@ -111,6 +187,29 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
 
     /// Added for movement testing ///
     public void update(double dt) {
+        if (Input.isHeld("SPACE")) dash();
+        // Reduce cooldown
+        if (dashCooldownTimer > 0) {
+            dashCooldownTimer -= dt;
+            if (dashCooldownTimer < 0) dashCooldownTimer = 0;
+        }
+
+        // === HANDLE DASHING FIRST ===
+        if (isDashing) {
+            // Move fast in dash direction
+            System.out.println("sss");
+            x += dashDirX * DASH_SPEED * dt;
+            y += dashDirY * DASH_SPEED * dt;
+            x = Math.max(10, Math.min(790, x));
+            y = Math.max(10, Math.min(590, y));
+            dashTime -= dt;
+            if (dashTime <= 0) {
+                isDashing = false;
+            }
+
+            return; // skip normal movement while dashing
+        }
+
         double dx = 0, dy = 0;
 
         if (Input.isHeld("W")) dy -= SPEED * dt;
@@ -120,7 +219,7 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
 
         x += dx;
         y += dy;
-
+        if(Input.isHeld("LEFT")||Input.isHeld("RIGHT")||Input.isHeld("UP")||Input.isHeld("DOWN")) attack();
         // Keep inside bounds
         x = Math.max(10, Math.min(790, x));
         y = Math.max(10, Math.min(590, y));
