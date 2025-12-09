@@ -34,11 +34,11 @@ public class Bullet extends GameObject {
 
     @Override
     public void render(GraphicsContext gc) {
-        gc.drawImage(BULLET_SPRITE, x -(DIAMETER/2), y - (DIAMETER/2), DIAMETER, DIAMETER);
+        gc.drawImage(BULLET_SPRITE, getX() -(DIAMETER/2), getY() - (DIAMETER/2), DIAMETER, DIAMETER);
     }
 
     public Rectangle2D getHitBox(){
-        return new Rectangle2D(getX()-10,getY()-10,20,20);
+        return new Rectangle2D(getX()-(DIAMETER/2),getY()-(DIAMETER/2),DIAMETER,DIAMETER);
     }
     public CharacterType getOwner() {
         return owner;

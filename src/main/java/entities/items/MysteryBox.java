@@ -33,6 +33,7 @@ public class MysteryBox extends Item{
         if (player.getHitbox().intersects(this.getHitbox()) && !isCollected()){
             if (player.sufficientAmount(cost)){
                 collect(player);
+                player.useCoin(cost);
                 setCollected(true);
             }
             // set player x,y outside of box

@@ -34,7 +34,7 @@ public class GameApp extends Application {
 
         Input.initialize();
 
-        this.player = new Player(400, 300, 10, 5, 5,"Player",20);
+        this.player = new Player(400, 300, 10, 5, 5,"Player",30);
 
         // Create RoomManager with grid size (example: 3×3 = 9 rooms)
         roomManager = new RoomManager(player);

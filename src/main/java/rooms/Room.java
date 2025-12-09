@@ -27,6 +27,7 @@ public abstract class Room {
     private List<Enemy> enemies = new ArrayList<>();
     private List<Bullet> bullets = new ArrayList<>();
     private List<Item> items = new ArrayList<>();
+    private List<Item> pendingItems = new ArrayList<>();
     private List<Character> characters = new ArrayList<>();
 
     public Room(double x, double y, double width, double height, Player player) {
@@ -45,7 +46,7 @@ public abstract class Room {
     public void spawnBullet(Bullet b) {
         bullets.add(b);
     }
-    public void spawnItems(Item i) { items.add(i); }
+    public void spawnItems(Item i) { pendingItems.add(i); }
 
     public double getWidth() { return width; }
     public double getHeight() { return height; }
@@ -66,10 +67,31 @@ public abstract class Room {
     }
 
     public void updateEntities(double dt){
-        for (Enemy e : enemies) {
-            if (!e.isDead()) e.update(dt);
-            if (!e.isDead() && e.getHitbox().intersects(player.getHitbox())){
-                player.onHit(e.getPower());
+        for (int i = 0; i < enemies.size(); i++) {
+            Enemy a = enemies.get(i);
+            if (!a.isDead()) a.update(dt);
+            if (!a.isDead() && a.getHitbox().intersects(player.getHitbox())){
+                player.onHit(a.getPower());
+            }
+            for (int j = i + 1; j < enemies.size(); j++) {
+                Enemy b = enemies.get(j);
+
+                double dx = b.getX() - a.getX();
+                double dy = b.getY() - a.getY();
+                double dist = Math.sqrt(dx*dx + dy*dy);
+                double minDist = a.getDiameter() / 1.5 + b.getDiameter() / 1.5;
+
+                if (dist < minDist && dist > 0.0001) {
+                    double overlap = minDist - dist;
+                    dx /= dist;
+                    dy /= dist;
+
+                    // Push both enemies apart
+                    a.setX(a.getX() - dx * overlap * 0.5);
+                    a.setY(a.getY() - dy * overlap * 0.5);
+                    b.setX(b.getX() + dx * overlap * 0.5);
+                    b.setY(b.getY() + dy * overlap * 0.5);
+                }
             }
         }
         for (Bullet b : bullets) {
@@ -84,6 +106,11 @@ public abstract class Room {
         characters.removeIf(ch -> (ch instanceof Enemy) && ch.isDead());
         bullets.removeIf(b-> !b.isAlive());
         items.removeIf(Item::isCollected);
+
+        if (!pendingItems.isEmpty()) {
+            items.addAll(pendingItems);
+            pendingItems.clear();
+        }
     }
 
     public void renderEntities(GraphicsContext gc){
