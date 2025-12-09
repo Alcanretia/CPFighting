@@ -13,8 +13,10 @@ public class BulletUtil {
         for (int i = 0; i < characters.size(); i++) {
             if (b.getHitBox().intersects(characters.get(i).getHitbox())) {
                 if (b.getOwner() == CharacterType.PlayerType && characters.get(i) instanceof Enemy) {
+                    characters.get(i).onHit(b.getPower());
                     return false;
                 } else if (!(b.getOwner() == CharacterType.PlayerType) && characters.get(i) instanceof Player) {
+                    characters.get(i).onHit(b.getPower());
                     return false;
                 }
             }
