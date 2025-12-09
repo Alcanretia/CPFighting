@@ -40,8 +40,10 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
 
     @Override
     public void onHit(int damage) {
-        this.setHp(getHp()-damage);
-        damageFlash = 1.0;
+        if (damageFlash <= 0) {
+            this.setHp(getHp() - damage);
+            damageFlash = 1.0;
+        }
     }
 
     @Override

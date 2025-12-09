@@ -67,7 +67,18 @@ public class GameApp extends Application {
         }.start();
     }
 
+    private Font pixelFont; // load once
+
     private void drawHUD(GraphicsContext gc) {
+
+        gc.setImageSmoothing(false);
+
+        // ====== Load font once ======
+        if (pixelFont == null) {
+            pixelFont = Font.loadFont(
+                    getClass().getResourceAsStream("/fonts/PressStart2P.ttf"), 12
+            );
+        }
 
         // ====== HP BAR SETTINGS ======
         double barX = 20, barY = 20;
@@ -75,30 +86,41 @@ public class GameApp extends Application {
         double barHeight = 24;
         double innerPadding = 3;
 
-        double hpPercent = (double) player.getHp() / player.getMaxHp();
-        double innerWidth = (barWidth - innerPadding * 2) * hpPercent;
+        // ====== HP CLAMP ======
+        double hp = Math.max(0, Math.min(player.getHp(), player.getMaxHp()));
+        double hpPercent = hp / player.getMaxHp();
+
+        // Compute inside width safely
+        double innerMaxWidth = barWidth - innerPadding * 2;
+        double innerWidth = innerMaxWidth * hpPercent;
 
         // ====== OUTER BORDER ======
-        gc.setFill(Color.rgb(30, 30, 30)); // dark outer frame
+        gc.setFill(Color.rgb(30, 30, 30));
         gc.fillRect(barX, barY, barWidth, barHeight);
 
         // ====== INNER BACKGROUND ======
         gc.setFill(Color.rgb(80, 0, 0));
-        gc.fillRect(barX + innerPadding, barY + innerPadding,
-                barWidth - innerPadding * 2, barHeight - innerPadding * 2);
+        gc.fillRect(
+                barX + innerPadding,
+                barY + innerPadding,
+                innerMaxWidth,
+                barHeight - innerPadding * 2
+        );
 
-        // ====== HP FILL (gradient effect) ======
+        // ====== HP FILL ======
         gc.setFill(Color.rgb(200, 40, 40));
-        gc.fillRect(barX + innerPadding, barY + innerPadding,
-                innerWidth, barHeight - innerPadding * 2);
+        gc.fillRect(
+                barX + innerPadding,
+                barY + innerPadding,
+                innerWidth,
+                barHeight - innerPadding * 2
+        );
 
         // ====== HP TEXT ======
         gc.setFill(Color.WHITE);
-        gc.setImageSmoothing(false);
-        Font pixelFont = Font.loadFont(getClass().getResourceAsStream("/fonts/PressStart2P.ttf"), 12);
         gc.setFont(pixelFont);
 
-        String hpText = player.getHp() + " / " + player.getMaxHp();
+        String hpText = (int) hp + " / " + (int) player.getMaxHp();
         gc.fillText(hpText, barX + 8, barY + barHeight - 7);
 
         // ===== DAMAGE FLASH OVERLAY =====
@@ -112,5 +134,4 @@ public class GameApp extends Application {
         gc.setFill(Color.GOLD);
         gc.fillText("Coins: " + player.getCoin(), 26, 70);
     }
-
 }

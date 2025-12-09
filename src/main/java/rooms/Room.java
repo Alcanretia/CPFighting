@@ -10,6 +10,7 @@ import entities.player.Player;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import util.BulletUtil;
 
 import java.util.*;
@@ -26,7 +27,7 @@ public abstract class Room {
     private List<Enemy> enemies = new ArrayList<>();
     private List<Bullet> bullets = new ArrayList<>();
     private List<Item> items = new ArrayList<>();
-    private List<Character> characters=new ArrayList<>();
+    private List<Character> characters = new ArrayList<>();
 
     public Room(double x, double y, double width, double height, Player player) {
         this.x = x;
@@ -52,7 +53,7 @@ public abstract class Room {
     public List<Bullet> getBullets() { return bullets; }
     public List<Item> getItems() { return items; }
 
-    public List<Character> getCharacters() {return characters;}
+    public List<Character> getCharacters() { return characters; }
 
     // Add a door for this room
     public void addDoor(Door door) {
@@ -67,6 +68,9 @@ public abstract class Room {
     public void updateEntities(double dt){
         for (Enemy e : enemies) {
             if (!e.isDead()) e.update(dt);
+            if (!e.isDead() && e.getHitbox().intersects(player.getHitbox())){
+                player.onHit(e.getPower());
+            }
         }
         for (Bullet b : bullets) {
             b.update(dt);
@@ -96,10 +100,28 @@ public abstract class Room {
         return active;
     }
 
+    protected void drawFog(GraphicsContext gc, Color edgeColor, double strength) {
+        double fadeDistance = 120; // how far the smoke fades inward
+
+        // 1. Edge red/black glow
+        var gradient = new javafx.scene.paint.RadialGradient(
+                0, 0,
+                player.getX(), player.getY(),             // center of room
+                Math.max(width, height),
+                false,
+                javafx.scene.paint.CycleMethod.NO_CYCLE,
+                new javafx.scene.paint.Stop(0.0, Color.color(edgeColor.getRed(), edgeColor.getGreen(), edgeColor.getBlue(), 0)),
+                new javafx.scene.paint.Stop(1.0, Color.color(edgeColor.getRed(), edgeColor.getGreen(), edgeColor.getBlue(), strength))
+        );
+
+        gc.setFill(gradient);
+        gc.fillRect(x, y, width, height);
+    }
+
     public void render(GraphicsContext gc) {
         // Base room render (background)
         gc.drawImage(FLOOR_SPRITE,0,0,800,600);
-
+        drawFog(gc, Color.BLACK, 0.70);
         // Render doors
         topDoor.render(gc);
     }
