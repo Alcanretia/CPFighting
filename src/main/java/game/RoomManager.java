@@ -18,6 +18,8 @@ public class RoomManager {
     private int roomCleared = 0;
     private Room currentRoom;
 
+    private double difficulty = 1.0;
+
     private Player player;
 
     private static RoomManager instance;
@@ -39,6 +41,10 @@ public class RoomManager {
     // Later calls (no need to pass player again)
     public static RoomManager getInstance() {
         return instance;
+    }
+
+    public void resetInstance(){
+        instance = null;
     }
 
     public void createTopDoor(Room room){
@@ -66,15 +72,15 @@ public class RoomManager {
             CombatRoom cr = new CombatRoom(0, 0, 800, 600, player);
             room = cr;
             // spawn 1–3 enemies
-            int count = 1 + (int) (Math.random() * 5); // 1–5 enemies
+            int count = 2 + (int) (Math.random() * (int)(4 * difficulty)); // 1–5 enemies
 
             for (int i = 0; i < count; i++) {
                 double ex = 200 + Math.random() * 400;
                 double ey = 150 + Math.random() * 300;
 
                 double choice = Math.random();
-                if (choice > 0.5) cr.spawnEnemy(new Jumper(ex, ey, room, 3, 1,20));
-                else cr.spawnEnemy(new Chaser(ex, ey, room, player, 5, 1,20));
+                if (choice > 0.5) cr.spawnEnemy(new Jumper(ex, ey, room, (int)(3 * difficulty) , 1,20));
+                else cr.spawnEnemy(new Chaser(ex, ey, room, player, (int)(5 * difficulty) , 1,20));
             }
         }
         return room;
@@ -96,7 +102,7 @@ public class RoomManager {
         if (currentRoom == null) return;
 
         Door door = currentRoom.getDoorAtPlayer(player.getHitbox());
-        if (door != null){
+        if (door != null && !door.isLocked()){
             enterNextRoom();
         }
         currentRoom.update(dt);
@@ -123,5 +129,9 @@ public class RoomManager {
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public void increaseDifficulty(){
+        difficulty += 0.25;
     }
 }
