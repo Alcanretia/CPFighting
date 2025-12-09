@@ -30,7 +30,7 @@ public class RoomManager {
 
     public void createTopDoor(Room room){
         double w = room.getWidth();
-        room.addDoor(new Door(w/2 - 30, 0, 60, 20));
+        room.addDoor(new Door(w/2 - 30, 0));
     }
 
     public Room createNextRoom() {
