@@ -14,9 +14,11 @@ public class BulletUtil {
             if (b.getHitBox().intersects(characters.get(i).getHitbox())) {
                 if (b.getOwner() == CharacterType.PlayerType && characters.get(i) instanceof Enemy) {
                     characters.get(i).onHit(b.getPower());
+                    //System.out.println("1 out");
                     return false;
-                } else if (!(b.getOwner() == CharacterType.PlayerType) && characters.get(i) instanceof Player) {
+                } else if ((b.getOwner() != CharacterType.PlayerType) && characters.get(i) instanceof Player) {
                     characters.get(i).onHit(b.getPower());
+                    //System.out.println("2 out");
                     return false;
                 }
             }

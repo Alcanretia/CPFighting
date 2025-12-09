@@ -12,7 +12,8 @@ public abstract class Enemy extends Character implements Hittable {
     protected Room room;
     private double radius;
 
-    public Enemy(double x, double y, int hp, int power, Room room,double diameter){super(x, y,hp,power,diameter);
+    public Enemy(double x, double y, int hp, int power, Room room,double diameter){
+        super(x, y,hp,power,diameter);
        setRoom(room);
     }
 

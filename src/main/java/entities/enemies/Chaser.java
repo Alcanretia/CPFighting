@@ -15,11 +15,15 @@ public class Chaser extends Enemy {
 
     private Player player;
 
+
+
     public Chaser(double x, double y, Room room, Player player, int hp, int power,double diameter) {
         super(x, y, hp, power,room,diameter); // width, height, hp
 
         setPlayer(player);
     }
+
+
 
     public void onDead(){
         room.spawnBullet(new Bullet(x, y, 300, 0,this.getPower(), CharacterType.ChaserType));    // Right

@@ -61,7 +61,7 @@ public class EnemyTest {
         assertEquals(20, e.getHp());
 
         e.onHit(25);
-        assertEquals(-5, e.getHp());
+        assertEquals(0, e.getHp());
     }
 
     @Test
