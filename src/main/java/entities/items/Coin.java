@@ -3,60 +3,26 @@ package entities.items;
 import core.Collectible;
 import entities.player.Player;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 import java.util.Collection;
 
-public class Coin implements Collectible {
-    private double x,y;
-    private boolean collected;
+public class Coin extends Item {
+    private static final double WIDTH = 30, HEIGHT = 30;
+    private static final Image COIN_SPRITE = new Image("sprites/Coin.png");
 
     public Coin(double x, double y){
-        setX(x);
-        setY(y);
-        setCollected(false);
-    }
-
-    public void collect(Player player){
-        player.addCoin(1);
-        this.collected = true;
+        super(x,y,WIDTH, HEIGHT);
     }
 
     @Override
-    public boolean isCollected(){
-        return collected;
+    public void collect(Player player){
+        player.addCoin(1);
     }
 
-    public void update(double dt, Player player) {
-        double dx = player.getX() - x;
-        double dy = player.getY() - y;
-        if (dx*dx + dy*dy < 25 * 25) {
-            collect(player);
-        }
-    }
-
+    @Override
     public void render(GraphicsContext gc){
-        gc.setFill(Color.YELLOW);
-        gc.fillOval(x - 5, y - 5, 10, 10);
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
-
-    public void setCollected(boolean collected) {
-        this.collected = collected;
+        gc.drawImage(COIN_SPRITE,WIDTH,HEIGHT);
     }
 }

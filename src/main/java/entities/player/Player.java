@@ -68,8 +68,10 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
 
     @Override
     public void onHit(int damage) {
-        this.setHp(getHp()-damage);
-        damageFlash = 1.0;
+        if (damageFlash <= 0) {
+            this.setHp(getHp() - damage);
+            damageFlash = 1.0;
+        }
     }
 
     @Override
@@ -160,7 +162,7 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
 
     public void render(GraphicsContext gc) {
         gc.setFill(Color.CYAN);
-        gc.fillOval(x - (diameter/2), y - (diameter/2), 20, 20);
+        gc.fillOval(x - (diameter/2), y - (diameter/2), diameter, diameter);
     }
 
 }

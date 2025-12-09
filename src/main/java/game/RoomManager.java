@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RoomManager {
-    private static final int BOSS_INTERVAL = 10;
+    private static final int BOSS_INTERVAL = 0;
     private static final int TREASURE_INTERVAL = 5;
     private static final int SHOP_INTERVAL = 7;
 
@@ -42,22 +42,22 @@ public class RoomManager {
 
     public void createTopDoor(Room room){
         double w = room.getWidth();
-        room.addDoor(new Door(w/2 - 30, 0, 60, 20));
+        room.addDoor(new Door(w/2 - 45, 0));
     }
 
     public Room createNextRoom() {
         roomCleared++;
         Room room;
-        if (roomCleared % BOSS_INTERVAL == 0){
+        if (roomCleared % 10 == BOSS_INTERVAL){
             BossRoom br = new BossRoom(0, 0, 800, 600, player);
             room = br;
             br.spawnEnemy(new Boss(400,300,room, 10, 1, player,60));
         }
-        else if (roomCleared % TREASURE_INTERVAL == 0){
+        else if (roomCleared % 10 == TREASURE_INTERVAL){
             TreasureRoom tr = new TreasureRoom(0,0,800,600, player);
             room = tr;
         }
-        else if (roomCleared % SHOP_INTERVAL == 0){
+        else if (roomCleared % 10 == SHOP_INTERVAL){
             StoreRoom sr = new StoreRoom(0,0,800,600, player);
             room = sr;
         }
@@ -87,7 +87,7 @@ public class RoomManager {
         currentRoom = newRoom;
         currentRoom.setActive(true);
 
-        player.setX(GameApp.WIDTH / 2 - player.getDiameter() / 2);
+        player.setX(GameApp.WIDTH / 2);
         player.setY(GameApp.HEIGHT - 80);
     }
 

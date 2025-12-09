@@ -8,10 +8,9 @@ import javafx.scene.canvas.GraphicsContext;
 import rooms.Room;
 
 public abstract class Enemy extends Character implements Hittable {
-
-
     // CHANGE IN CONSTRUCTOR LATER
     protected Room room;
+    private double radius;
 
     public Enemy(double x, double y, int hp, int power, Room room,double diameter){
         super(x, y,hp,power,diameter);
@@ -25,7 +24,10 @@ public abstract class Enemy extends Character implements Hittable {
     @Override
     public void onHit(int damage){
         this.setHp(getHp()-damage);
-        if(getHp()==0)isAlive=false;
+        if(getHp()==0){
+            isAlive=false;
+            onDead();
+        }
     }
 
     @Override
@@ -46,6 +48,7 @@ public abstract class Enemy extends Character implements Hittable {
     public void setRoom(Room room) {
         this.room = room;
     }
+
 
     public abstract void update(double dt);
     public abstract void render(GraphicsContext gc);

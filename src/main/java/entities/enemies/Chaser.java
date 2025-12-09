@@ -86,7 +86,7 @@ public class Chaser extends Enemy {
     @Override
     public void render(GraphicsContext gc) {
         gc.setFill(Color.ORANGE);
-        gc.fillRect(x, y, getDiameter(), getDiameter());
+        gc.fillRect(x-(getDiameter() / 2), y-(getDiameter()/2), getDiameter(), getDiameter());
     }
 
     public Player getPlayer() {

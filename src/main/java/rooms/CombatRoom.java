@@ -3,9 +3,9 @@ package rooms;
 import entities.enemies.Enemy;
 import entities.player.Player;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 public class CombatRoom extends Room {
-    private boolean doorsLocked = false;
 
     public CombatRoom(double x, double y, double w, double h, Player player) {
         super(x, y, w, h, player);
@@ -13,29 +13,30 @@ public class CombatRoom extends Room {
 
     public void spawnEnemy(Enemy e) {
         addEnemy(e);
-        doorsLocked = true; // lock when enemies present
     }
 
     @Override
     public void update(double dt) {
         updateEntities(dt);
-        doorsLocked = !getEnemies().isEmpty();
+        if (getEnemies().isEmpty()){
+            topDoor.setLocked(false);
+        }
+        else topDoor.setLocked(true);
     }
 
     @Override
     public void render(GraphicsContext gc) {
         super.render(gc);
 
-        // Tint room red if locked
-        if (doorsLocked) {
-            gc.setFill(javafx.scene.paint.Color.color(1, 0, 0, 0.2));
-            gc.fillRect(x, y, width, height);
+        if (topDoor.isLocked()) {
+            drawFog(gc, Color.RED, 0.50);
+        }
+        else {
+            drawFog(gc, Color.BLACK, 0.70);
         }
 
         renderEntities(gc);
     }
 
-    public boolean areDoorsLocked() {
-        return doorsLocked;
-    }
+
 }
