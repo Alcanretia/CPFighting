@@ -19,9 +19,13 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
     private boolean isUsedSpecialAbility;
     private String name;
     private static final double SPEED = 250;
-    public static final int VX=200;
-    public static final int VY=200;
+    public static final int VX=400;
+    public static final int VY=400;
     private int coins;
+    private long lastShotTime=0;
+    private static final double shootCooldown=200;
+
+
 
     private double damageFlash;
     public Player(double x, double y, int hp, int power, int cooldown, String name,double diameter) {
@@ -34,8 +38,32 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
     }
 
     public void attack(){
-        Bullet b= new Bullet(getX(),getY(),VX,VY, this.getPower(),CharacterType.PlayerType);
+        long now = System.currentTimeMillis();
+        if (now - lastShotTime < shootCooldown) {
+            return; // still cooling down
+        }
+        lastShotTime = now;
 
+        Bullet b= new Bullet(getX(),getY(),0,0, this.getPower(),CharacterType.PlayerType);
+        if (Input.isHeld("LEFT")) {
+            b.setVy(0);
+            b.setVx(-1*SPEED);
+        }
+        else if (Input.isHeld("RIGHT")) {
+            b.setVx(SPEED);
+            b.setVy(0);
+        }
+        else if (Input.isHeld("UP")) {
+            b.setVx(0);
+            b.setVy(-1*SPEED);
+        }
+        else if (Input.isHeld("DOWN")) {
+            b.setVx(0);
+            b.setVy(SPEED);
+        }else {
+            return;
+        }
+        RoomManager.getInstance().getCurrentRoom().spawnBullet(b);
     }
 
     @Override
@@ -46,7 +74,8 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
 
     @Override
     public void useSpecialAbility() {
-        return;
+        if(!isUsedSpecialAbility)return;
+
     }
 
 
@@ -118,7 +147,7 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
 
         x += dx;
         y += dy;
-
+        if(Input.isHeld("LEFT")||Input.isHeld("RIGHT")||Input.isHeld("UP")||Input.isHeld("DOWN")) attack();
         // Keep inside bounds
         x = Math.max(10, Math.min(790, x));
         y = Math.max(10, Math.min(590, y));

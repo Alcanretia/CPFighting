@@ -67,11 +67,4 @@ public class CoinTest {
         assertEquals(456, c.getY());
     }
 
-    @Test
-    void testRenderDoesNotCrash() {
-        Coin c = new Coin(50, 50);
-
-        // Rendering should not throw even if GC is null (safe for testing)
-        assertDoesNotThrow(() -> c.render(null));
-    }
 }

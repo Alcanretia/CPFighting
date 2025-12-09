@@ -37,7 +37,7 @@ public class GameApp extends Application {
         this.player = new Player(400, 300, 10, 5, 5,"Player",20);
 
         // Create RoomManager with grid size (example: 3×3 = 9 rooms)
-        roomManager = new RoomManager(player);
+        roomManager = RoomManager.getInstance(player);
 
         Scene scene = new Scene(new StackPane(canvas));
         Input.attach(scene);
