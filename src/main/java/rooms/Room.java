@@ -19,10 +19,10 @@ public abstract class Room {
     protected double x, y, width, height;
 
     protected Door topDoor;
-    private ArrayList<Enemy> enemies = new ArrayList<>();
-    private ArrayList<Bullet> bullets = new ArrayList<>();
-    private ArrayList<Collectible> items = new ArrayList<>();
-    private ArrayList<Character> characters=new ArrayList<>();
+    private List<Enemy> enemies = new ArrayList<>();
+    private List<Bullet> bullets = new ArrayList<>();
+    private List<Collectible> items = new ArrayList<>();
+    private List<Character> characters=new ArrayList<>();
     public Room(double x, double y, double width, double height, Player player) {
         this.x = x;
         this.y = y;
