@@ -14,14 +14,4 @@ public class StoreRoom extends Room{
         spawnItems(new MysteryBox(600,300,this, ITEMCOST));
     }
 
-    @Override
-    public void update(double dt) {
-        updateEntities(dt);
-    }
-
-    @Override
-    public void render(GraphicsContext gc) {
-        super.render(gc);
-        renderEntities(gc);
-    }
 }

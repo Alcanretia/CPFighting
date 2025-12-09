@@ -4,6 +4,7 @@ import core.Character;
 import core.Hittable;
 import core.SpecialAbilityCapable;
 import entities.bullets.Bullet;
+import entities.bullets.Laser;
 import entities.enemies.Enemy;
 import game.GameApp;
 import game.RoomManager;
@@ -19,9 +20,20 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
     private boolean isUsedSpecialAbility;
     private String name;
     private static final double SPEED = 250;
-    public static final int VX=200;
-    public static final int VY=200;
+    public static final int VX=400;
+    public static final int VY=400;
     private int coins;
+
+    private long lastShotTime=0;
+    private static final double shootCooldown=200;
+
+    ///  LASER
+    private double lastDirX = 1; // default right
+    private double lastDirY = 0;
+    private long lastLaserTime = 0;
+    private static final long LASER_COOLDOWN = 3000;
+
+
 
     private double damageFlash;
     public Player(double x, double y, int hp, int power, int cooldown, String name,double diameter) {
@@ -34,8 +46,41 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
     }
 
     public void attack(){
-        Bullet b= new Bullet(getX(),getY(),VX,VY, this.getPower(),CharacterType.PlayerType);
+        long now = System.currentTimeMillis();
+        if (now - lastShotTime < shootCooldown) {
+            return; // still cooling down
+        }
+        lastShotTime = now;
 
+        Bullet b= new Bullet(getX(),getY(),0,0, this.getPower(),CharacterType.PlayerType);
+        if (Input.isHeld("LEFT")) {
+            b.setVy(0);
+            b.setVx(-1*SPEED);
+            lastDirX = -1;
+            lastDirY = 0;
+        }
+        else if (Input.isHeld("RIGHT")) {
+            b.setVx(SPEED);
+            b.setVy(0);
+            lastDirX = 1;
+            lastDirY = 0;
+        }
+        else if (Input.isHeld("UP")) {
+            b.setVx(0);
+            b.setVy(-1*SPEED);
+            lastDirX = 0;
+            lastDirY = -1;
+        }
+        else if (Input.isHeld("DOWN")) {
+            b.setVx(0);
+            b.setVy(SPEED);
+            lastDirX = 0;
+            lastDirY = 1;
+
+        }else {
+            return;
+        }
+        RoomManager.getInstance().getCurrentRoom().spawnBullet(b);
     }
 
     @Override
@@ -44,17 +89,27 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
             this.setHp(getHp() - damage);
             damageFlash = 1.0;
         }
+        if (getHp() <= 0){
+            onDead();
+        }
     }
 
     @Override
     public void useSpecialAbility() {
-        return;
+        long now = System.currentTimeMillis();
+        if (now - lastLaserTime < LASER_COOLDOWN) return;
+
+        lastLaserTime = now;
+
+        // Create a laser with very high speed or infinite range
+        Laser laser = new Laser(getX(), getY(), lastDirX, lastDirY, getPower());
+        RoomManager.getInstance().getCurrentRoom().spawnLaser(laser);
     }
 
 
     @Override
     public void onDead(){
-        return; // Death screen?
+        setAlive(false);
     }
 
     public int getMaxHp() { return maxHp; }
@@ -120,10 +175,11 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
 
         x += dx;
         y += dy;
-
+        if(Input.isHeld("LEFT")||Input.isHeld("RIGHT")||Input.isHeld("UP")||Input.isHeld("DOWN")) attack();
         // Keep inside bounds
         x = Math.max(10, Math.min(790, x));
         y = Math.max(10, Math.min(590, y));
+        if (Input.isHeld("E")) useSpecialAbility();
 
         if (damageFlash > 0){
             damageFlash -= dt * 2;
@@ -133,7 +189,7 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
 
     public void render(GraphicsContext gc) {
         gc.setFill(Color.CYAN);
-        gc.fillOval(x - (diameter/2), y - (diameter/2), diameter, diameter);
+        gc.fillOval(x - (diameter/2), y - (diameter/2), 20, 20);
     }
 
 }

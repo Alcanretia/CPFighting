@@ -15,20 +15,10 @@ public class Chaser extends Enemy {
 
     private Player player;
 
-    private boolean deathBombed = false;
-
     public Chaser(double x, double y, Room room, Player player, int hp, int power,double diameter) {
         super(x, y, hp, power,room,diameter); // width, height, hp
 
         setPlayer(player);
-    }
-
-    public boolean getDeathBombed(){
-        return deathBombed;
-    }
-
-    public void setDeathBombed(boolean deathBombed){
-        this.deathBombed = deathBombed;
     }
 
     public void onDead(){
@@ -42,13 +32,7 @@ public class Chaser extends Enemy {
 
     @Override
     public void update(double dt) {
-        if (isDead()){
-            if (!getDeathBombed()){
-                onDead();
-                setDeathBombed(true);
-            }
-            return;
-        }
+        if (isDead()) return;
 
         double dx = player.getX() - x;
         double dy = player.getY() - y;

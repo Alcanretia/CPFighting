@@ -20,12 +20,25 @@ public class RoomManager {
 
     private Player player;
 
-    public RoomManager(Player player) {
+    private static RoomManager instance;
+
+    private RoomManager(Player player) {
         this.player = player;
         currentRoom = new NormalRoom(0, 0, 800, 600, player);
         createTopDoor(currentRoom);
 
         currentRoom.setActive(true);
+    }
+    public static RoomManager getInstance(Player player) {
+        if (instance == null) {
+            instance = new RoomManager(player);
+        }
+        return instance;
+    }
+
+    // Later calls (no need to pass player again)
+    public static RoomManager getInstance() {
+        return instance;
     }
 
     public void createTopDoor(Room room){
@@ -94,5 +107,21 @@ public class RoomManager {
             currentRoom.render(gc);
             player.render(gc);
         }
+    }
+
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+
+    public void setCurrentRoom(Room currentRoom) {
+        this.currentRoom = currentRoom;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }

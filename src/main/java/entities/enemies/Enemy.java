@@ -12,8 +12,7 @@ public abstract class Enemy extends Character implements Hittable {
     protected Room room;
     private double radius;
 
-    public Enemy(double x, double y, int hp, int power, Room room,double diameter){
-        super(x, y,hp,power,diameter);
+    public Enemy(double x, double y, int hp, int power, Room room,double diameter){super(x, y,hp,power,diameter);
        setRoom(room);
     }
 
@@ -24,6 +23,9 @@ public abstract class Enemy extends Character implements Hittable {
     @Override
     public void onHit(int damage){
         this.setHp(getHp()-damage);
+        if (getHp() <= 0){
+            setAlive(false);
+        }
     }
 
     @Override
