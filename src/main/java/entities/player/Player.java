@@ -4,6 +4,7 @@ import core.Character;
 import core.Hittable;
 import core.SpecialAbilityCapable;
 import entities.bullets.Bullet;
+import entities.bullets.Laser;
 import entities.enemies.Enemy;
 import game.GameApp;
 import game.RoomManager;
@@ -14,25 +15,26 @@ import util.CharacterType;
 import util.Input;
 
 public class Player extends Character implements Hittable, SpecialAbilityCapable {
-    //static property
-    private static final double SPEED = 250;
-    public static final int VX=400;
-    public static final int VY=400;
     private int maxHp;
-
-    //normal property
     private int cooldown;
     private boolean isUsedSpecialAbility;
     private String name;
+    private static final double SPEED = 250;
+    public static final int VX=400;
+    public static final int VY=400;
     private int coins;
 
-
-    //delay shoot
     private long lastShotTime=0;
     private static final double shootCooldown=200;
 
+    ///  LASER
+    private double lastDirX = 1; // default right
+    private double lastDirY = 0;
+    private long lastLaserTime = 0;
+    private static final long LASER_COOLDOWN = 3000;
 
-    // Dash system
+
+    /// Dash system
     private boolean isDashing = false;
     private double dashTime = 0;                        // How long current dash lasts
     private static final double DASH_DURATION = 0.15;   // seconds
@@ -68,22 +70,14 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
         if (Input.isHeld("D")) dirX += 1;
 
         // No direction = no dash
-        if (dirX == 0 && dirY == 0) dirY-=1;
+        if (dirX == 0 && dirY == 0) dirY -= 1;
 
         // Normalize direction vector
-        double len = Math.sqrt(dirX*dirX + dirY*dirY);
+        double len = Math.sqrt(dirX * dirX + dirY * dirY);
         dirX /= len;
         dirY /= len;
-
-        // Activate dash state
-        isDashing = true;
-        dashTime = DASH_DURATION;
-        dashCooldownTimer = DASH_COOLDOWN;
-
-        dashDirX = dirX;
-        dashDirY = dirY;
-        System.out.println("qqq");
     }
+
     public void attack(){
         long now = System.currentTimeMillis();
         if (now - lastShotTime < shootCooldown) {
@@ -95,18 +89,27 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
         if (Input.isHeld("LEFT")) {
             b.setVy(0);
             b.setVx(-1*SPEED);
+            lastDirX = -1;
+            lastDirY = 0;
         }
         else if (Input.isHeld("RIGHT")) {
             b.setVx(SPEED);
             b.setVy(0);
+            lastDirX = 1;
+            lastDirY = 0;
         }
         else if (Input.isHeld("UP")) {
             b.setVx(0);
             b.setVy(-1*SPEED);
+            lastDirX = 0;
+            lastDirY = -1;
         }
         else if (Input.isHeld("DOWN")) {
             b.setVx(0);
             b.setVy(SPEED);
+            lastDirX = 0;
+            lastDirY = 1;
+
         }else {
             return;
         }
@@ -119,18 +122,27 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
             this.setHp(getHp() - damage);
             damageFlash = 1.0;
         }
+        if (getHp() <= 0){
+            onDead();
+        }
     }
 
     @Override
     public void useSpecialAbility() {
-        if(!isUsedSpecialAbility)return;
+        long now = System.currentTimeMillis();
+        if (now - lastLaserTime < LASER_COOLDOWN) return;
 
+        lastLaserTime = now;
+
+        // Create a laser with very high speed or infinite range
+        Laser laser = new Laser(getX(), getY(), lastDirX, lastDirY, getPower());
+        RoomManager.getInstance().getCurrentRoom().spawnLaser(laser);
     }
 
 
     @Override
     public void onDead(){
-        return; // Death screen?
+        setAlive(false);
     }
 
     public int getMaxHp() { return maxHp; }
@@ -223,6 +235,7 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
         // Keep inside bounds
         x = Math.max(10, Math.min(790, x));
         y = Math.max(10, Math.min(590, y));
+        if (Input.isHeld("E")) useSpecialAbility();
 
         if (damageFlash > 0){
             damageFlash -= dt * 2;

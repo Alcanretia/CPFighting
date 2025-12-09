@@ -10,9 +10,14 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import util.GameState;
 import util.Input;
 
 public class GameApp extends Application {
+    private GameState gameState = GameState.START_SCREEN;
+    private boolean gameStarted = false;
+    private boolean gameOver = false;
+
 
     private Player player;
     public static final double WIDTH = 800, HEIGHT = 600;
@@ -34,9 +39,8 @@ public class GameApp extends Application {
 
         Input.initialize();
 
-        this.player = new Player(400, 300, 10, 5, 5,"Player",30);
+        this.player = new Player(400, 300, 10, 1, 5,"Player",30);
 
-        // Create RoomManager with grid size (example: 3×3 = 9 rooms)
         roomManager = RoomManager.getInstance(player);
 
         Scene scene = new Scene(new StackPane(canvas));
@@ -51,6 +55,27 @@ public class GameApp extends Application {
 
             @Override
             public void handle(long now) {
+                if (!gameStarted) {
+                    drawStartScreen(gc);
+                    if (Input.isPressed("SPACE")) {
+                        gameStarted = true;
+                    }
+                    return;
+                }
+
+                if (player.isDead()) {
+                    gameOver = true;
+                }
+
+                if (gameOver) {
+                    drawDeadScreen(gc);
+                    if (Input.isPressed("R")) {
+                        restartGame();
+                    }
+                    return;
+                }
+
+                // Normal game update/draw here
                 if (last == 0) last = now;
                 double dt = (now - last) / 1e9;
                 last = now;
@@ -67,18 +92,50 @@ public class GameApp extends Application {
         }.start();
     }
 
+    private void restartGame() {
+        // completely reset all states
+        this.player = new Player(400, 300, 10, 1, 5,"Player",30);
+        roomManager = RoomManager.getInstance(player);
+
+        gameOver = false;
+        gameStarted = false; // optional → show start screen again
+    }
+
+
+
     private Font pixelFont; // load once
+
+    private void drawStartScreen(GraphicsContext gc) {
+        gc.setFill(Color.BLACK);
+        gc.fillRect(0, 0, WIDTH, HEIGHT);
+        pixelFont = Font.loadFont(getClass().getResourceAsStream("/fonts/PressStart2P.ttf"), 20);
+
+        gc.setFill(Color.WHITE);
+        gc.setFont(pixelFont);
+        gc.fillText("PRESS SPACE TO START", WIDTH/2 - 200, HEIGHT/2);
+    }
+
+    private void drawDeadScreen(GraphicsContext gc) {
+        gc.setFill(Color.color(0, 0, 0, 0.6));  // transparent fade
+        gc.fillRect(0, 0, WIDTH, HEIGHT);
+
+        pixelFont = Font.loadFont(getClass().getResourceAsStream("/fonts/PressStart2P.ttf"), 20);
+        gc.setFill(Color.RED);
+        gc.setFont(pixelFont);
+        gc.fillText("YOU DIED!", WIDTH/2 - 90, HEIGHT/2 - 20);
+
+        gc.setFill(Color.WHITE);
+        pixelFont = Font.loadFont(getClass().getResourceAsStream("/fonts/PressStart2P.ttf"), 10);
+        gc.setFont(pixelFont);
+        gc.fillText("Press R to Restart", WIDTH/2 - 90, HEIGHT/2 + 20);
+    }
 
     private void drawHUD(GraphicsContext gc) {
 
         gc.setImageSmoothing(false);
 
         // ====== Load font once ======
-        if (pixelFont == null) {
-            pixelFont = Font.loadFont(
-                    getClass().getResourceAsStream("/fonts/PressStart2P.ttf"), 12
-            );
-        }
+        pixelFont = Font.loadFont(getClass().getResourceAsStream("/fonts/PressStart2P.ttf"), 12);
 
         // ====== HP BAR SETTINGS ======
         double barX = 20, barY = 20;

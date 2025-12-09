@@ -9,14 +9,4 @@ public class NormalRoom extends Room {
         super(x, y, w, h, player);
     }
 
-    @Override
-    public void update(double dt) {
-        // normal rooms have no enemies or special updating
-    }
-
-    @Override
-    public void render(GraphicsContext gc) {
-        super.render(gc);
-        // you can add decorations here later
-    }
 }

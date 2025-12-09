@@ -23,6 +23,6 @@ public class Coin extends Item {
 
     @Override
     public void render(GraphicsContext gc){
-        gc.drawImage(COIN_SPRITE,getX()-getWidth()/2,getY()-getHeight()/2,WIDTH,HEIGHT);
+        gc.drawImage(COIN_SPRITE,getX() - WIDTH / 2,getY() - HEIGHT / 2,WIDTH,HEIGHT);
     }
 }

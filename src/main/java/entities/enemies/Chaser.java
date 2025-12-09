@@ -36,10 +36,7 @@ public class Chaser extends Enemy {
 
     @Override
     public void update(double dt) {
-        if (isDead()){
-            return;
-        }
-
+        if (isDead()) return;
 
         double dx = player.getX() - x;
         double dy = player.getY() - y;

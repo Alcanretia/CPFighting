@@ -85,14 +85,11 @@ public class Jumper extends Enemy {
     }
 
     private void shoot4Directions() {
+        if (isDead()) return;
         room.spawnBullet(new Bullet(x, y, 300, 0,this.getPower(), CharacterType.JumperType));    // Right
         room.spawnBullet(new Bullet(x, y, -300, 0,this.getPower(),CharacterType.JumperType));   // Left
         room.spawnBullet(new Bullet(x, y, 0, 300,this.getPower(),CharacterType.JumperType));    // Down
         room.spawnBullet(new Bullet(x, y, 0, -300,this.getPower(),CharacterType.JumperType));   // Up
-    }
-    @Override
-    public void onDead(){
-        return;
     }
 
     @Override

@@ -3,6 +3,7 @@ package rooms;
 import core.Character;
 import entities.bullets.Bullet;
 import core.Collectible;
+import entities.bullets.Laser;
 import entities.enemies.Enemy;
 import entities.items.Item;
 import entities.items.Item;
@@ -29,6 +30,7 @@ public abstract class Room {
     private List<Item> items = new ArrayList<>();
     private List<Item> pendingItems = new ArrayList<>();
     private List<Character> characters = new ArrayList<>();
+    private List<Laser> lasers = new ArrayList<>();
 
     public Room(double x, double y, double width, double height, Player player) {
         this.x = x;
@@ -47,12 +49,14 @@ public abstract class Room {
         bullets.add(b);
     }
     public void spawnItems(Item i) { pendingItems.add(i); }
+    public void spawnLaser(Laser l) { lasers.add(l); }
 
     public double getWidth() { return width; }
     public double getHeight() { return height; }
     public List<Enemy> getEnemies() { return enemies; }
     public List<Bullet> getBullets() { return bullets; }
     public List<Item> getItems() { return items; }
+    public List<Laser> getLasers() { return lasers; }
 
     public List<Character> getCharacters() { return characters; }
 
@@ -101,11 +105,22 @@ public abstract class Room {
             i.update(dt, player);
         }
 
+        for (Laser l : lasers) {
+            l.update(dt);
+
+            // check hit on enemies
+            for (Enemy e : enemies) {
+                if (!e.isDead() && l.getHitbox().intersects(e.getHitbox())) {
+                    e.onHit(l.getDamage());
+                }
+            }
+        }
+
         Iterator<Enemy> it = enemies.iterator();
         while (it.hasNext()) {
             Enemy e = it.next();
             if (e.isDead()) {
-                e.onDead();  // <-- run explosion, drop loot, spawn bullets ONCE
+                e.onDead();
                 characters.remove(e);
                 it.remove();
             }
@@ -114,6 +129,7 @@ public abstract class Room {
         characters.removeIf(ch -> (ch instanceof Enemy) && ch.isDead());
         bullets.removeIf(b-> !b.isAlive());
         items.removeIf(Item::isCollected);
+        lasers.removeIf(l -> !l.isAlive());
 
         if (!pendingItems.isEmpty()) {
             items.addAll(pendingItems);
@@ -122,6 +138,7 @@ public abstract class Room {
     }
 
     public void renderEntities(GraphicsContext gc){
+        for (Laser l : lasers) l.render(gc);
         for (Bullet b : bullets) b.render(gc);
         for (Enemy e : enemies) e.render(gc);
         for (Collectible i : items) i.render(gc);
@@ -158,8 +175,11 @@ public abstract class Room {
         gc.drawImage(FLOOR_SPRITE,0,0,800,600);
         drawFog(gc, Color.BLACK, 0.70);
         // Render doors
+        renderEntities(gc);
         topDoor.render(gc);
     }
 
-    public abstract void update(double dt);
+    public void update(double dt){
+        updateEntities(dt);
+    };
 }

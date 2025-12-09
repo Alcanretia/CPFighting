@@ -17,8 +17,10 @@ public class RoomManager {
 
     private int roomCleared = 0;
     private Room currentRoom;
-    private static RoomManager instance;
+
     private Player player;
+
+    private static RoomManager instance;
 
     private RoomManager(Player player) {
         this.player = player;
@@ -38,7 +40,6 @@ public class RoomManager {
     public static RoomManager getInstance() {
         return instance;
     }
-
 
     public void createTopDoor(Room room){
         double w = room.getWidth();

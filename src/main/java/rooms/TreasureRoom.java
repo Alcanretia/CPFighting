@@ -28,14 +28,5 @@ public class TreasureRoom extends Room {
         }
     }
 
-    @Override
-    public void update(double dt) {
-        updateEntities(dt);
-    }
 
-    @Override
-    public void render(GraphicsContext gc) {
-        super.render(gc);
-        renderEntities(gc);
-    }
 }
