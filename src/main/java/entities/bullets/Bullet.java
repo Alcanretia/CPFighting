@@ -21,7 +21,7 @@ public class Bullet extends GameObject {
     public Bullet(double x, double y, double vx, double vy,int power,CharacterType owner) {
         super(x, y);
         setVx(vx);
-        setVx(vy);
+        setVy(vy);
         this.owner=owner;
         setPower(power);
 
