@@ -10,11 +10,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import util.GameState;
 import util.Input;
 
 public class GameApp extends Application {
-    private GameState gameState = GameState.START_SCREEN;
     private boolean gameStarted = false;
     private boolean gameOver = false;
 

@@ -8,8 +8,9 @@ import javafx.scene.text.Font;
 import rooms.Room;
 
 public class MysteryBox extends Item{
-    private static final double WIDTH = 30, HEIGHT = 30;
+    private static final double WIDTH = 32, HEIGHT = 32;
     private static final Image COIN_SPRITE = new Image("sprites/Coin.png");
+    private static final Image BOX_SPRITE = new Image("sprites/MysteryBlock.png");
     private int cost;
     private Room room;
 
@@ -44,8 +45,7 @@ public class MysteryBox extends Item{
 
     @Override
     public void render(GraphicsContext gc){
-        gc.setFill(Color.YELLOW);
-        gc.fillRect(getX() - (getWidth() / 2), getY() - (getHeight() / 2), getWidth(), getHeight());
+        gc.drawImage(BOX_SPRITE,  getX() - (getWidth() / 2), getY() - (getHeight() / 2), getWidth(), getHeight());
         if (cost > 0) {
             double iconSize = 16;
 
