@@ -33,7 +33,7 @@ public class Laser extends GameObject {
     @Override
     public void render(GraphicsContext gc) {
         gc.setStroke(Color.RED);
-        gc.setLineWidth(6);
+        gc.setLineWidth(20);
 
         double endX = getX() + dirX * length;
         double endY = getY() + dirY * length;

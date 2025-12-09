@@ -3,6 +3,7 @@ package entities.enemies;
 import core.SpecialAbilityCapable;
 import entities.items.Coin;
 import entities.player.Player;
+import game.RoomManager;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -247,6 +248,8 @@ public class Boss extends Enemy implements SpecialAbilityCapable {
         room.spawnItems(new Coin(x,y));
         room.spawnItems(new Coin(x+10,y));
         room.spawnItems(new Coin(x,y-10));
+
+        RoomManager.getInstance().increaseDifficulty();
     }
 
 
@@ -254,12 +257,23 @@ public class Boss extends Enemy implements SpecialAbilityCapable {
     @Override
     public void update(double dt){
         // already on thread
+        if (getDamageFlash() > 0) {
+            setDamageFlash(getDamageFlash() - dt * 2);
+            if (getDamageFlash()< 0) setDamageFlash(0);
+        }
     }
 
     @Override
     public void render(GraphicsContext gc){
         gc.setFill(acting ? Color.PURPLE : Color.BLUE);
         gc.fillRect(x - 30, y - 30, 60, 60);
+
+        if (getDamageFlash() > 0) {
+            gc.setGlobalAlpha(getDamageFlash()); // 0 = transparent, 1 = solid
+            gc.setFill(Color.WHITE);
+            gc.fillRect(x - diameter/2, y - diameter/2, diameter, diameter);
+            gc.setGlobalAlpha(1); // reset alpha
+        }
 
         // HP bar
         double ratio = (double) this.getHp() / maxHp;

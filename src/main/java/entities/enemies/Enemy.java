@@ -8,13 +8,12 @@ import javafx.scene.canvas.GraphicsContext;
 import rooms.Room;
 
 public abstract class Enemy extends Character implements Hittable {
-    // CHANGE IN CONSTRUCTOR LATER
     protected Room room;
-    private double radius;
+    private double damageFlash = 0;
 
     public Enemy(double x, double y, int hp, int power, Room room,double diameter){
         super(x, y,hp,power,diameter);
-       setRoom(room);
+        setRoom(room);
     }
 
     public boolean isDead() {
@@ -23,10 +22,20 @@ public abstract class Enemy extends Character implements Hittable {
 
     @Override
     public void onHit(int damage){
+        damageFlash = 1;
+
         this.setHp(getHp()-damage);
         if (getHp() <= 0){
             setAlive(false);
         }
+    }
+
+    public double getDamageFlash() {
+        return damageFlash;
+    }
+
+    public void setDamageFlash(double damageFlash){
+        this.damageFlash = damageFlash;
     }
 
     @Override

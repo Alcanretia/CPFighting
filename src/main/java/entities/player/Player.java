@@ -23,6 +23,7 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
     public static final int VX=400;
     public static final int VY=400;
     private int coins;
+    private static final double BULLET_SPEED = 400;
 
     private long lastShotTime=0;
     private static final double shootCooldown=200;
@@ -76,6 +77,13 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
         double len = Math.sqrt(dirX * dirX + dirY * dirY);
         dirX /= len;
         dirY /= len;
+
+        isDashing = true;
+        dashTime = DASH_DURATION;
+        dashCooldownTimer = DASH_COOLDOWN;
+
+        dashDirX = dirX;
+        dashDirY = dirY;
     }
 
     public void attack(){
@@ -88,25 +96,25 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
         Bullet b= new Bullet(getX(),getY(),0,0, this.getPower(),CharacterType.PlayerType);
         if (Input.isHeld("LEFT")) {
             b.setVy(0);
-            b.setVx(-1*SPEED);
+            b.setVx(-1*BULLET_SPEED);
             lastDirX = -1;
             lastDirY = 0;
         }
         else if (Input.isHeld("RIGHT")) {
-            b.setVx(SPEED);
+            b.setVx(BULLET_SPEED);
             b.setVy(0);
             lastDirX = 1;
             lastDirY = 0;
         }
         else if (Input.isHeld("UP")) {
             b.setVx(0);
-            b.setVy(-1*SPEED);
+            b.setVy(-1*BULLET_SPEED);
             lastDirX = 0;
             lastDirY = -1;
         }
         else if (Input.isHeld("DOWN")) {
             b.setVx(0);
-            b.setVy(SPEED);
+            b.setVy(BULLET_SPEED);
             lastDirX = 0;
             lastDirY = 1;
 

@@ -94,6 +94,10 @@ public class Jumper extends Enemy {
 
     @Override
     public void update(double dt) {
+        if (getDamageFlash() > 0) {
+            setDamageFlash(getDamageFlash() - dt * 2);
+            if (getDamageFlash()< 0) setDamageFlash(0);
+        }
         // Nothing needed — thread updates x,y
     }
 
@@ -101,6 +105,12 @@ public class Jumper extends Enemy {
     public void render(GraphicsContext gc) {
         gc.setFill(jumping ? Color.ORANGE : Color.RED);
         gc.fillOval(x - (diameter/2), y - (diameter/2), diameter, diameter);
+        if (getDamageFlash() > 0) {
+            gc.setGlobalAlpha(getDamageFlash()); // 0 = transparent, 1 = solid
+            gc.setFill(Color.WHITE);
+            gc.fillRect(x - diameter/2, y - diameter/2, diameter, diameter);
+            gc.setGlobalAlpha(1); // reset alpha
+        }
     }
 
 

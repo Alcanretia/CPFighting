@@ -95,6 +95,7 @@ public class GameApp extends Application {
     private void restartGame() {
         // completely reset all states
         this.player = new Player(400, 300, 10, 1, 5,"Player",30);
+        roomManager.resetInstance();
         roomManager = RoomManager.getInstance(player);
 
         gameOver = false;

@@ -10,7 +10,7 @@ import util.CharacterType;
 
 public class Chaser extends Enemy {
     private static final  double baseSpeed = 80;       // normal movement
-    private static final double chargeSpeed = 180;    // speed when charging
+    private static final double chargeSpeed = 150;    // speed when charging
     private double vx = 0, vy = 0;
 
     private Player player;
@@ -37,6 +37,11 @@ public class Chaser extends Enemy {
     @Override
     public void update(double dt) {
         if (isDead()) return;
+
+        if (getDamageFlash() > 0) {
+            setDamageFlash(getDamageFlash() - dt * 2);
+            if (getDamageFlash()< 0) setDamageFlash(0);
+        }
 
         double dx = player.getX() - x;
         double dy = player.getY() - y;
@@ -75,6 +80,12 @@ public class Chaser extends Enemy {
     public void render(GraphicsContext gc) {
         gc.setFill(Color.ORANGE);
         gc.fillRect(x-(getDiameter() / 2), y-(getDiameter()/2), getDiameter(), getDiameter());
+        if (getDamageFlash() > 0) {
+            gc.setGlobalBlendMode(javafx.scene.effect.BlendMode.SRC_ATOP);
+            gc.setFill(Color.rgb(255, 255, 255, getDamageFlash())); // white flash
+            gc.fillRect(x - diameter/2, y - diameter/2, diameter, diameter);
+            gc.setGlobalBlendMode(javafx.scene.effect.BlendMode.SRC_OVER); // reset
+        }
     }
 
     public Player getPlayer() {
