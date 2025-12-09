@@ -20,8 +20,8 @@ public class Bullet extends GameObject {
 
     public Bullet(double x, double y, double vx, double vy,int power,CharacterType owner) {
         super(x, y);
-        this.vx = vx;
-        this.vy = vy;
+        setVx(vx);
+        setVx(vy);
         this.owner=owner;
         setPower(power);
 

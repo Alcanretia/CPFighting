@@ -6,8 +6,8 @@ import javafx.scene.canvas.GraphicsContext;
 public abstract class GameObject {
     protected double x,y;
     public GameObject(double x, double y){
-        this.x = x;
-        this.y = y;
+        setX(x);
+        setY(y);
     }
     public void setX(double x) {
         if (x > GameApp.WIDTH){
