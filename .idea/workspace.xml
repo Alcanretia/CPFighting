@@ -10,14 +10,7 @@
       <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/bullets/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/bullets/Bullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/enemies/Chaser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/enemies/Chaser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entities/enemies/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/enemies/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/enemies/Jumper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/enemies/Jumper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/MysteryBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/MysteryBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/GameApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/GameApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/RoomManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/RoomManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rooms/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rooms/Room.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +73,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.BindingOfMyLife [:main.Main.main()].executor": "Run",
     "Gradle.Binding_of_my_life [dependencies].executor": "Run",
     "Gradle.Download Sources.executor": "Run",
     "Gradle.FinalProject [:game.GameApp.main()].executor": "Run",
@@ -89,7 +83,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "feature/items-rooms",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/08412/IdeaProjects/FinalProject/src/main/resources/sprites"
