@@ -5,9 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5981013e-5d90-4f57-83bd-68a94443fb5e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fonts/PressStart2P.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/sprites/Coin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/sprites/Floor.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/enemies/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/enemies/Boss.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/bullets/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/bullets/Bullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/Coin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/MysteryBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/MysteryBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/player/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/GameApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/GameApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/RoomManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/RoomManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rooms/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rooms/Door.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rooms/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rooms/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rooms/TreasureRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rooms/TreasureRoom.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +76,9 @@
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="36ORlaLTTanMu1LrTA6VDMF61Uq" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -68,24 +86,31 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Gradle.Binding_of_my_life [dependencies].executor": "Run",
+    "Gradle.FinalProject [:game.GameApp.main()].executor": "Run",
     "Gradle.FinalProject [:main.Main.main()].executor": "Run",
     "Gradle.PlayerTest.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "feature/bullet-hitting-system",
+    "git-widget-placeholder": "feature/items-rooms",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/velys/IdeaProjects/BindingOfMyLife/src/main/java/entities/bullets"
+    "last_opened_file_path": "C:/Users/08412/IdeaProjects/FinalProject/src/main/resources/sprites"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\08412\IdeaProjects\FinalProject\src\main\resources\sprites" />
       <recent name="C:\Users\velys\IdeaProjects\BindingOfMyLife\src\main\java\entities\bullets" />
       <recent name="C:\Users\velys\IdeaProjects\BindingOfMyLife\src\main\java\util" />
       <recent name="C:\Users\velys\IdeaProjects\BindingOfMyLife" />
       <recent name="C:\Users\velys\IdeaProjects\Binding_of_my_life" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\08412\IdeaProjects\FinalProject\src\main\resources" />
+      <recent name="C:\Users\08412\IdeaProjects\FinalProject\src\main\resources\sprites\fonts" />
+      <recent name="C:\Users\08412\IdeaProjects\FinalProject\src\main\resources\sprites" />
     </key>
   </component>
   <component name="RunManager">

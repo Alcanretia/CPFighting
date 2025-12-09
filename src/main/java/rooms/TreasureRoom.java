@@ -21,7 +21,11 @@ public class TreasureRoom extends Room {
             spawnItems(new MaxHealthUpgrade(500,300));
             spawnItems(new StrengthPot(400,200));
         }
-        else spawnItems(new MysteryBox(400,300, this, 0));
+        else {
+            spawnItems(new MysteryBox(200,300, this, 0));
+            spawnItems(new MysteryBox(400,300, this, 0));
+            spawnItems(new MysteryBox(600,300, this, 0));
+        }
     }
 
     @Override

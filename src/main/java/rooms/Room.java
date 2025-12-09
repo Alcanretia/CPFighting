@@ -9,24 +9,25 @@ import entities.items.Item;
 import entities.player.Player;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import util.BulletUtil;
 
 import java.util.*;
 
 public abstract class Room {
+    private static final Image FLOOR_SPRITE = new Image("sprites/Floor.png");
+
     public boolean active = false;
 
     private Player player;
-
     protected double x, y, width, height;
-
     protected Door topDoor;
+
     private List<Enemy> enemies = new ArrayList<>();
     private List<Bullet> bullets = new ArrayList<>();
     private List<Item> items = new ArrayList<>();
-
-    private List<Collectible> items = new ArrayList<>();
     private List<Character> characters=new ArrayList<>();
+
     public Room(double x, double y, double width, double height, Player player) {
         this.x = x;
         this.y = y;
@@ -43,13 +44,13 @@ public abstract class Room {
     public void spawnBullet(Bullet b) {
         bullets.add(b);
     }
-    public void spawnItems(Collectible i) { items.add(i); }
+    public void spawnItems(Item i) { items.add(i); }
 
     public double getWidth() { return width; }
     public double getHeight() { return height; }
     public List<Enemy> getEnemies() { return enemies; }
     public List<Bullet> getBullets() { return bullets; }
-    public List<Collectible> getItems() { return items; }
+    public List<Item> getItems() { return items; }
 
     public List<Character> getCharacters() {return characters;}
 
@@ -97,8 +98,7 @@ public abstract class Room {
 
     public void render(GraphicsContext gc) {
         // Base room render (background)
-        gc.setFill(javafx.scene.paint.Color.rgb(40, 40, 40));
-        gc.fillRect(x, y, width, height);
+        gc.drawImage(FLOOR_SPRITE,0,0,800,600);
 
         // Render doors
         topDoor.render(gc);

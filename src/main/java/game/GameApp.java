@@ -69,24 +69,39 @@ public class GameApp extends Application {
 
     private void drawHUD(GraphicsContext gc) {
 
-        // ===== HEALTH BAR =====
-        double maxWidth = 200;     // width of the health bar
-        double barHeight = 20;
-        double x = 20, y = 20;
+        // ====== HP BAR SETTINGS ======
+        double barX = 20, barY = 20;
+        double barWidth = 220;
+        double barHeight = 24;
+        double innerPadding = 3;
 
         double hpPercent = (double) player.getHp() / player.getMaxHp();
-        double currentWidth = maxWidth * hpPercent;
+        double innerWidth = (barWidth - innerPadding * 2) * hpPercent;
 
-        gc.setFill(Color.DARKRED);
-        gc.fillRect(x, y, maxWidth, barHeight);
+        // ====== OUTER BORDER ======
+        gc.setFill(Color.rgb(30, 30, 30)); // dark outer frame
+        gc.fillRect(barX, barY, barWidth, barHeight);
 
-        gc.setFill(Color.RED);
-        gc.fillRect(x, y, currentWidth, barHeight);
+        // ====== INNER BACKGROUND ======
+        gc.setFill(Color.rgb(80, 0, 0));
+        gc.fillRect(barX + innerPadding, barY + innerPadding,
+                barWidth - innerPadding * 2, barHeight - innerPadding * 2);
 
-        gc.setStroke(Color.WHITE);
-        gc.strokeRect(x, y, maxWidth, barHeight);
+        // ====== HP FILL (gradient effect) ======
+        gc.setFill(Color.rgb(200, 40, 40));
+        gc.fillRect(barX + innerPadding, barY + innerPadding,
+                innerWidth, barHeight - innerPadding * 2);
 
-        // ===== DAMAGE FLASH =====
+        // ====== HP TEXT ======
+        gc.setFill(Color.WHITE);
+        gc.setImageSmoothing(false);
+        Font pixelFont = Font.loadFont(getClass().getResourceAsStream("/fonts/PressStart2P.ttf"), 12);
+        gc.setFont(pixelFont);
+
+        String hpText = player.getHp() + " / " + player.getMaxHp();
+        gc.fillText(hpText, barX + 8, barY + barHeight - 7);
+
+        // ===== DAMAGE FLASH OVERLAY =====
         if (player.getDamageFlash() > 0) {
             double alpha = player.getDamageFlash();
             gc.setFill(Color.rgb(255, 0, 0, alpha * 0.5));
@@ -94,8 +109,8 @@ public class GameApp extends Application {
         }
 
         // ===== COIN COUNTER =====
-        gc.setFill(Color.WHITE);
-        gc.setFont(Font.font(20));
-        gc.fillText("Coins: " + player.getCoin(), 20, 70);
+        gc.setFill(Color.GOLD);
+        gc.fillText("Coins: " + player.getCoin(), 26, 70);
     }
+
 }

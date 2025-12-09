@@ -30,7 +30,7 @@ public class RoomManager {
 
     public void createTopDoor(Room room){
         double w = room.getWidth();
-        room.addDoor(new Door(w/2 - 30, 0));
+        room.addDoor(new Door(w/2 - 45, 0));
     }
 
     public Room createNextRoom() {
@@ -75,7 +75,7 @@ public class RoomManager {
         currentRoom = newRoom;
         currentRoom.setActive(true);
 
-        player.setX(GameApp.WIDTH / 2 - player.getDiameter() / 2);
+        player.setX(GameApp.WIDTH / 2);
         player.setY(GameApp.HEIGHT - 80);
     }
 
