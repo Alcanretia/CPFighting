@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 import java.util.Collection;
 
 public class Coin extends Item {
-    private static final double WIDTH = 30, HEIGHT = 30;
+    private static final double WIDTH = 32, HEIGHT = 32;
     private static final Image COIN_SPRITE = new Image("sprites/Coin.png");
 
     public Coin(double x, double y){
