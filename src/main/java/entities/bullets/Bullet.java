@@ -15,7 +15,7 @@ public class Bullet extends GameObject {
     private double vx, vy;
     private CharacterType owner;
     private int power;
-    private final static double DIAMETER=20;
+    private final static double DIAMETER = 16;
     private static final Image BULLET_SPRITE = new Image("sprites/Bullet.png");
 
     public Bullet(double x, double y, double vx, double vy,int power,CharacterType owner) {
@@ -34,11 +34,11 @@ public class Bullet extends GameObject {
 
     @Override
     public void render(GraphicsContext gc) {
-        gc.drawImage(BULLET_SPRITE, x -(DIAMETER/2), y - (DIAMETER/2), DIAMETER, DIAMETER);
+        gc.drawImage(BULLET_SPRITE, getX() -(DIAMETER/2), getY() - (DIAMETER/2), DIAMETER, DIAMETER);
     }
 
     public Rectangle2D getHitBox(){
-        return new Rectangle2D(getX()-10,getY()-10,20,20);
+        return new Rectangle2D(getX()-(DIAMETER/2),getY()-(DIAMETER/2),DIAMETER,DIAMETER);
     }
     public CharacterType getOwner() {
         return owner;
@@ -69,5 +69,9 @@ public class Bullet extends GameObject {
     }
     public void setPower(int power) {
         this.power = Math.max(power, 0);
+    }
+
+    public boolean isAlive(){
+        return true;
     }
 }

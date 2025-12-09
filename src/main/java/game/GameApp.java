@@ -34,7 +34,7 @@ public class GameApp extends Application {
 
         Input.initialize();
 
-        this.player = new Player(400, 300, 10, 5, 5,"Player",20);
+        this.player = new Player(400, 300, 10, 5, 5,"Player",30);
 
         // Create RoomManager with grid size (example: 3×3 = 9 rooms)
         roomManager = RoomManager.getInstance(player);
@@ -67,26 +67,63 @@ public class GameApp extends Application {
         }.start();
     }
 
+    private Font pixelFont; // load once
+
     private void drawHUD(GraphicsContext gc) {
 
-        // ===== HEALTH BAR =====
-        double maxWidth = 200;     // width of the health bar
-        double barHeight = 20;
-        double x = 20, y = 20;
+        gc.setImageSmoothing(false);
 
-        double hpPercent = (double) player.getHp() / player.getMaxHp();
-        double currentWidth = maxWidth * hpPercent;
+        // ====== Load font once ======
+        if (pixelFont == null) {
+            pixelFont = Font.loadFont(
+                    getClass().getResourceAsStream("/fonts/PressStart2P.ttf"), 12
+            );
+        }
 
-        gc.setFill(Color.DARKRED);
-        gc.fillRect(x, y, maxWidth, barHeight);
+        // ====== HP BAR SETTINGS ======
+        double barX = 20, barY = 20;
+        double barWidth = 220;
+        double barHeight = 24;
+        double innerPadding = 3;
 
-        gc.setFill(Color.RED);
-        gc.fillRect(x, y, currentWidth, barHeight);
+        // ====== HP CLAMP ======
+        double hp = Math.max(0, Math.min(player.getHp(), player.getMaxHp()));
+        double hpPercent = hp / player.getMaxHp();
 
-        gc.setStroke(Color.WHITE);
-        gc.strokeRect(x, y, maxWidth, barHeight);
+        // Compute inside width safely
+        double innerMaxWidth = barWidth - innerPadding * 2;
+        double innerWidth = innerMaxWidth * hpPercent;
 
-        // ===== DAMAGE FLASH =====
+        // ====== OUTER BORDER ======
+        gc.setFill(Color.rgb(30, 30, 30));
+        gc.fillRect(barX, barY, barWidth, barHeight);
+
+        // ====== INNER BACKGROUND ======
+        gc.setFill(Color.rgb(80, 0, 0));
+        gc.fillRect(
+                barX + innerPadding,
+                barY + innerPadding,
+                innerMaxWidth,
+                barHeight - innerPadding * 2
+        );
+
+        // ====== HP FILL ======
+        gc.setFill(Color.rgb(200, 40, 40));
+        gc.fillRect(
+                barX + innerPadding,
+                barY + innerPadding,
+                innerWidth,
+                barHeight - innerPadding * 2
+        );
+
+        // ====== HP TEXT ======
+        gc.setFill(Color.WHITE);
+        gc.setFont(pixelFont);
+
+        String hpText = (int) hp + " / " + (int) player.getMaxHp();
+        gc.fillText(hpText, barX + 8, barY + barHeight - 7);
+
+        // ===== DAMAGE FLASH OVERLAY =====
         if (player.getDamageFlash() > 0) {
             double alpha = player.getDamageFlash();
             gc.setFill(Color.rgb(255, 0, 0, alpha * 0.5));
@@ -94,8 +131,7 @@ public class GameApp extends Application {
         }
 
         // ===== COIN COUNTER =====
-        gc.setFill(Color.WHITE);
-        gc.setFont(Font.font(20));
-        gc.fillText("Coins: " + player.getCoin(), 20, 70);
+        gc.setFill(Color.GOLD);
+        gc.fillText("Coins: " + player.getCoin(), 26, 70);
     }
 }

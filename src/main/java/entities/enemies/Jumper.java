@@ -103,7 +103,7 @@ public class Jumper extends Enemy {
     @Override
     public void render(GraphicsContext gc) {
         gc.setFill(jumping ? Color.ORANGE : Color.RED);
-        gc.fillOval(x - 12, y - 12, 24, 24);
+        gc.fillOval(x - (diameter/2), y - (diameter/2), diameter, diameter);
     }
 
 
