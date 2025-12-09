@@ -2,22 +2,36 @@ package rooms;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 public class Door {
     private Rectangle2D region;
-
-    public Door(double x, double y, double w, double h) {
-        region = new Rectangle2D(x, y, w, h);
+    private boolean locked;
+    private static final Image LOCKEDDOOR_SPRITE = new Image("sprites/Door-Locked.png");
+    private static final Image UNLOCKEDDOOR_SPRITE = new Image("sprites/Door-Unlocked.png");
+    private static final double WIDTH = 60, HEIGHT = 20, IMAGE_HEIGHT = 40;
+    private double x,y;
+    public Door(double x, double y) {
+        region = new Rectangle2D(x, y, WIDTH, HEIGHT);
+        this.x = x;
+        this.y = y;
+        locked = false;
     }
 
     public boolean intersects(Rectangle2D hitbox) {
         return region.intersects(hitbox);
     }
 
+    public void setLocked(boolean locked) {this.locked = locked; }
+    public boolean isLocked() { return locked; }
+
     public void render(GraphicsContext gc) {
-        gc.setFill(Color.color(1, 1, 1, 0.25));
-        gc.fillRect(region.getMinX(), region.getMinY(),
-                    region.getWidth(), region.getHeight());
+        if (isLocked()){
+            gc.drawImage(LOCKEDDOOR_SPRITE, x, y, WIDTH, IMAGE_HEIGHT);
+        }
+        else {
+            gc.drawImage(UNLOCKEDDOOR_SPRITE, x, y, WIDTH, IMAGE_HEIGHT);
+        }
     }
 }

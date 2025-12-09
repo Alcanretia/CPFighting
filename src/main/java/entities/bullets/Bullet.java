@@ -15,7 +15,7 @@ public class Bullet extends GameObject {
     private double vx, vy;
     private CharacterType owner;
     private int power;
-    private final static double DIAMETER=20;
+    private final static double DIAMETER = 16;
     private static final Image BULLET_SPRITE = new Image("sprites/Bullet.png");
 
     public Bullet(double x, double y, double vx, double vy,int power,CharacterType owner) {
@@ -69,5 +69,9 @@ public class Bullet extends GameObject {
     }
     public void setPower(int power) {
         this.power = Math.max(power, 0);
+    }
+
+    public boolean isAlive(){
+        return true;
     }
 }

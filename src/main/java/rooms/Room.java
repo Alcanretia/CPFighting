@@ -4,6 +4,8 @@ import core.Character;
 import entities.bullets.Bullet;
 import core.Collectible;
 import entities.enemies.Enemy;
+import entities.items.Item;
+import entities.items.Item;
 import entities.player.Player;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
@@ -21,6 +23,8 @@ public abstract class Room {
     protected Door topDoor;
     private List<Enemy> enemies = new ArrayList<>();
     private List<Bullet> bullets = new ArrayList<>();
+    private List<Item> items = new ArrayList<>();
+
     private List<Collectible> items = new ArrayList<>();
     private List<Character> characters=new ArrayList<>();
     public Room(double x, double y, double width, double height, Player player) {
@@ -73,7 +77,8 @@ public abstract class Room {
         enemies.removeIf(Enemy::isDead);
         BulletUtil.filterAliveBullets(bullets,characters);
         characters.removeIf(ch -> (ch instanceof Enemy) && ch.isDead());
-        items.removeIf(Collectible::isCollected);
+        bullets.removeIf(b-> !b.isAlive());
+        items.removeIf(Item::isCollected);
     }
 
     public void renderEntities(GraphicsContext gc){
