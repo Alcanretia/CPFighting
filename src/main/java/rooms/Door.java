@@ -10,7 +10,7 @@ public class Door {
     private boolean locked;
     private static final Image LOCKEDDOOR_SPRITE = new Image("sprites/Door-Locked.png");
     private static final Image UNLOCKEDDOOR_SPRITE = new Image("sprites/Door-Unlocked.png");
-    private static final double WIDTH = 60, HEIGHT = 20, IMAGE_HEIGHT = 40;
+    private static final double WIDTH = 90, HEIGHT = 30, IMAGE_HEIGHT = 60;
     private double x,y;
     public Door(double x, double y) {
         region = new Rectangle2D(x, y, WIDTH, HEIGHT);

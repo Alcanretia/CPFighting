@@ -3,6 +3,7 @@ package rooms;
 import entities.enemies.Enemy;
 import entities.player.Player;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 public class CombatRoom extends Room {
 
@@ -27,13 +28,15 @@ public class CombatRoom extends Room {
     public void render(GraphicsContext gc) {
         super.render(gc);
 
-        // Tint room red if locked
         if (topDoor.isLocked()) {
-            gc.setFill(javafx.scene.paint.Color.color(1, 0, 0, 0.2));
-            gc.fillRect(x, y, width, height);
+            drawFog(gc, Color.RED, 0.50);
+        }
+        else {
+            drawFog(gc, Color.BLACK, 0.70);
         }
 
         renderEntities(gc);
     }
+
 
 }

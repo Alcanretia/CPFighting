@@ -2,11 +2,14 @@ package entities.items;
 
 import entities.player.Player;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import rooms.Room;
 
 public class MysteryBox extends Item{
     private static final double WIDTH = 30, HEIGHT = 30;
+    private static final Image COIN_SPRITE = new Image("sprites/Coin.png");
     private int cost;
     private Room room;
 
@@ -27,16 +30,15 @@ public class MysteryBox extends Item{
 
     @Override
     public void update(double dt, Player player){
-        if (player.getHitbox().intersects(this.getHitbox())){
+        if (player.getHitbox().intersects(this.getHitbox()) && !isCollected()){
             if (player.sufficientAmount(cost)){
                 collect(player);
+                player.useCoin(cost);
                 setCollected(true);
             }
-            else {
-                // set player x,y outside of box
-                player.setX(getX());
-                player.setY(getY() + 50);
-            }
+            // set player x,y outside of box
+            player.setX(getX());
+            player.setY(getY() + 50);
         }
     }
 
@@ -44,5 +46,29 @@ public class MysteryBox extends Item{
     public void render(GraphicsContext gc){
         gc.setFill(Color.YELLOW);
         gc.fillRect(getX() - (getWidth() / 2), getY() - (getHeight() / 2), getWidth(), getHeight());
+        if (cost > 0) {
+            double iconSize = 16;
+
+            double textY = getY() + getHeight() / 2 + 25;
+            double iconY = textY - iconSize + 2;
+
+            gc.setImageSmoothing(false);
+            Font pixelFont = Font.loadFont(getClass().getResourceAsStream("/fonts/PressStart2P.ttf"), 12);
+            gc.setFont(pixelFont);
+
+            // Total width: coin + 4px + text
+            String costStr = String.valueOf(cost);
+            double textWidth = gc.getFont().getSize() * costStr.length() * 0.6;
+
+            double totalWidth = iconSize + 4 + textWidth;
+            double startX = getX() - totalWidth / 2;
+
+            // draw coin
+            gc.drawImage(COIN_SPRITE, startX, iconY, iconSize, iconSize);
+
+            // draw cost text
+            gc.setFill(Color.WHITE);
+            gc.fillText(costStr, startX + iconSize + 4, textY);
+        }
     }
 }

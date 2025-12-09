@@ -3,12 +3,14 @@ package entities.items;
 import core.Collectible;
 import entities.player.Player;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 import java.util.Collection;
 
 public class Coin extends Item {
-    private static final double WIDTH = 10, HEIGHT = 10;
+    private static final double WIDTH = 30, HEIGHT = 30;
+    private static final Image COIN_SPRITE = new Image("sprites/Coin.png");
 
     public Coin(double x, double y){
         super(x,y,WIDTH, HEIGHT);
@@ -21,7 +23,6 @@ public class Coin extends Item {
 
     @Override
     public void render(GraphicsContext gc){
-        gc.setFill(Color.YELLOW);
-        gc.fillOval(getX() - (getWidth() / 2), getY() - (getHeight() / 2), getWidth(), getHeight());
+        gc.drawImage(COIN_SPRITE,WIDTH,HEIGHT);
     }
 }

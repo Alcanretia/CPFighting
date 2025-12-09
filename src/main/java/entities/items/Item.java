@@ -22,7 +22,7 @@ public abstract class Item implements Collectible {
     }
 
     public void update(double dt, Player player) {
-        if (player.getHitbox().intersects(this.getHitbox())){
+        if (player.getHitbox().intersects(this.getHitbox()) && !isCollected()){
             collect(player);
             setCollected(true);
         }
