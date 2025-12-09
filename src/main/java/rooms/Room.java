@@ -3,6 +3,7 @@ package rooms;
 import entities.bullets.Bullet;
 import core.Collectible;
 import entities.enemies.Enemy;
+import entities.items.Item;
 import entities.player.Player;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
@@ -19,7 +20,7 @@ public abstract class Room {
     protected Door topDoor;
     private List<Enemy> enemies = new ArrayList<>();
     private List<Bullet> bullets = new ArrayList<>();
-    private List<Collectible> items = new ArrayList<>();
+    private List<Item> items = new ArrayList<>();
 
     public Room(double x, double y, double width, double height, Player player) {
         this.x = x;
@@ -35,13 +36,13 @@ public abstract class Room {
     public void spawnBullet(Bullet b) {
         bullets.add(b);
     }
-    public void spawnItems(Collectible i) { items.add(i); }
+    public void spawnItems(Item i) { items.add(i); }
 
     public double getWidth() { return width; }
     public double getHeight() { return height; }
     public List<Enemy> getEnemies() { return enemies; }
     public List<Bullet> getBullets() { return bullets; }
-    public List<Collectible> getItems() { return items; }
+    public List<Item> getItems() { return items; }
 
     // Add a door for this room
     public void addDoor(Door door) {
@@ -66,7 +67,7 @@ public abstract class Room {
 
         enemies.removeIf(Enemy::isDead);
         bullets.removeIf(b-> !b.isAlive());
-        items.removeIf(Collectible::isCollected);
+        items.removeIf(Item::isCollected);
     }
 
     public void renderEntities(GraphicsContext gc){

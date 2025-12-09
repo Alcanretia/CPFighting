@@ -7,56 +7,21 @@ import javafx.scene.paint.Color;
 
 import java.util.Collection;
 
-public class Coin implements Collectible {
-    private double x,y;
-    private boolean collected;
+public class Coin extends Item {
+    private static final double WIDTH = 10, HEIGHT = 10;
 
     public Coin(double x, double y){
-        setX(x);
-        setY(y);
-        setCollected(false);
-    }
-
-    public void collect(Player player){
-        player.addCoin(1);
-        this.collected = true;
+        super(x,y,WIDTH, HEIGHT);
     }
 
     @Override
-    public boolean isCollected(){
-        return collected;
+    public void collect(Player player){
+        player.addCoin(1);
     }
 
-    public void update(double dt, Player player) {
-        double dx = player.getX() - x;
-        double dy = player.getY() - y;
-        if (dx*dx + dy*dy < 25 * 25) {
-            collect(player);
-        }
-    }
-
+    @Override
     public void render(GraphicsContext gc){
         gc.setFill(Color.YELLOW);
-        gc.fillOval(x - 5, y - 5, 10, 10);
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
-
-    public void setCollected(boolean collected) {
-        this.collected = collected;
+        gc.fillOval(getX() - (getWidth() / 2), getY() - (getHeight() / 2), getWidth(), getHeight());
     }
 }
