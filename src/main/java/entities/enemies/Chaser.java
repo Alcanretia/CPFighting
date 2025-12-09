@@ -1,26 +1,26 @@
 package entities.enemies;
 
-import bullets.Bullet;
+import entities.bullets.Bullet;
 import entities.items.Coin;
 import entities.player.Player;
 import rooms.Room;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import util.CharacterType;
 
 public class Chaser extends Enemy {
-    private double baseSpeed = 80;       // normal movement
-    private double chargeSpeed = 180;    // speed when charging
-    private double width = 20, height = 20;
+    private static final  double baseSpeed = 80;       // normal movement
+    private static final double chargeSpeed = 180;    // speed when charging
     private double vx = 0, vy = 0;
 
     private Player player;
 
     private boolean deathBombed = false;
 
-    public Chaser(double x, double y, Room room, Player player, int hp, int power) {
-        super(x, y, hp, power,room); // width, height, hp
+    public Chaser(double x, double y, Room room, Player player, int hp, int power,double diameter) {
+        super(x, y, hp, power,room,diameter); // width, height, hp
 
-        this.player = player;
+        setPlayer(player);
     }
 
     public boolean getDeathBombed(){
@@ -32,12 +32,13 @@ public class Chaser extends Enemy {
     }
 
     public void onDead(){
-        room.spawnBullet(new Bullet(x, y, 300, 0));    // Right
-        room.spawnBullet(new Bullet(x, y, -300, 0));   // Left
-        room.spawnBullet(new Bullet(x, y, 0, 300));    // Down
-        room.spawnBullet(new Bullet(x, y, 0, -300));   // Up
+        room.spawnBullet(new Bullet(x, y, 300, 0,this.getPower(), CharacterType.ChaserType));    // Right
+        room.spawnBullet(new Bullet(x, y, -300, 0,this.getPower(),CharacterType.ChaserType));   // Left
+        room.spawnBullet(new Bullet(x, y, 0, 300,this.getPower(),CharacterType.ChaserType));    // Down
+        room.spawnBullet(new Bullet(x, y, 0, -300,this.getPower(),CharacterType.ChaserType));   // Up
         room.spawnItems(new Coin(x,y));
     }
+
 
     @Override
     public void update(double dt) {
@@ -79,24 +80,20 @@ public class Chaser extends Enemy {
     }
 
     ///  Just in case
-    public void setHeight(double height){
-        if (height >= 20){
-            this.height = height;
-        }
-        else this.height = 20;
-    }
 
-    public void setWidth(double width){
-        if (width >= 20){
-            this.width = width;
-        }
-        else this.width = 20;
-    }
 
 
     @Override
     public void render(GraphicsContext gc) {
         gc.setFill(Color.ORANGE);
-        gc.fillRect(x, y, width, height);
+        gc.fillRect(x, y, getDiameter(), getDiameter());
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }

@@ -1,24 +1,21 @@
 package entities.enemies;
 
+import core.Character;
 import core.GameObject;
 import core.Hittable;
 import entities.items.Coin;
 import javafx.scene.canvas.GraphicsContext;
 import rooms.Room;
 
-public abstract class Enemy extends GameObject implements Hittable {
-    protected int hp;
-    protected int power;
-    protected boolean isAlive;
-    protected double hitRadius; /// CHANGE IN CONSTRUCTOR LATER
+public abstract class Enemy extends Character implements Hittable {
+
+
+    // CHANGE IN CONSTRUCTOR LATER
     protected Room room;
 
-    public Enemy(double x, double y, int hp, int power, Room room) {
-        super(x, y);
-        this.hp = hp;
-        this.power = power;
-        this.setAlive(true);
-        this.room = room;
+    public Enemy(double x, double y, int hp, int power, Room room,double diameter){
+        super(x, y,hp,power,diameter);
+       setRoom(room);
     }
 
     public boolean isDead() {
@@ -27,28 +24,29 @@ public abstract class Enemy extends GameObject implements Hittable {
 
     @Override
     public void onHit(int damage){
-        return; // Change
+        this.setHp(getHp()-damage);
     }
 
     @Override
-    public boolean isAlive(){
+    public boolean isAlive() {
         return isAlive;
     }
 
-    @Override
-    public double getHitRadius(){
-        return hitRadius;
-    }
 
     @Override
     public void onDead(){
         room.spawnItems(new Coin(x,y));
     }
 
-    public void setAlive(boolean alive) {
-        this.isAlive = alive;
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
     public abstract void update(double dt);
     public abstract void render(GraphicsContext gc);
+
 }

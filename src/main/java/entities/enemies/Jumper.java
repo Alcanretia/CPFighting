@@ -1,9 +1,10 @@
 package entities.enemies;
 
-import bullets.Bullet;
+import entities.bullets.Bullet;
 import rooms.Room;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import util.CharacterType;
 
 public class Jumper extends Enemy {
 
@@ -11,8 +12,8 @@ public class Jumper extends Enemy {
     private volatile boolean jumping = false;
     private double jumpRadius = 150;
 
-    public Jumper(double x, double y, Room room, int hp, int power) {
-        super(x, y, hp, power, room);
+    public Jumper(double x, double y, Room room, int hp, int power,double diameter) {
+        super(x, y, hp, power, room,diameter);
 
         Thread behavior = new Thread(this::loopBehavior);
         behavior.setDaemon(true);
@@ -84,10 +85,10 @@ public class Jumper extends Enemy {
     }
 
     private void shoot4Directions() {
-        room.spawnBullet(new Bullet(x, y, 300, 0));    // Right
-        room.spawnBullet(new Bullet(x, y, -300, 0));   // Left
-        room.spawnBullet(new Bullet(x, y, 0, 300));    // Down
-        room.spawnBullet(new Bullet(x, y, 0, -300));   // Up
+        room.spawnBullet(new Bullet(x, y, 300, 0,this.getPower(), CharacterType.JumperType));    // Right
+        room.spawnBullet(new Bullet(x, y, -300, 0,this.getPower(),CharacterType.JumperType));   // Left
+        room.spawnBullet(new Bullet(x, y, 0, 300,this.getPower(),CharacterType.JumperType));    // Down
+        room.spawnBullet(new Bullet(x, y, 0, -300,this.getPower(),CharacterType.JumperType));   // Up
     }
     @Override
     public void onDead(){

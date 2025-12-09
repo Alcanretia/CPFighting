@@ -39,7 +39,7 @@ public class RoomManager {
         if (roomCleared % BOSS_INTERVAL == 0){
             BossRoom br = new BossRoom(0, 0, 800, 600, player);
             room = br;
-            br.spawnEnemy(new Boss(400,300,room, 10, 1, player));
+            br.spawnEnemy(new Boss(400,300,room, 10, 1, player,60));
         }
         else if (roomCleared % TREASURE_INTERVAL == 0){
             TreasureRoom tr = new TreasureRoom(0,0,800,600, player);
@@ -53,15 +53,15 @@ public class RoomManager {
             CombatRoom cr = new CombatRoom(0, 0, 800, 600, player);
             room = cr;
             // spawn 1–3 enemies
-            int count = 1 + (int) (Math.random() * 3); // 1–3 enemies
+            int count = 1 + (int) (Math.random() * 5); // 1–5 enemies
 
             for (int i = 0; i < count; i++) {
                 double ex = 200 + Math.random() * 400;
                 double ey = 150 + Math.random() * 300;
 
                 double choice = Math.random();
-                if (choice > 0.5) cr.spawnEnemy(new Jumper(ex, ey, room, 3, 1));
-                else cr.spawnEnemy(new Chaser(ex, ey, room, player, 5, 1));
+                if (choice > 0.5) cr.spawnEnemy(new Jumper(ex, ey, room, 3, 1,20));
+                else cr.spawnEnemy(new Chaser(ex, ey, room, player, 5, 1,20));
             }
         }
         return room;
@@ -75,7 +75,7 @@ public class RoomManager {
         currentRoom = newRoom;
         currentRoom.setActive(true);
 
-        player.setX(GameApp.WIDTH / 2 - player.getWidth() / 2);
+        player.setX(GameApp.WIDTH / 2 - player.getDiameter() / 2);
         player.setY(GameApp.HEIGHT - 80);
     }
 

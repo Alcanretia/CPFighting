@@ -12,9 +12,9 @@ public class Coin implements Collectible {
     private boolean collected;
 
     public Coin(double x, double y){
-        this.x = x;
-        this.y = y;
-        collected = false;
+        setX(x);
+        setY(y);
+        setCollected(false);
     }
 
     public void collect(Player player){
@@ -38,5 +38,25 @@ public class Coin implements Collectible {
     public void render(GraphicsContext gc){
         gc.setFill(Color.YELLOW);
         gc.fillOval(x - 5, y - 5, 10, 10);
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public void setCollected(boolean collected) {
+        this.collected = collected;
     }
 }
