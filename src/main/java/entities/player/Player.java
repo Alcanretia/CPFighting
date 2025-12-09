@@ -6,9 +6,11 @@ import core.SpecialAbilityCapable;
 import entities.bullets.Bullet;
 import entities.enemies.Enemy;
 import game.GameApp;
+import game.RoomManager;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.geometry.Rectangle2D;
+import util.CharacterType;
 import util.Input;
 
 public class Player extends Character implements Hittable, SpecialAbilityCapable {
@@ -32,7 +34,8 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
         damageFlash = 0;
     }
 
-    public void attack(Enemy enemy){
+    public void attack(){
+        Bullet b= new Bullet(getX(),getY(),VX,VY, this.getPower(),CharacterType.PlayerType);
 
     }
 

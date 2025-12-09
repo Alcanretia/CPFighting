@@ -13,7 +13,9 @@ public abstract class Character extends GameObject implements Hittable {
         setAlive(true);
         setDiameter(diameter);
     }
-
+    public boolean isDead(){
+        return !isAlive;
+    }
     public Rectangle2D getHitbox(){
         return new Rectangle2D(x-(diameter/2),y-(diameter/2),diameter,diameter);
     }

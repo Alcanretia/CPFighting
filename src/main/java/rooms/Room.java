@@ -1,11 +1,13 @@
 package rooms;
 
+import core.Character;
 import entities.bullets.Bullet;
 import core.Collectible;
 import entities.enemies.Enemy;
 import entities.player.Player;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
+import util.BulletUtil;
 
 import java.util.*;
 
@@ -17,19 +19,21 @@ public abstract class Room {
     protected double x, y, width, height;
 
     protected Door topDoor;
-    private List<Enemy> enemies = new ArrayList<>();
-    private List<Bullet> bullets = new ArrayList<>();
-    private List<Collectible> items = new ArrayList<>();
-
+    private ArrayList<Enemy> enemies = new ArrayList<>();
+    private ArrayList<Bullet> bullets = new ArrayList<>();
+    private ArrayList<Collectible> items = new ArrayList<>();
+    private ArrayList<Character> characters=new ArrayList<>();
     public Room(double x, double y, double width, double height, Player player) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.player = player;
+        characters.add(player);
     }
 
     public void addEnemy(Enemy e) {
+        characters.add(e);
         enemies.add(e);
     }
     public void spawnBullet(Bullet b) {
@@ -42,6 +46,8 @@ public abstract class Room {
     public List<Enemy> getEnemies() { return enemies; }
     public List<Bullet> getBullets() { return bullets; }
     public List<Collectible> getItems() { return items; }
+
+    public List<Character> getCharacters() {return characters;}
 
     // Add a door for this room
     public void addDoor(Door door) {
@@ -65,7 +71,8 @@ public abstract class Room {
         }
 
         enemies.removeIf(Enemy::isDead);
-        bullets.removeIf(b-> !b.isAlive());
+        BulletUtil.filterAliveBullets(bullets,characters);
+        characters.removeIf(ch -> (ch instanceof Enemy) && ch.isDead());
         items.removeIf(Collectible::isCollected);
     }
 

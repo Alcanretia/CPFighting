@@ -5,28 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5981013e-5d90-4f57-83bd-68a94443fb5e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/Character.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/util/CharacterType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/CoinTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/EnemyTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/PlayerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/util/BulletUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/Hittable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Hittable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Character.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entities/bullets/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/bullets/Bullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/enemies/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/enemies/Boss.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/enemies/Chaser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/enemies/Chaser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/enemies/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/enemies/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/enemies/Jumper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/enemies/Jumper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/Coin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entities/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/player/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/GameApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/GameApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/RoomManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/RoomManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/rooms/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rooms/Room.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -75,7 +59,7 @@
     <setting file="file://$PROJECT_DIR$/src/main/java/entities/enemies/Boss.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -92,8 +76,9 @@
     "Gradle.PlayerTest.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "chore/code-cleanup",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/velys/IdeaProjects/BindingOfMyLife/src/main/java/entities/bullets"
@@ -145,16 +130,5 @@
       <updated>1764875783175</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/entities/enemies/Boss.java</url>
-          <line>36</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

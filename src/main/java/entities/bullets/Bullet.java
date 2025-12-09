@@ -1,5 +1,6 @@
 package entities.bullets;
 
+import core.Character;
 import core.GameObject;
 import entities.enemies.Enemy;
 import javafx.geometry.Rectangle2D;
@@ -7,6 +8,8 @@ import javafx.scene.image.Image;
 import util.CharacterType;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+
+import java.util.ArrayList;
 
 public class Bullet extends GameObject {
     private double vx, vy;
@@ -23,9 +26,6 @@ public class Bullet extends GameObject {
         setPower(power);
 
     }
-    public boolean collidesWith(Enemy e){
-        return false;
-    }
     @Override
     public void update(double dt) {
         x += vx * dt;
@@ -37,8 +37,8 @@ public class Bullet extends GameObject {
         gc.drawImage(BULLET_SPRITE, x -(DIAMETER/2), y - (DIAMETER/2), DIAMETER, DIAMETER);
     }
 
-    public Rectangle2D getHitBox(int x,int y){
-        return new Rectangle2D(x-10,y-10,20,20);
+    public Rectangle2D getHitBox(){
+        return new Rectangle2D(getX()-10,getY()-10,20,20);
     }
     public CharacterType getOwner() {
         return owner;
