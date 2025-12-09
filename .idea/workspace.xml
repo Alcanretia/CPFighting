@@ -5,16 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5981013e-5d90-4f57-83bd-68a94443fb5e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sprites/Door-Locked.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sprites/Door-Unlocked.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/RoomManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/RoomManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rooms/CombatRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rooms/CombatRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rooms/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rooms/Door.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/enemies/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/enemies/Boss.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,15 +55,12 @@
     <setting file="file://$PROJECT_DIR$/src/main/java/entities/enemies/Boss.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="36ORlaLTTanMu1LrTA6VDMF61Uq" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -82,8 +72,9 @@
     "Gradle.PlayerTest.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "feature/items-rooms",
+    "git-widget-placeholder": "feature/bullet-hitting-system",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/velys/IdeaProjects/BindingOfMyLife/src/main/java/entities/bullets"
@@ -95,9 +86,6 @@
       <recent name="C:\Users\velys\IdeaProjects\BindingOfMyLife\src\main\java\util" />
       <recent name="C:\Users\velys\IdeaProjects\BindingOfMyLife" />
       <recent name="C:\Users\velys\IdeaProjects\Binding_of_my_life" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\08412\IdeaProjects\FinalProject\src\main\resources\sprites" />
     </key>
   </component>
   <component name="RunManager">
@@ -138,16 +126,5 @@
       <updated>1764875783175</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/entities/enemies/Boss.java</url>
-          <line>36</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

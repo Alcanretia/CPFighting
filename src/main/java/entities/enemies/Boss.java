@@ -149,7 +149,7 @@ public class Boss extends Enemy implements SpecialAbilityCapable {
             double angle = (Math.PI * 2) * (i / (double) count);
             double vx = Math.cos(angle) * 250;
             double vy = Math.sin(angle) * 250;
-            room.spawnBullet(new Bullet(x, y, vx, vy,this.getHp(),CharacterType.BossType));
+            room.spawnBullet(new Bullet(x, y, vx, vy,this.getPower(),CharacterType.BossType));
         }
     }
 
@@ -180,7 +180,7 @@ public class Boss extends Enemy implements SpecialAbilityCapable {
             double angle = base + spread * (i - pellets / 2.0) / (pellets / 2.0);
             double vx = Math.cos(angle) * 350;
             double vy = Math.sin(angle) * 350;
-            room.spawnBullet(new Bullet(x, y, vx, vy,this.getHp(),CharacterType.BossType));
+            room.spawnBullet(new Bullet(x, y, vx, vy,this.getPower(),CharacterType.BossType));
         }
     }
 

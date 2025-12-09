@@ -9,8 +9,8 @@ import javafx.scene.paint.Color;
 import util.CharacterType;
 
 public class Chaser extends Enemy {
-    private static double baseSpeed = 80;       // normal movement
-    private static double chargeSpeed = 180;    // speed when charging
+    private static final  double baseSpeed = 80;       // normal movement
+    private static final double chargeSpeed = 180;    // speed when charging
     private double vx = 0, vy = 0;
 
     private Player player;
