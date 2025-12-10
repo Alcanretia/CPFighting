@@ -3,12 +3,11 @@ package rooms;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 
 public class Door {
     private Rectangle2D region;
     private boolean locked;
-    private static final Image LOCKEDDOOR_SPRITE = new Image("sprites/Door-Locked.png");
+    private static final Image LOCKEDDOOR_SPRITE = new Image("sprites/door_locked.png");
     private static final Image UNLOCKEDDOOR_SPRITE = new Image("sprites/Door-Unlocked.png");
     private static final double WIDTH = 90, HEIGHT = 30, IMAGE_HEIGHT = 60;
     private double x,y;

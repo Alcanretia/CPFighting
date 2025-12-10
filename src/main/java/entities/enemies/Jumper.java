@@ -1,6 +1,7 @@
 package entities.enemies;
 
 import entities.bullets.Bullet;
+import javafx.scene.image.Image;
 import rooms.Room;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -11,6 +12,8 @@ public class Jumper extends Enemy {
     private double targetX, targetY;
     private volatile boolean jumping = false;
     private double jumpRadius = 150;
+
+    private static final Image JUMPER_SPRITE = new Image("sprites/jumper.png");
 
     public Jumper(double x, double y, Room room, int hp, int power,double diameter) {
         super(x, y, hp, power, room,diameter);
@@ -103,8 +106,9 @@ public class Jumper extends Enemy {
 
     @Override
     public void render(GraphicsContext gc) {
-        gc.setFill(jumping ? Color.ORANGE : Color.RED);
-        gc.fillOval(x - (diameter/2), y - (diameter/2), diameter, diameter);
+        gc.setFill(Color.RED);
+        gc.fillRect(getX() - (diameter/2) - 1, getY()- (diameter/2) - 1, diameter +2, diameter +2);
+        gc.drawImage(JUMPER_SPRITE,getX() - (diameter/2), getY() - (diameter/2), diameter, diameter);
         if (getDamageFlash() > 0) {
             gc.setGlobalAlpha(getDamageFlash()); // 0 = transparent, 1 = solid
             gc.setFill(Color.WHITE);

@@ -3,6 +3,7 @@ package entities.enemies;
 import entities.bullets.Bullet;
 import entities.items.Coin;
 import entities.player.Player;
+import javafx.scene.image.Image;
 import rooms.Room;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -15,7 +16,7 @@ public class Chaser extends Enemy {
 
     private Player player;
 
-
+    private static final Image CHASER_SPRITE = new Image("sprites/chaser.png");
 
     public Chaser(double x, double y, Room room, Player player, int hp, int power,double diameter) {
         super(x, y, hp, power,room,diameter); // width, height, hp
@@ -78,8 +79,9 @@ public class Chaser extends Enemy {
 
     @Override
     public void render(GraphicsContext gc) {
-        gc.setFill(Color.ORANGE);
-        gc.fillRect(x-(getDiameter() / 2), y-(getDiameter()/2), getDiameter(), getDiameter());
+        gc.setFill(Color.RED);
+        gc.fillRect(getX() - (diameter/2) - 1, getY()- (diameter/2) - 1, diameter +2, diameter +2);
+        gc.drawImage(CHASER_SPRITE,getX()-(getDiameter() / 2), getY()-(getDiameter()/2), getDiameter(), getDiameter());
         if (getDamageFlash() > 0) {
             gc.setGlobalBlendMode(javafx.scene.effect.BlendMode.SRC_ATOP);
             gc.setFill(Color.rgb(255, 255, 255, getDamageFlash())); // white flash

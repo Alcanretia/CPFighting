@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CoinTest {
+    /// COIN AND TREASURE CHEST BEHAVE THE SAME
 
     // Minimal player for testing (does not rely on JavaFX)
     class TestPlayer extends Player {
@@ -28,8 +29,10 @@ public class CoinTest {
 
         int before = player.getCoin();
 
-        c.collect(player);
+        c.setX(0);
+        c.setY(0); // Align hitboxes
 
+        c.update(0.016, player); // this calls collect() AND sets collected
         assertEquals(before + 1, player.getCoin());
         assertTrue(c.isCollected());
     }
