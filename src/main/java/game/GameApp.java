@@ -10,11 +10,15 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import rooms.Room;
+import util.BGMManager;
 import util.Input;
+import util.SFXManager;
 
 public class GameApp extends Application {
     private boolean gameStarted = false;
     private boolean gameOver = false;
+    private boolean gameOverSFXPlayed = false;
 
 
     private Player player;
@@ -26,7 +30,7 @@ public class GameApp extends Application {
         launch(args);
     }
 
-    public Player getPlayer(){
+    public Player getPlayer() {
         return player;
     }
 
@@ -37,9 +41,17 @@ public class GameApp extends Application {
 
         Input.initialize();
 
-        this.player = new Player(400, 300, 10, 1, 5,"Player",30);
+        this.player = new Player(400, 300, 10, 1, 5, "Player", 32);
 
         roomManager = RoomManager.getInstance(player);
+
+        SFXManager.load("shoot", "/sounds/shoot.mp3");
+        SFXManager.load("laser", "/sounds/laser.mp3");
+        SFXManager.load("take_damage", "/sounds/take_damage.mp3");
+        SFXManager.load("coin", "/sounds/coin.mp3");
+        SFXManager.load("game_start", "/sounds/game_start.mp3");
+        SFXManager.load("game_over", "/sounds/game_over.mp3");
+
 
         Scene scene = new Scene(new StackPane(canvas));
         Input.attach(scene);
@@ -55,7 +67,9 @@ public class GameApp extends Application {
             public void handle(long now) {
                 if (!gameStarted) {
                     drawStartScreen(gc);
-                    if (Input.isPressed("SPACE")) {
+                    if (Input.isPressed("ENTER")) {
+                        SFXManager.play("game_start");
+                        BGMManager.play("/music/bgm.mp3");
                         gameStarted = true;
                     }
                     return;
@@ -66,9 +80,15 @@ public class GameApp extends Application {
                 }
 
                 if (gameOver) {
+                    if (!gameOverSFXPlayed) {
+                        BGMManager.stop();
+                        SFXManager.play("game_over");
+                        gameOverSFXPlayed = true;
+                    }
                     drawDeadScreen(gc);
                     if (Input.isPressed("R")) {
                         restartGame();
+                        gameOverSFXPlayed = false;
                     }
                     return;
                 }
@@ -92,14 +112,13 @@ public class GameApp extends Application {
 
     private void restartGame() {
         // completely reset all states
-        this.player = new Player(400, 300, 10, 1, 5,"Player",30);
+        this.player = new Player(400, 300, 10, 1, 5, "Player", 32);
         roomManager.resetInstance();
         roomManager = RoomManager.getInstance(player);
 
         gameOver = false;
         gameStarted = false; // optional → show start screen again
     }
-
 
 
     private Font pixelFont; // load once
@@ -111,7 +130,7 @@ public class GameApp extends Application {
 
         gc.setFill(Color.WHITE);
         gc.setFont(pixelFont);
-        gc.fillText("PRESS SPACE TO START", WIDTH/2 - 200, HEIGHT/2);
+        gc.fillText("PRESS ENTER TO START", WIDTH / 2 - 200, HEIGHT / 2);
     }
 
     private void drawDeadScreen(GraphicsContext gc) {
@@ -121,12 +140,13 @@ public class GameApp extends Application {
         pixelFont = Font.loadFont(getClass().getResourceAsStream("/fonts/PressStart2P.ttf"), 20);
         gc.setFill(Color.RED);
         gc.setFont(pixelFont);
-        gc.fillText("YOU DIED!", WIDTH/2 - 90, HEIGHT/2 - 20);
+        gc.fillText("YOU DIED!", WIDTH / 2 - 90, HEIGHT / 2 - 40);
 
         gc.setFill(Color.WHITE);
         pixelFont = Font.loadFont(getClass().getResourceAsStream("/fonts/PressStart2P.ttf"), 10);
         gc.setFont(pixelFont);
-        gc.fillText("Press R to Restart", WIDTH/2 - 90, HEIGHT/2 + 20);
+        gc.fillText("Score : " + RoomManager.getInstance().getScore(), WIDTH / 2 - 50, HEIGHT / 2 - 15);
+        gc.fillText("Press R to Restart", WIDTH / 2 - 90, HEIGHT / 2 + 20);
     }
 
     private void drawHUD(GraphicsContext gc) {

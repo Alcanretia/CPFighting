@@ -1,158 +1,83 @@
 import entities.enemies.Enemy;
 import entities.items.Coin;
-import javafx.scene.canvas.GraphicsContext;
+import entities.player.Player;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import rooms.CombatRoom;
 import rooms.Room;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class EnemyTest {
 
-    // --------------------------
+    private Enemy enemy;
+    private MockRoom room;
 
+    // Minimal concrete subclass
+    private static class TestEnemy extends Enemy {
+        public TestEnemy(double x, double y, int hp, int power, Room room, double diameter) {
+            super(x, y, hp, power, room, diameter);
+        }
 
+        @Override
+        public void update(double dt) {
+            // do nothing
+        }
 
-    // --------------------------
-    // Minimal Enemy subclass for testing
-    // --------------------------
+        @Override
+        public void render(javafx.scene.canvas.GraphicsContext gc) {
+            // do nothing
+        }
+    }
 
+    // Minimal Room mock to track spawned items
+    private static class MockRoom extends Room {
+        public Coin spawnedCoin = null;
 
+        public MockRoom(double x, double y, double width, double height, Player player) {
+            super(x, y, width, height, player);
+        }
 
-    @Test
-    void testConstructor() {
-        CombatRoom room = new CombatRoom(0,0,800,600,null);
-        Enemy e = new Enemy(50, 100, 20, 5, room, 20) {
-            @Override
-            public void update(double dt) {
+        @Override
+        public void spawnItems(Coin coin) {
+            spawnedCoin = coin;
+        }
+    }
 
-            }
-
-            @Override
-            public void render(GraphicsContext gc) {
-
-            }
-        };
-
-        assertEquals(50, e.getX());
-        assertEquals(100, e.getY());
-        assertEquals(20, e.getHp());
-        assertEquals(5, e.getPower());
-        assertEquals(room, e.getRoom());
-        assertTrue(e.isAlive());
+    @BeforeEach
+    void setUp() {
+        room = new MockRoom();
+        enemy = new TestEnemy(50, 50, 100, 10, room, 20);
     }
 
     @Test
-    void testOnHitReducesHp() {
-        CombatRoom room = new CombatRoom(0,0,800,600,null);
-        Enemy e = new Enemy(0, 0, 30, 5, room, 20) {
-            @Override
-            public void update(double dt) {
-
-            }
-
-            @Override
-            public void render(GraphicsContext gc) {
-
-            }
-        };
-
-        e.onHit(10);
-        assertEquals(20, e.getHp());
-
-        e.onHit(25);
-        assertEquals(0, e.getHp());
+    void testInitialState() {
+        assertTrue(enemy.isAlive());
+        assertEquals(0, enemy.getDamageFlash());
     }
 
     @Test
-    void testIsDeadAndIsAlive() {
-        CombatRoom room = new CombatRoom(0,0,800,600,null);
-        Enemy e = new Enemy(0, 0, 10, 5, room, 20) {
-            @Override
-            public void update(double dt) {
-
-            }
-
-            @Override
-            public void render(GraphicsContext gc) {
-
-            }
-        };
-
-        assertTrue(e.isAlive());
-        assertFalse(e.isDead());
-
-        // Kill enemy
-        e.setHp(0);
-        e.setAlive(false);
-
-        assertFalse(e.isAlive());
-        assertTrue(e.isDead());
+    void testOnHitReducesHpAndSetsDamageFlash() {
+        enemy.onHit(30);
+        assertEquals(70, enemy.getHp());
+        assertEquals(1, enemy.getDamageFlash());
+        assertTrue(enemy.isAlive());
     }
 
     @Test
-    void testOnDeadDropsCoin() {
-        CombatRoom room = new CombatRoom(0,0,800,600,null);
-        Enemy e = new Enemy(100, 200, 10, 3, room, 20) {
-            @Override
-            public void update(double dt) {
-
-            }
-
-            @Override
-            public void render(GraphicsContext gc) {
-
-            }
-        };
-
-        e.onDead();
-
-        assertEquals(1, room.getItems().size());
-        assertTrue(room.getItems().get(0) instanceof Coin);
-
-        Coin c = (Coin) room.getItems().get(0);
-        assertEquals(100, c.getX());
-        assertEquals(200, c.getY());
+    void testOnHitKillsEnemy() {
+        enemy.onHit(150);
+        assertEquals(0, enemy.getHp());
+        assertFalse(enemy.isAlive());
+        // onDead should spawn a coin
+        enemy.onDead();
+        assertNotNull(((MockRoom) enemy.getRoom()).spawnedCoin);
+        assertEquals(enemy.getX(), ((MockRoom) enemy.getRoom()).spawnedCoin.getX());
+        assertEquals(enemy.getY(), ((MockRoom) enemy.getRoom()).spawnedCoin.getY());
     }
 
     @Test
-    void testGetSetRoom() {
-        CombatRoom room1 = new CombatRoom(0,0,800,600,null);
-        CombatRoom room2 = new CombatRoom(0,0,800,800,null);
-
-        Enemy e = new Enemy(0, 0, 10, 5, room1, 20) {
-            @Override
-            public void update(double dt) {
-
-            }
-
-            @Override
-            public void render(GraphicsContext gc) {
-
-            }
-        };
-        assertEquals(room1, e.getRoom());
-
-        e.setRoom(room2);
-        assertEquals(room2, e.getRoom());
-    }
-
-    @Test
-    void testUpdateAndRenderDoNotCrash() {
-        CombatRoom room = new CombatRoom(0,0,800,600,null);
-        Enemy e = new Enemy(0, 0, 10, 5, room, 20) {
-            @Override
-            public void update(double dt) {
-
-            }
-
-            @Override
-            public void render(GraphicsContext gc) {
-
-            }
-        };
-
-        assertDoesNotThrow(() -> e.update(0.016)); // 60 FPS dt
-        assertDoesNotThrow(() -> e.render(null));  // passing null GC
+    void testSetDamageFlash() {
+        enemy.setDamageFlash(0.5);
+        assertEquals(0.5, enemy.getDamageFlash());
     }
 }

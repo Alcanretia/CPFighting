@@ -4,8 +4,8 @@ import core.SpecialAbilityCapable;
 import entities.items.Coin;
 import entities.player.Player;
 import game.RoomManager;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import rooms.Room;
 import entities.bullets.Bullet;
@@ -23,6 +23,8 @@ public class Boss extends Enemy implements SpecialAbilityCapable {
 
     private static double specialAbilityCooldown = 20000;
     private long lastSpecial = 0;
+
+    private static final Image BOSS_SPRITE = new Image("sprites/boss.png");
 
     public Boss(double x, double y, Room room, int hp, int power, Player player,double diameter){
         super(x,y,hp,power,room,diameter);
@@ -265,8 +267,9 @@ public class Boss extends Enemy implements SpecialAbilityCapable {
 
     @Override
     public void render(GraphicsContext gc){
-        gc.setFill(acting ? Color.PURPLE : Color.BLUE);
-        gc.fillRect(x - 30, y - 30, 60, 60);
+        gc.setFill(Color.RED);
+        gc.fillRect(getX() - (diameter/2) - 1, getY()- (diameter/2) - 1, diameter +2, diameter +2);
+        gc.drawImage(BOSS_SPRITE,getX() - (diameter/2), getY() - (diameter/2), diameter, diameter);
 
         if (getDamageFlash() > 0) {
             gc.setGlobalAlpha(getDamageFlash()); // 0 = transparent, 1 = solid

@@ -1,16 +1,13 @@
 package entities.items;
 
-import core.Collectible;
 import entities.player.Player;
-import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 
 public class HealthPot extends Item {
     private static final double WIDTH = 32, HEIGHT = 32;
     private static final int HEALING = 5;
-    private static final Image HEALTHPOT_SPRITE = new Image("sprites/HealthPot.png");
+    private static final Image HEALTHPOT_SPRITE = new Image("sprites/health_pot.png");
     public HealthPot(double x, double y){
         super(x,y,WIDTH,HEIGHT);
     }

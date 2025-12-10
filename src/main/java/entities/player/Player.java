@@ -5,17 +5,15 @@ import core.Hittable;
 import core.SpecialAbilityCapable;
 import entities.bullets.Bullet;
 import entities.bullets.Laser;
-import entities.enemies.Enemy;
-import game.GameApp;
 import game.RoomManager;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
-import javafx.geometry.Rectangle2D;
+import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
 import util.CharacterType;
 import util.Input;
+import util.SFXManager;
 
 public class Player extends Character implements Hittable, SpecialAbilityCapable {
-    private int maxHp;
     private int cooldown;
     private boolean isUsedSpecialAbility;
     private String name;
@@ -45,13 +43,12 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
     private double dashDirX = 0;                        // dash direction
     private double dashDirY = 0;
 
-
-
+    private static Image PLAYER_SPRITE;
 
     private double damageFlash;
+
     public Player(double x, double y, int hp, int power, int cooldown, String name,double diameter) {
         super(x,y,hp,power,diameter);
-        setMaxHp(hp);
         setCoolDown(cooldown);
         setName(name);
         setCoin(0);
@@ -92,6 +89,7 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
             return; // still cooling down
         }
         lastShotTime = now;
+        SFXManager.play("shoot");
 
         Bullet b= new Bullet(getX(),getY(),0,0, this.getPower(),CharacterType.PlayerType);
         if (Input.isHeld("LEFT")) {
@@ -129,8 +127,10 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
         if (damageFlash <= 0) {
             this.setHp(getHp() - damage);
             damageFlash = 1.0;
+            SFXManager.play("take_damage");
         }
         if (getHp() <= 0){
+            setAlive(false);
             onDead();
         }
     }
@@ -141,7 +141,7 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
         if (now - lastLaserTime < LASER_COOLDOWN) return;
 
         lastLaserTime = now;
-
+        SFXManager.play("laser");
         // Create a laser with very high speed or infinite range
         Laser laser = new Laser(getX(), getY(), lastDirX, lastDirY, getPower());
         RoomManager.getInstance().getCurrentRoom().spawnLaser(laser);
@@ -150,15 +150,10 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
 
     @Override
     public void onDead(){
-        setAlive(false);
+        return;
     }
 
-    public int getMaxHp() { return maxHp; }
 
-    public void setMaxHp(int maxHp) {
-        if (maxHp < 0) this.maxHp = 0;
-        else this.maxHp = maxHp;
-    }
     public int getCoolDown() {
         return cooldown;
     }
@@ -185,6 +180,22 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
 
     public double getDamageFlash(){
         return damageFlash;
+    }
+    public void setDamageFlash(double damageFlash){
+        if (damageFlash > 1.0){
+            this.damageFlash = 1;
+        }
+        else if (damageFlash < 0) {
+            this.damageFlash = 0;
+        }
+        else this.damageFlash = damageFlash;
+    }
+
+    public static Image getPlayerSprite() {
+        if (PLAYER_SPRITE == null) {
+            PLAYER_SPRITE = new Image("sprites/player.png");
+        }
+        return PLAYER_SPRITE;
     }
 
     ///  For Collectible ///
@@ -252,8 +263,8 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
     }
 
     public void render(GraphicsContext gc) {
-        gc.setFill(Color.CYAN);
-        gc.fillOval(x - (diameter/2), y - (diameter/2), diameter, diameter);
+        gc.drawImage(getPlayerSprite(),getX() - (diameter), getY() - (diameter), diameter*2, diameter*2);
+        // Draw bigger than actual hitbox
     }
 
 }
