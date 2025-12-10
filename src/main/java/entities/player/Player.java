@@ -76,6 +76,11 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
         double len = Math.sqrt(dirX * dirX + dirY * dirY);
         dirX /= len;
         dirY /= len;
+        isDashing = true;
+        dashTime = DASH_DURATION;
+        dashCooldownTimer = DASH_COOLDOWN;
+        dashDirX = dirX;
+        dashDirY = dirY;
     }
 
     public void attack(){
