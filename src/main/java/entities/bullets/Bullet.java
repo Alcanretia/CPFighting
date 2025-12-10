@@ -29,7 +29,7 @@ public class Bullet extends GameObject {
 
     @Override
     public void render(GraphicsContext gc) {
-        gc.drawImage(BULLET_SPRITE, getX() -(DIAMETER/2), getY() - (DIAMETER/2), DIAMETER, DIAMETER);
+        gc.drawImage(getBulletSprite(), getX() -(DIAMETER/2), getY() - (DIAMETER/2), DIAMETER, DIAMETER);
     }
 
     public Image getBulletSprite(){
