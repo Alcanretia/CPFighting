@@ -16,7 +16,7 @@ import util.BulletUtil;
 import java.util.*;
 
 public abstract class Room {
-    private static final Image FLOOR_SPRITE = new Image("sprites/floor..png");
+    private static Image FLOOR_SPRITE;
 
     public boolean active = false;
 
@@ -58,6 +58,11 @@ public abstract class Room {
     public List<Laser> getLasers() { return lasers; }
 
     public List<Character> getCharacters() { return characters; }
+
+    public Image getFloorSprite(){
+        if (FLOOR_SPRITE == null) FLOOR_SPRITE = new Image("sprites/floor.png");
+        return FLOOR_SPRITE;
+    }
 
     // Add a door for this room
     public void addDoor(Door door) {
@@ -171,7 +176,7 @@ public abstract class Room {
 
     public void render(GraphicsContext gc) {
         // Base room render (background)
-        gc.drawImage(FLOOR_SPRITE,0,0,800,600);
+        gc.drawImage(getFloorSprite(),0,0,800,600);
         drawFog(gc, Color.BLACK, 0.70);
         // Render doors
         renderEntities(gc);

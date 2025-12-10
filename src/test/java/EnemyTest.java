@@ -1,18 +1,22 @@
 import entities.enemies.Enemy;
 import entities.items.Coin;
+import entities.items.Item;
 import entities.player.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import rooms.Room;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class EnemyTest {
 
-    private Enemy enemy;
+    private Player player;
     private MockRoom room;
+    private TestEnemy enemy;
 
-    // Minimal concrete subclass
+    // Minimal concrete subclass of Enemy
     private static class TestEnemy extends Enemy {
         public TestEnemy(double x, double y, int hp, int power, Room room, double diameter) {
             super(x, y, hp, power, room, diameter);
@@ -29,30 +33,33 @@ public class EnemyTest {
         }
     }
 
-    // Minimal Room mock to track spawned items
+    // Minimal mock Room to test coin spawning
     private static class MockRoom extends Room {
         public Coin spawnedCoin = null;
 
-        public MockRoom(double x, double y, double width, double height, Player player) {
-            super(x, y, width, height, player);
+        public MockRoom(Player player) {
+            super(0,0,800,600,player);
         }
 
         @Override
-        public void spawnItems(Coin coin) {
-            spawnedCoin = coin;
+        public void spawnItems(Item coin) {
+            spawnedCoin = (Coin) coin;
         }
     }
 
     @BeforeEach
     void setUp() {
-        room = new MockRoom();
+        player = new Player(100,100,100,10,1,"Hero",16);
+        room = new MockRoom(player);
         enemy = new TestEnemy(50, 50, 100, 10, room, 20);
+        room.addEnemy(enemy);
     }
 
     @Test
     void testInitialState() {
         assertTrue(enemy.isAlive());
         assertEquals(0, enemy.getDamageFlash());
+        assertEquals(100, enemy.getHp());
     }
 
     @Test
@@ -64,11 +71,11 @@ public class EnemyTest {
     }
 
     @Test
-    void testOnHitKillsEnemy() {
-        enemy.onHit(150);
+    void testOnHitKillsEnemyAndSpawnsCoin() {
+        enemy.onHit(150); // deal more than HP
         assertEquals(0, enemy.getHp());
         assertFalse(enemy.isAlive());
-        // onDead should spawn a coin
+
         enemy.onDead();
         assertNotNull(((MockRoom) enemy.getRoom()).spawnedCoin);
         assertEquals(enemy.getX(), ((MockRoom) enemy.getRoom()).spawnedCoin.getX());
@@ -76,8 +83,15 @@ public class EnemyTest {
     }
 
     @Test
-    void testSetDamageFlash() {
+    void testDamageFlashSetter() {
         enemy.setDamageFlash(0.5);
         assertEquals(0.5, enemy.getDamageFlash());
+    }
+
+    @Test
+    void testIsDead() {
+        assertFalse(enemy.isDead());
+        enemy.onHit(200);
+        assertTrue(enemy.isDead());
     }
 }

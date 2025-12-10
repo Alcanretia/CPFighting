@@ -5,54 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5981013e-5d90-4f57-83bd-68a94443fb5e" name="Changes" comment="Merge branch 'main' of https://github.com/2110215-ProgMeth/project-cp-2025-1-future-homeless into feature/items-rooms&#10;&#10;# Conflicts:&#10;#&#9;.gradle/8.14/executionHistory/executionHistory.lock&#10;#&#9;.gradle/8.14/fileHashes/fileHashes.bin&#10;#&#9;.gradle/8.14/fileHashes/fileHashes.lock&#10;#&#9;.gradle/buildOutputCleanup/buildOutputCleanup.lock&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/entities/enemies/Chaser.java&#10;#&#9;src/main/java/entities/enemies/Enemy.java&#10;#&#9;src/main/java/entities/items/Coin.java&#10;#&#9;src/main/java/entities/player/Player.java&#10;#&#9;src/main/java/game/GameApp.java&#10;#&#9;src/main/java/game/RoomManager.java&#10;#&#9;src/main/java/rooms/Room.java">
-      <change afterPath="$PROJECT_DIR$/src/main/java/util/BGMManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/util/SFXManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/music/bgm.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sounds/coin.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sounds/game_over.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sounds/game_start.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sounds/laser.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sounds/shoot.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sounds/take_damage.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sprites/boss.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sprites/chaser.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sprites/jumper.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sprites/player.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/CharacterTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ItemTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/RoomTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Character.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entities/bullets/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/bullets/Bullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/enemies/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/enemies/Boss.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/enemies/Chaser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/enemies/Chaser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/enemies/Jumper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/enemies/Jumper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/Coin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/HealthPot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/HealthPot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/MaxHealthUpgrade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/MaxHealthUpgrade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/MysteryBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/MysteryBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/StrengthPot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/StrengthPot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/TreasureBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/TreasureBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/player/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/GameApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/GameApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/RoomManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/RoomManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rooms/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rooms/Door.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/rooms/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rooms/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sprites/Bullet.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sprites/bullet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sprites/Coin.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sprites/coin.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sprites/DamageUp.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sprites/damage_up.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sprites/Door-Locked.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sprites/door_locked.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sprites/Floor.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sprites/floor..png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sprites/HealthPot.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sprites/health_pot.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sprites/HealthUp.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sprites/hp_up.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sprites/MysteryBlock.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sprites/mystery_block.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sprites/Treasure.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sprites/treasure.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CoinTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CoinTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/EnemyTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PlayerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sprites/floor..png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sprites/floor.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/EnemyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/EnemyTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +49,11 @@
                 <item name="FinalProject" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="verification" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="FinalProject" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
               </path>
             </expand>
             <select />
@@ -159,7 +126,7 @@
       <recent name="C:\Users\08412\IdeaProjects\FinalProject\src\main\resources\sprites" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Gradle.FinalProject [test]">
     <configuration name="Binding_of_my_life [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
