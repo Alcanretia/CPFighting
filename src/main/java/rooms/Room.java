@@ -126,7 +126,6 @@ public abstract class Room {
         }
         BulletUtil.filterAliveBullets(bullets,characters);
         characters.removeIf(ch -> (ch instanceof Enemy) && ch.isDead());
-        bullets.removeIf(b-> !b.isAlive());
         items.removeIf(Item::isCollected);
         lasers.removeIf(l -> !l.isAlive());
 

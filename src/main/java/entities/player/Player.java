@@ -59,7 +59,7 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
         // Get direction based on movement keys (WASD)
         double dirX = 0;
         double dirY = 0;
-        System.out.println("qqq1");
+
         if (Input.isHeld("W")) dirY -= 1;
         if (Input.isHeld("S")) dirY += 1;
         if (Input.isHeld("A")) dirX -= 1;
@@ -226,7 +226,6 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
         // === HANDLE DASHING FIRST ===
         if (isDashing) {
             // Move fast in dash direction
-            System.out.println("sss");
             x += dashDirX * DASH_SPEED * dt;
             y += dashDirY * DASH_SPEED * dt;
             x = Math.max(10, Math.min(790, x));
