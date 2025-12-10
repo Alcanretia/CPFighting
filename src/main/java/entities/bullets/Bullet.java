@@ -7,54 +7,37 @@ import util.CharacterType;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
- * Represents a projectile fired by either the player or an enemy.
- * A Bullet travels in a straight line using its velocity values and
- * deals damage determined by its power. Rendering and collision
- * detection are handled based on a fixed circular hitbox.
+ * Represents a bullet in the game.
+ * Bullets have a velocity, power, an owner (who fired it), and a hitbox for collision detection.
  */
 public class Bullet extends GameObject {
-
-    /**
-     * Horizontal velocity (units per second).
-     */
+    /** Horizontal velocity of the bullet. */
     private double vx;
 
-    /**
-     * Vertical velocity (units per second).
-     */
+    /** Vertical velocity of the bullet. */
     private double vy;
 
-    /**
-     * Identifies which character type fired the bullet
-     * (player or enemy), used for collision filtering.
-     */
+    /** The type of character who owns/fired the bullet. */
     private CharacterType owner;
 
-    /**
-     * Damage value dealt when the bullet hits a target.
-     */
+    /** Power (damage) of the bullet. */
     private int power;
 
-    /**
-     * Constant diameter of the bullet sprite and its hitbox.
-     */
-    private static final double DIAMETER = 16;
+    /** Diameter of the bullet. */
+    private final static double DIAMETER = 16;
+
+    /** Sprite image used to render the bullet. */
+    private static Image BULLET_SPRITE;
 
     /**
-     * Static sprite image used to render all bullets.
-     */
-    private static final Image BULLET_SPRITE = new Image("sprites/bullet.png");
-
-    /**
-     * Creates a new Bullet instance at the given position with the specified
-     * velocity, power, and owner type.
+     * Constructs a new Bullet.
      *
-     * @param x      initial x-position
-     * @param y      initial y-position
-     * @param vx     horizontal velocity
-     * @param vy     vertical velocity
-     * @param power  damage dealt on impact
-     * @param owner  type of character that fired this bullet
+     * @param x      Initial X position.
+     * @param y      Initial Y position.
+     * @param vx     Horizontal velocity.
+     * @param vy     Vertical velocity.
+     * @param power  Damage power of the bullet.
+     * @param owner  Owner of the bullet (who fired it).
      */
     public Bullet(double x, double y, double vx, double vy, int power, CharacterType owner) {
         super(x, y);
@@ -65,10 +48,9 @@ public class Bullet extends GameObject {
     }
 
     /**
-     * Updates the bullet's position based on its velocity and the
-     * elapsed time.
+     * Updates the position of the bullet based on its velocity.
      *
-     * @param dt time delta (in seconds)
+     * @param dt Time elapsed since the last update (seconds).
      */
     @Override
     public void update(double dt) {
@@ -77,102 +59,106 @@ public class Bullet extends GameObject {
     }
 
     /**
-     * Draws the bullet sprite at its current position.
+     * Renders the bullet on the screen.
      *
-     * @param gc graphics context used for rendering
+     * @param gc GraphicsContext used for drawing.
      */
     @Override
     public void render(GraphicsContext gc) {
-        gc.drawImage(BULLET_SPRITE, getX() - (DIAMETER / 2), getY() - (DIAMETER / 2), DIAMETER, DIAMETER);
+        gc.drawImage(getBulletSprite(), getX() - (DIAMETER / 2), getY() - (DIAMETER / 2), DIAMETER, DIAMETER);
     }
 
     /**
-     * Returns the rectangular hitbox used for collision detection.
+     * Returns the sprite image for the bullet.
+     * Loads the image lazily on first call.
      *
-     * @return Rectangle2D representing the bullet's hitbox
+     * @return Image of the bullet.
+     */
+    public Image getBulletSprite() {
+        if (BULLET_SPRITE == null) {
+            BULLET_SPRITE = new Image("sprites/bullet.png");
+        }
+        return BULLET_SPRITE;
+    }
+
+    /**
+     * Returns the hitbox of the bullet for collision detection.
+     *
+     * @return Rectangle2D representing the bullet's hitbox.
      */
     public Rectangle2D getHitBox() {
         return new Rectangle2D(getX() - (DIAMETER / 2), getY() - (DIAMETER / 2), DIAMETER, DIAMETER);
     }
 
     /**
-     * Gets the character type that fired this bullet.
+     * Returns the owner of the bullet.
      *
-     * @return owner of the bullet
+     * @return CharacterType representing the bullet's owner.
      */
     public CharacterType getOwner() {
         return owner;
     }
 
     /**
-     * Sets the owner that fired this bullet.
+     * Sets the owner of the bullet.
      *
-     * @param owner character type (player or enemy)
+     * @param owner CharacterType to set as the bullet's owner.
      */
     public void setOwner(CharacterType owner) {
         this.owner = owner;
     }
 
     /**
-     * Gets the bullet's vertical velocity.
+     * Returns the vertical velocity of the bullet.
      *
-     * @return vertical speed
+     * @return Vertical velocity.
      */
     public double getVy() {
         return vy;
     }
 
     /**
-     * Sets the bullet's vertical velocity.
+     * Sets the vertical velocity of the bullet.
      *
-     * @param vy new vertical speed
+     * @param vy Vertical velocity to set.
      */
     public void setVy(double vy) {
         this.vy = vy;
     }
 
     /**
-     * Gets the bullet's horizontal velocity.
+     * Returns the horizontal velocity of the bullet.
      *
-     * @return horizontal speed
+     * @return Horizontal velocity.
      */
     public double getVx() {
         return vx;
     }
 
     /**
-     * Sets the bullet's horizontal velocity.
+     * Sets the horizontal velocity of the bullet.
      *
-     * @param vx new horizontal speed
+     * @param vx Horizontal velocity to set.
      */
     public void setVx(double vx) {
         this.vx = vx;
     }
 
     /**
-     * Gets the bullet's damage output.
+     * Returns the damage power of the bullet.
      *
-     * @return power value
+     * @return Power of the bullet.
      */
     public int getPower() {
         return power;
     }
 
     /**
-     * Sets the bullet's damage, ensuring it is non-negative.
+     * Sets the damage power of the bullet. Values below 0 are clamped to 0.
      *
-     * @param power damage dealt on impact
+     * @param power Power to set.
      */
     public void setPower(int power) {
         this.power = Math.max(power, 0);
     }
-
-    /**
-     * Indicates whether the bullet is still active.
-     * This implementation always returns true, but subclasses
-     * or game logic may override or extend this behavior.
-     *
-     * @return true indicating the bullet is active
-     */
-
 }

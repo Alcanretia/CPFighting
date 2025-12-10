@@ -10,7 +10,7 @@ public class PlayerTest {
 
     @BeforeEach
     void setUp() {
-        player = new Player(100, 100, 100, 10, 1, "Hero", 16);
+        player = new Player(100, 100, 100,  1, "Hero", 16);
     }
 
     @Test
@@ -31,14 +31,6 @@ public class PlayerTest {
         player.onHit(100);
         assertFalse(player.isAlive());
         assertTrue(player.getHp() <= 0);
-    }
-
-    @Test
-    void testCooldownLogic() {
-        player.setCoolDown(5);
-        assertEquals(5, player.getCoolDown());
-        player.setCoolDown(-10);
-        assertEquals(1, player.getCoolDown());
     }
 
     @Test

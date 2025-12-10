@@ -36,7 +36,7 @@ public class ItemTest {
 
     @BeforeEach
     void setUp() {
-        player = new Player(100, 100, 100, 10, 1, "Hero", 16);
+        player = new Player(100, 100, 100, 1, "Hero", 16);
         item = new TestItem(100, 100, 20, 20); // same position as player
     }
 
