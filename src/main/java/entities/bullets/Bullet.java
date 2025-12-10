@@ -1,22 +1,17 @@
 package entities.bullets;
 
-import core.Character;
 import core.GameObject;
-import entities.enemies.Enemy;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import util.CharacterType;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
-
-import java.util.ArrayList;
 
 public class Bullet extends GameObject {
     private double vx, vy;
     private CharacterType owner;
     private int power;
     private final static double DIAMETER = 16;
-    private static final Image BULLET_SPRITE = new Image("sprites/Bullet.png");
+    private static final Image BULLET_SPRITE = new Image("sprites/bullet.png");
 
     public Bullet(double x, double y, double vx, double vy,int power,CharacterType owner) {
         super(x, y);

@@ -6,7 +6,6 @@ import core.Collectible;
 import entities.bullets.Laser;
 import entities.enemies.Enemy;
 import entities.items.Item;
-import entities.items.Item;
 import entities.player.Player;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
@@ -17,7 +16,7 @@ import util.BulletUtil;
 import java.util.*;
 
 public abstract class Room {
-    private static final Image FLOOR_SPRITE = new Image("sprites/Floor.png");
+    private static final Image FLOOR_SPRITE = new Image("sprites/floor..png");
 
     public boolean active = false;
 

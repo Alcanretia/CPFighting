@@ -72,15 +72,15 @@ public class RoomManager {
             CombatRoom cr = new CombatRoom(0, 0, 800, 600, player);
             room = cr;
             // spawn 1–3 enemies
-            int count = 2 + (int) (Math.random() * (int)(4 * difficulty)); // 1–5 enemies
+            int count = 1 + (int) (Math.random() * (int)(3 * difficulty)); // 1–5 enemies
 
             for (int i = 0; i < count; i++) {
                 double ex = 200 + Math.random() * 400;
                 double ey = 150 + Math.random() * 300;
 
                 double choice = Math.random();
-                if (choice > 0.5) cr.spawnEnemy(new Jumper(ex, ey, room, (int)(3 * difficulty) , 1,20));
-                else cr.spawnEnemy(new Chaser(ex, ey, room, player, (int)(5 * difficulty) , 1,20));
+                if (choice > 0.5) cr.spawnEnemy(new Jumper(ex, ey, room, (int)(3 * difficulty) , 1,30));
+                else cr.spawnEnemy(new Chaser(ex, ey, room, player, (int)(5 * difficulty) , 1,30));
             }
         }
         return room;
@@ -133,5 +133,8 @@ public class RoomManager {
 
     public void increaseDifficulty(){
         difficulty += 0.25;
+    }
+    public String getScore(){
+        return String.format("%03d", roomCleared - 1);
     }
 }

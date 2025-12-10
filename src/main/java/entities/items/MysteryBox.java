@@ -9,8 +9,8 @@ import rooms.Room;
 
 public class MysteryBox extends Item{
     private static final double WIDTH = 32, HEIGHT = 32;
-    private static final Image COIN_SPRITE = new Image("sprites/Coin.png");
-    private static final Image BOX_SPRITE = new Image("sprites/MysteryBlock.png");
+    private static final Image COIN_SPRITE = new Image("sprites/coin.png");
+    private static final Image BOX_SPRITE = new Image("sprites/mystery_block.png");
     private int cost;
     private Room room;
 
