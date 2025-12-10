@@ -9,7 +9,7 @@ public class CoinTest {
     // Minimal player for testing (does not rely on JavaFX)
     class TestPlayer extends Player {
         public TestPlayer(double x, double y) {
-            super(x, y, 10, 1, 1, "Test", 20);
+            super(x, y, 10, 1,  "Test", 20);
         }
     }
 

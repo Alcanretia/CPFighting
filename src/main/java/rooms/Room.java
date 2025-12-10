@@ -15,9 +15,18 @@ import util.BulletUtil;
 
 import java.util.*;
 
+/**
+ * Abstract base class for all types of rooms in the game.
+ * <p>
+ * Handles entities such as enemies, bullets, items, lasers, and the player.
+ * Provides update and render methods for the room and its entities.
+ */
 public abstract class Room {
+
+    /** Shared floor sprite for all rooms */
     private static Image FLOOR_SPRITE;
 
+    /** Whether this room is currently active */
     public boolean active = false;
 
     private Player player;
@@ -31,6 +40,15 @@ public abstract class Room {
     private List<Character> characters = new ArrayList<>();
     private List<Laser> lasers = new ArrayList<>();
 
+    /**
+     * Constructs a room with specified size and player reference.
+     *
+     * @param x top-left x-coordinate
+     * @param y top-left y-coordinate
+     * @param width width of the room
+     * @param height height of the room
+     * @param player the player object inside the room
+     */
     public Room(double x, double y, double width, double height, Player player) {
         this.x = x;
         this.y = y;
@@ -40,50 +58,107 @@ public abstract class Room {
         characters.add(player);
     }
 
+    /**
+     * Adds an enemy to the room and to the characters list.
+     *
+     * @param e enemy to add
+     */
     public void addEnemy(Enemy e) {
         characters.add(e);
         enemies.add(e);
     }
+
+    /**
+     * Spawns a bullet in the room.
+     *
+     * @param b bullet to spawn
+     */
     public void spawnBullet(Bullet b) {
         bullets.add(b);
     }
-    public void spawnItems(Item i) { pendingItems.add(i); }
-    public void spawnLaser(Laser l) { lasers.add(l); }
 
+    /**
+     * Schedules an item to be added to the room.
+     *
+     * @param i item to spawn
+     */
+    public void spawnItems(Item i) {
+        pendingItems.add(i);
+    }
+
+    /**
+     * Spawns a laser in the room.
+     *
+     * @param l laser to spawn
+     */
+    public void spawnLaser(Laser l) {
+        lasers.add(l);
+    }
+
+    /** @return width of the room */
     public double getWidth() { return width; }
+
+    /** @return height of the room */
     public double getHeight() { return height; }
+
+    /** @return list of enemies in the room */
     public List<Enemy> getEnemies() { return enemies; }
+
+    /** @return list of bullets in the room */
     public List<Bullet> getBullets() { return bullets; }
+
+    /** @return list of items in the room */
     public List<Item> getItems() { return items; }
+
+    /** @return list of lasers in the room */
     public List<Laser> getLasers() { return lasers; }
 
+    /** @return list of all characters (player + enemies) in the room */
     public List<Character> getCharacters() { return characters; }
 
+    /**
+     * @return shared floor sprite
+     */
     public Image getFloorSprite(){
         if (FLOOR_SPRITE == null) FLOOR_SPRITE = new Image("sprites/floor.png");
         return FLOOR_SPRITE;
     }
 
-    // Add a door for this room
+    /**
+     * Adds a door to the room.
+     *
+     * @param door the door to add
+     */
     public void addDoor(Door door) {
         topDoor = door;
     }
 
-    // Check if the player intersects any door
+    /**
+     * Checks if the player intersects the door.
+     *
+     * @param playerHitbox the player's hitbox
+     * @return the door if intersecting, otherwise null
+     */
     public Door getDoorAtPlayer(Rectangle2D playerHitbox) {
         return topDoor.intersects(playerHitbox) ? topDoor : null;
     }
 
-    public void updateEntities(double dt){
+    /**
+     * Updates all entities in the room: enemies, bullets, items, lasers.
+     *
+     * @param dt delta time in seconds
+     */
+    public void updateEntities(double dt) {
         for (int i = 0; i < enemies.size(); i++) {
             Enemy a = enemies.get(i);
             if (!a.isDead()) a.update(dt);
-            if (!a.isDead() && a.getHitbox().intersects(player.getHitbox())){
+            if (!a.isDead() && a.getHitbox().intersects(player.getHitbox())) {
                 player.onHit(a.getPower());
             }
+
+            // Enemy collision resolution
             for (int j = i + 1; j < enemies.size(); j++) {
                 Enemy b = enemies.get(j);
-
                 double dx = b.getX() - a.getX();
                 double dy = b.getY() - a.getY();
                 double dist = Math.sqrt(dx*dx + dy*dy);
@@ -94,7 +169,6 @@ public abstract class Room {
                     dx /= dist;
                     dy /= dist;
 
-                    // Push both enemies apart
                     a.setX(a.getX() - dx * overlap * 0.5);
                     a.setY(a.getY() - dy * overlap * 0.5);
                     b.setX(b.getX() + dx * overlap * 0.5);
@@ -102,17 +176,12 @@ public abstract class Room {
                 }
             }
         }
-        for (Bullet b : bullets) {
-            b.update(dt);
-        }
-        for (Collectible i : items){
-            i.update(dt, player);
-        }
+
+        for (Bullet b : bullets) b.update(dt);
+        for (Collectible i : items) i.update(dt, player);
 
         for (Laser l : lasers) {
             l.update(dt);
-
-            // check hit on enemies
             for (Enemy e : enemies) {
                 if (!e.isDead() && l.getHitbox().intersects(e.getHitbox())) {
                     e.onHit(l.getDamage());
@@ -120,6 +189,7 @@ public abstract class Room {
             }
         }
 
+        // Remove dead enemies, bullets, collected items, and expired lasers
         Iterator<Enemy> it = enemies.iterator();
         while (it.hasNext()) {
             Enemy e = it.next();
@@ -129,9 +199,9 @@ public abstract class Room {
                 it.remove();
             }
         }
-        BulletUtil.filterAliveBullets(bullets,characters);
+
+        BulletUtil.filterAliveBullets(bullets, characters);
         characters.removeIf(ch -> (ch instanceof Enemy) && ch.isDead());
-        bullets.removeIf(b-> !b.isAlive());
         items.removeIf(Item::isCollected);
         lasers.removeIf(l -> !l.isAlive());
 
@@ -141,28 +211,31 @@ public abstract class Room {
         }
     }
 
-    public void renderEntities(GraphicsContext gc){
+    /** Renders bullets, enemies, items, and lasers in the room */
+    public void renderEntities(GraphicsContext gc) {
         for (Laser l : lasers) l.render(gc);
         for (Bullet b : bullets) b.render(gc);
         for (Enemy e : enemies) e.render(gc);
         for (Collectible i : items) i.render(gc);
     }
 
-    public void setActive(boolean active){
-        this.active = active;
-    }
+    public void setActive(boolean active) { this.active = active; }
 
-    public boolean isActive(){
-        return active;
-    }
+    public boolean isActive() { return active; }
 
+    /**
+     * Draws fog/smoke effect over the room.
+     *
+     * @param gc GraphicsContext
+     * @param edgeColor color of the outer edge
+     * @param strength opacity of the fog
+     */
     protected void drawFog(GraphicsContext gc, Color edgeColor, double strength) {
-        double fadeDistance = 120; // how far the smoke fades inward
+        double fadeDistance = 120;
 
-        // 1. Edge red/black glow
         var gradient = new javafx.scene.paint.RadialGradient(
                 0, 0,
-                player.getX(), player.getY(),             // center of room
+                player.getX(), player.getY(),
                 Math.max(width, height),
                 false,
                 javafx.scene.paint.CycleMethod.NO_CYCLE,
@@ -174,16 +247,24 @@ public abstract class Room {
         gc.fillRect(x, y, width, height);
     }
 
+    /**
+     * Base render method for the room.
+     *
+     * @param gc GraphicsContext
+     */
     public void render(GraphicsContext gc) {
-        // Base room render (background)
-        gc.drawImage(getFloorSprite(),0,0,800,600);
+        gc.drawImage(getFloorSprite(), 0, 0, 800, 600);
         drawFog(gc, Color.BLACK, 0.70);
-        // Render doors
         renderEntities(gc);
         topDoor.render(gc);
     }
 
-    public void update(double dt){
+    /**
+     * Updates the room and its entities.
+     *
+     * @param dt delta time in seconds
+     */
+    public void update(double dt) {
         updateEntities(dt);
-    };
+    }
 }

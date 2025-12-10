@@ -3,11 +3,22 @@ package util;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+/**
+ * A simple manager for playing background music (BGM) in a JavaFX application.
+ * <p>
+ * Supports playing, looping, and stopping a single BGM track at a time.
+ */
 public class BGMManager {
 
     private static MediaPlayer currentPlayer;
-    private static double volume = 0.3; // default 30% volume
+    private static final double VOLUME = 0.3; // default 30% volume
 
+    /**
+     * Plays a BGM track from the given resource path.
+     * If another track is already playing, it stops it first.
+     *
+     * @param resourcePath the path to the music file relative to the classpath
+     */
     public static void play(String resourcePath) {
         stop(); // stop previous music if any
 
@@ -15,7 +26,7 @@ public class BGMManager {
             Media media = new Media(BGMManager.class.getResource(resourcePath).toString());
             currentPlayer = new MediaPlayer(media);
             currentPlayer.setCycleCount(MediaPlayer.INDEFINITE); // loop forever
-            currentPlayer.setVolume(volume);
+            currentPlayer.setVolume(VOLUME);
             currentPlayer.play();
         } catch (Exception e) {
             System.err.println("Failed to play BGM: " + resourcePath);
@@ -23,29 +34,13 @@ public class BGMManager {
         }
     }
 
+    /**
+     * Stops the currently playing BGM, if any.
+     */
     public static void stop() {
         if (currentPlayer != null) {
             currentPlayer.stop();
             currentPlayer = null;
-        }
-    }
-
-    public static void pause() {
-        if (currentPlayer != null) {
-            currentPlayer.pause();
-        }
-    }
-
-    public static void resume() {
-        if (currentPlayer != null) {
-            currentPlayer.play();
-        }
-    }
-
-    public static void setVolume(double vol) {
-        volume = Math.max(0, Math.min(1, vol));
-        if (currentPlayer != null) {
-            currentPlayer.setVolume(volume);
         }
     }
 }

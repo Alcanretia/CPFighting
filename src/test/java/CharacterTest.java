@@ -77,7 +77,7 @@ public class CharacterTest {
     @Test
     void testAliveLogic() {
         assertTrue(character.isAlive());
-        character.kill();
+        character.setAlive(false);
         assertFalse(character.isAlive());
         character.setAlive(true);
         assertTrue(character.isAlive());
@@ -109,7 +109,7 @@ public class CharacterTest {
     @Test
     void testIsDead() {
         assertFalse(character.isDead());
-        character.kill();
+        character.setAlive(false);
         assertTrue(character.isDead());
     }
 }

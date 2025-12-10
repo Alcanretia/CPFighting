@@ -26,7 +26,6 @@ public class BulletTest {
         assertEquals(0, bullet.getVy());
         assertEquals(10, bullet.getPower());
         assertEquals(CharacterType.PlayerType, bullet.getOwner());
-        assertTrue(bullet.isAlive());
     }
 
     @Test
