@@ -42,7 +42,7 @@ public class BulletUtilTest {
 
     @BeforeEach
     void setUp() {
-        player = new Player(100, 100, 100, 10, 1, "Hero", 16);
+        player = new Player(100, 100, 100,  1, "Hero", 16);
         enemy = new TestEnemy(100, 100, 50, 5, new RoomStub(), 16);
 
         playerBullet = new Bullet(100, 100, 0, 0, 10, CharacterType.PlayerType);

@@ -15,25 +15,57 @@ import util.BGMManager;
 import util.Input;
 import util.SFXManager;
 
+/**
+ * Main game application class for JavaFX Bullet Hell.
+ * Handles the game loop, rendering, input, and player/room management.
+ */
 public class GameApp extends Application {
+
+    /** Flag to track if the game has started */
     private boolean gameStarted = false;
+
+    /** Flag to track if the game is over */
     private boolean gameOver = false;
+
+    /** Flag to ensure game-over sound effect only plays once */
     private boolean gameOverSFXPlayed = false;
 
-
+    /** Reference to the player object */
     private Player player;
-    public static final double WIDTH = 800, HEIGHT = 600;
 
+    /** Game canvas width */
+    public static final double WIDTH = 800;
+
+    /** Game canvas height */
+    public static final double HEIGHT = 600;
+
+    /** Room manager singleton */
     private RoomManager roomManager;
 
+    /** Font used for HUD and screens */
+    private Font pixelFont;
+
+    /**
+     * Application entry point.
+     *
+     * @param args Command-line arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }
 
+    /**
+     * @return The player instance
+     */
     public Player getPlayer() {
         return player;
     }
 
+    /**
+     * Initializes and starts the JavaFX application.
+     *
+     * @param stage The primary stage provided by JavaFX
+     */
     @Override
     public void start(Stage stage) {
         Canvas canvas = new Canvas(WIDTH, HEIGHT);
@@ -41,17 +73,17 @@ public class GameApp extends Application {
 
         Input.initialize();
 
-        this.player = new Player(400, 300, 10, 1, 5, "Player", 32);
+        this.player = new Player(400, 300, 10, 1,  "Player", 32);
 
         roomManager = RoomManager.getInstance(player);
 
+        // Load sound effects
         SFXManager.load("shoot", "/sounds/shoot.mp3");
         SFXManager.load("laser", "/sounds/laser.mp3");
         SFXManager.load("take_damage", "/sounds/take_damage.mp3");
         SFXManager.load("coin", "/sounds/coin.mp3");
         SFXManager.load("game_start", "/sounds/game_start.mp3");
         SFXManager.load("game_over", "/sounds/game_over.mp3");
-
 
         Scene scene = new Scene(new StackPane(canvas));
         Input.attach(scene);
@@ -81,6 +113,7 @@ public class GameApp extends Application {
 
                 if (gameOver) {
                     if (!gameOverSFXPlayed) {
+                        SFXManager.stopAll();
                         BGMManager.stop();
                         SFXManager.play("game_over");
                         gameOverSFXPlayed = true;
@@ -93,7 +126,7 @@ public class GameApp extends Application {
                     return;
                 }
 
-                // Normal game update/draw here
+                // Normal game update/draw
                 if (last == 0) last = now;
                 double dt = (now - last) / 1e9;
                 last = now;
@@ -110,9 +143,11 @@ public class GameApp extends Application {
         }.start();
     }
 
+    /**
+     * Resets game state and player/room manager for a new game.
+     */
     private void restartGame() {
-        // completely reset all states
-        this.player = new Player(400, 300, 10, 1, 5, "Player", 32);
+        this.player = new Player(400, 300, 10, 1, "Player", 32);
         roomManager.resetInstance();
         roomManager = RoomManager.getInstance(player);
 
@@ -120,9 +155,11 @@ public class GameApp extends Application {
         gameStarted = false; // optional → show start screen again
     }
 
-
-    private Font pixelFont; // load once
-
+    /**
+     * Draws the start screen with instructions.
+     *
+     * @param gc GraphicsContext for drawing
+     */
     private void drawStartScreen(GraphicsContext gc) {
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, WIDTH, HEIGHT);
@@ -133,8 +170,13 @@ public class GameApp extends Application {
         gc.fillText("PRESS ENTER TO START", WIDTH / 2 - 200, HEIGHT / 2);
     }
 
+    /**
+     * Draws the death/game-over screen with score and restart instructions.
+     *
+     * @param gc GraphicsContext for drawing
+     */
     private void drawDeadScreen(GraphicsContext gc) {
-        gc.setFill(Color.color(0, 0, 0, 0.6));  // transparent fade
+        gc.setFill(Color.color(0, 0, 0, 0.6)); // transparent fade
         gc.fillRect(0, 0, WIDTH, HEIGHT);
 
         pixelFont = Font.loadFont(getClass().getResourceAsStream("/fonts/PressStart2P.ttf"), 20);
@@ -149,64 +191,45 @@ public class GameApp extends Application {
         gc.fillText("Press R to Restart", WIDTH / 2 - 90, HEIGHT / 2 + 20);
     }
 
+    /**
+     * Draws the heads-up display (HUD) including HP bar and coin counter.
+     *
+     * @param gc GraphicsContext for drawing
+     */
     private void drawHUD(GraphicsContext gc) {
-
         gc.setImageSmoothing(false);
 
-        // ====== Load font once ======
         pixelFont = Font.loadFont(getClass().getResourceAsStream("/fonts/PressStart2P.ttf"), 12);
 
-        // ====== HP BAR SETTINGS ======
         double barX = 20, barY = 20;
-        double barWidth = 220;
-        double barHeight = 24;
-        double innerPadding = 3;
+        double barWidth = 220, barHeight = 24, innerPadding = 3;
 
-        // ====== HP CLAMP ======
         double hp = Math.max(0, Math.min(player.getHp(), player.getMaxHp()));
         double hpPercent = hp / player.getMaxHp();
 
-        // Compute inside width safely
         double innerMaxWidth = barWidth - innerPadding * 2;
         double innerWidth = innerMaxWidth * hpPercent;
 
-        // ====== OUTER BORDER ======
         gc.setFill(Color.rgb(30, 30, 30));
         gc.fillRect(barX, barY, barWidth, barHeight);
 
-        // ====== INNER BACKGROUND ======
         gc.setFill(Color.rgb(80, 0, 0));
-        gc.fillRect(
-                barX + innerPadding,
-                barY + innerPadding,
-                innerMaxWidth,
-                barHeight - innerPadding * 2
-        );
+        gc.fillRect(barX + innerPadding, barY + innerPadding, innerMaxWidth, barHeight - innerPadding * 2);
 
-        // ====== HP FILL ======
         gc.setFill(Color.rgb(200, 40, 40));
-        gc.fillRect(
-                barX + innerPadding,
-                barY + innerPadding,
-                innerWidth,
-                barHeight - innerPadding * 2
-        );
+        gc.fillRect(barX + innerPadding, barY + innerPadding, innerWidth, barHeight - innerPadding * 2);
 
-        // ====== HP TEXT ======
         gc.setFill(Color.WHITE);
         gc.setFont(pixelFont);
-
         String hpText = (int) hp + " / " + (int) player.getMaxHp();
         gc.fillText(hpText, barX + 8, barY + barHeight - 7);
 
-        // ===== DAMAGE FLASH OVERLAY =====
         if (player.getDamageFlash() > 0) {
             double alpha = player.getDamageFlash();
             gc.setFill(Color.rgb(255, 0, 0, alpha * 0.5));
             gc.fillRect(0, 0, GameApp.WIDTH, GameApp.HEIGHT);
         }
 
-        // ===== COIN COUNTER =====
         gc.setFill(Color.GOLD);
         gc.fillText("Coins: " + player.getCoin(), 26, 70);
     }

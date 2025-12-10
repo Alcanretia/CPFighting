@@ -49,7 +49,7 @@ public class EnemyTest {
 
     @BeforeEach
     void setUp() {
-        player = new Player(100,100,100,10,1,"Hero",16);
+        player = new Player(100,100,100,1,"Hero",16);
         room = new MockRoom(player);
         enemy = new TestEnemy(50, 50, 100, 10, room, 20);
         room.addEnemy(enemy);
