@@ -2,11 +2,13 @@ package entities.items;
 
 import entities.player.Player;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 public class StrengthPot extends Item{
-    private static final double WIDTH = 10, HEIGHT = 10;
+    private static final double WIDTH = 32, HEIGHT = 32;
     private static final int STRENGTH = 1;
+    private static final Image DMGUP_SPRITE = new Image("sprites/DamageUp.png");
 
     public StrengthPot(double x, double y){
         super(x,y,WIDTH,HEIGHT);
@@ -19,7 +21,6 @@ public class StrengthPot extends Item{
 
     @Override
     public void render(GraphicsContext gc){
-        gc.setFill(Color.BROWN);
-        gc.fillOval(getX() - (getWidth() / 2), getY() - (getHeight() / 2), getWidth(), getHeight());
+        gc.drawImage(DMGUP_SPRITE, getX() - (getWidth() / 2), getY() - (getHeight() / 2), getWidth(), getHeight());
     }
 }

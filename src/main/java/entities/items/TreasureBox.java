@@ -2,11 +2,13 @@ package entities.items;
 
 import entities.player.Player;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 public class TreasureBox extends Item{
-    private static final double WIDTH = 30, HEIGHT = 30;
+    private static final double WIDTH = 32, HEIGHT = 32;
     private static final int COINAMOUNT = 20;
+    private static final Image TREASURE_SPRITE = new Image("sprites/Treasure.png");
 
     public TreasureBox(double x, double y){
         super(x,y,WIDTH,HEIGHT);
@@ -19,7 +21,6 @@ public class TreasureBox extends Item{
 
     @Override
     public void render(GraphicsContext gc){
-        gc.setFill(Color.GOLD);
-        gc.fillRect(getX() - (getWidth() / 2), getY() - (getHeight() / 2), getWidth(), getHeight());
+        gc.drawImage(TREASURE_SPRITE,getX() - (getWidth() / 2), getY() - (getHeight() / 2), getWidth(), getHeight());
     }
 }

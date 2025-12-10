@@ -4,13 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5981013e-5d90-4f57-83bd-68a94443fb5e" name="Changes" comment="">
+    <list default="true" id="5981013e-5d90-4f57-83bd-68a94443fb5e" name="Changes" comment="Merge branch 'main' of https://github.com/2110215-ProgMeth/project-cp-2025-1-future-homeless into feature/items-rooms&#10;&#10;# Conflicts:&#10;#&#9;.gradle/8.14/executionHistory/executionHistory.lock&#10;#&#9;.gradle/8.14/fileHashes/fileHashes.bin&#10;#&#9;.gradle/8.14/fileHashes/fileHashes.lock&#10;#&#9;.gradle/buildOutputCleanup/buildOutputCleanup.lock&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/entities/enemies/Chaser.java&#10;#&#9;src/main/java/entities/enemies/Enemy.java&#10;#&#9;src/main/java/entities/items/Coin.java&#10;#&#9;src/main/java/entities/player/Player.java&#10;#&#9;src/main/java/game/GameApp.java&#10;#&#9;src/main/java/game/RoomManager.java&#10;#&#9;src/main/java/rooms/Room.java">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/sprites/DamageUp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/sprites/HealthPot.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/sprites/HealthUp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/sprites/MysteryBlock.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/sprites/Treasure.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/player/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/Coin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/HealthPot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/HealthPot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/MaxHealthUpgrade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/MaxHealthUpgrade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/MysteryBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/MysteryBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/StrengthPot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/StrengthPot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/TreasureBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/TreasureBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/GameApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/GameApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/util/GameState.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,26 +85,27 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Gradle.BindingOfMyLife [:game.GameApp.main()].executor": "Run",
     "Gradle.BindingOfMyLife [:main.Main.main()].executor": "Run",
     "Gradle.Binding_of_my_life [dependencies].executor": "Run",
     "Gradle.CoinTest.executor": "Run",
     "Gradle.Download Sources.executor": "Run",
     "Gradle.EnemyTest.executor": "Run",
+    "Gradle.FinalProject [:game.GameApp.main()].executor": "Run",
     "Gradle.FinalProject [:main.Main.main()].executor": "Run",
     "Gradle.PlayerTest.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "feature/items-rooms",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/velys/IdeaProjects/BindingOfMyLife/src/main/java/entities/bullets"
+    "last_opened_file_path": "C:/Users/08412/IdeaProjects/FinalProject/src/main/resources/sprites"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\08412\IdeaProjects\FinalProject\src\main\resources\sprites" />
       <recent name="C:\Users\velys\IdeaProjects\BindingOfMyLife\src\main\java\entities\bullets" />
       <recent name="C:\Users\velys\IdeaProjects\BindingOfMyLife\src\main\java\util" />
       <recent name="C:\Users\velys\IdeaProjects\BindingOfMyLife" />
