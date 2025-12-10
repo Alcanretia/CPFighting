@@ -9,7 +9,7 @@ import util.CharacterType;
 
 public class Laser extends GameObject {
     private double dirX, dirY;
-    private double length = 800;
+    private final double length = 800;
     private int damage;
     private boolean alive = true;
 

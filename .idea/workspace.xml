@@ -5,24 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5981013e-5d90-4f57-83bd-68a94443fb5e" name="Changes" comment="Merge branch 'main' of https://github.com/2110215-ProgMeth/project-cp-2025-1-future-homeless into feature/items-rooms&#10;&#10;# Conflicts:&#10;#&#9;.gradle/8.14/executionHistory/executionHistory.lock&#10;#&#9;.gradle/8.14/fileHashes/fileHashes.bin&#10;#&#9;.gradle/8.14/fileHashes/fileHashes.lock&#10;#&#9;.gradle/buildOutputCleanup/buildOutputCleanup.lock&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/entities/enemies/Chaser.java&#10;#&#9;src/main/java/entities/enemies/Enemy.java&#10;#&#9;src/main/java/entities/items/Coin.java&#10;#&#9;src/main/java/entities/player/Player.java&#10;#&#9;src/main/java/game/GameApp.java&#10;#&#9;src/main/java/game/RoomManager.java&#10;#&#9;src/main/java/rooms/Room.java">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sprites/DamageUp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sprites/HealthPot.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sprites/HealthUp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sprites/MysteryBlock.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sprites/Treasure.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/Coin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/HealthPot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/HealthPot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/MaxHealthUpgrade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/MaxHealthUpgrade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/MysteryBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/MysteryBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/StrengthPot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/StrengthPot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/TreasureBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/TreasureBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/GameApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/GameApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/GameState.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/bullets/Laser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/bullets/Laser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/player/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +36,28 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="FinalProject" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="FinalProject" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="FinalProject" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="FinalProject" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="verification" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="FinalProject" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
               </path>
             </expand>
             <select />
@@ -83,26 +95,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.BindingOfMyLife [:main.Main.main()].executor": "Run",
-    "Gradle.Binding_of_my_life [dependencies].executor": "Run",
-    "Gradle.CoinTest.executor": "Run",
-    "Gradle.Download Sources.executor": "Run",
-    "Gradle.EnemyTest.executor": "Run",
-    "Gradle.FinalProject [:game.GameApp.main()].executor": "Run",
-    "Gradle.FinalProject [:main.Main.main()].executor": "Run",
-    "Gradle.PlayerTest.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "feature/items-rooms",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/08412/IdeaProjects/FinalProject/src/main/resources/sprites"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.BindingOfMyLife [:main.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.BindingOfMyLife [test].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Binding_of_my_life [dependencies].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CoinTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.EnemyTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.FinalProject [:game.GameApp.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.FinalProject [:main.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.PlayerTest.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/08412/IdeaProjects/FinalProject/src/main/resources/sprites&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\08412\IdeaProjects\FinalProject\src\main\resources\sprites" />
@@ -112,7 +125,29 @@
       <recent name="C:\Users\velys\IdeaProjects\Binding_of_my_life" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Gradle.BindingOfMyLife [test]">
+    <configuration name="BindingOfMyLife [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="Binding_of_my_life [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -135,8 +170,34 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="CoinTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;CoinTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.BindingOfMyLife [test]" />
+        <item itemvalue="Gradle.CoinTest" />
         <item itemvalue="Gradle.Binding_of_my_life [dependencies]" />
       </list>
     </recent_temporary>

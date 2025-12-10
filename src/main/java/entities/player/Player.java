@@ -20,8 +20,6 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
     private boolean isUsedSpecialAbility;
     private String name;
     private static final double SPEED = 250;
-    public static final int VX=400;
-    public static final int VY=400;
     private int coins;
     private static final double BULLET_SPEED = 400;
 
