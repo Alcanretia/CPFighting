@@ -11,7 +11,7 @@ public class Bullet extends GameObject {
     private CharacterType owner;
     private int power;
     private final static double DIAMETER = 16;
-    private static final Image BULLET_SPRITE = new Image("sprites/bullet.png");
+    private static Image BULLET_SPRITE;
 
     public Bullet(double x, double y, double vx, double vy,int power,CharacterType owner) {
         super(x, y);
@@ -30,6 +30,11 @@ public class Bullet extends GameObject {
     @Override
     public void render(GraphicsContext gc) {
         gc.drawImage(BULLET_SPRITE, getX() -(DIAMETER/2), getY() - (DIAMETER/2), DIAMETER, DIAMETER);
+    }
+
+    public Image getBulletSprite(){
+        if (BULLET_SPRITE == null) BULLET_SPRITE = new Image("sprites/bullet.png");
+        return BULLET_SPRITE;
     }
 
     public Rectangle2D getHitBox(){
