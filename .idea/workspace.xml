@@ -5,47 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5981013e-5d90-4f57-83bd-68a94443fb5e" name="Changes" comment="Merge branch 'main' of https://github.com/2110215-ProgMeth/project-cp-2025-1-future-homeless into feature/items-rooms&#10;&#10;# Conflicts:&#10;#&#9;.gradle/8.14/executionHistory/executionHistory.lock&#10;#&#9;.gradle/8.14/fileHashes/fileHashes.bin&#10;#&#9;.gradle/8.14/fileHashes/fileHashes.lock&#10;#&#9;.gradle/buildOutputCleanup/buildOutputCleanup.lock&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/entities/enemies/Chaser.java&#10;#&#9;src/main/java/entities/enemies/Enemy.java&#10;#&#9;src/main/java/entities/items/Coin.java&#10;#&#9;src/main/java/entities/player/Player.java&#10;#&#9;src/main/java/game/GameApp.java&#10;#&#9;src/main/java/game/RoomManager.java&#10;#&#9;src/main/java/rooms/Room.java">
+      <change afterPath="$PROJECT_DIR$/src/Prog-meth (1).pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/FinalProject-1-with-sources.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/Collectible.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Collectible.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/Hittable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Hittable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/SpecialAbilityCapable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/SpecialAbilityCapable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/bullets/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/bullets/Bullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/bullets/Laser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/bullets/Laser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/enemies/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/enemies/Boss.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/enemies/Chaser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/enemies/Chaser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/enemies/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/enemies/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/enemies/Jumper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/enemies/Jumper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/Coin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/HealthPot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/HealthPot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/MaxHealthUpgrade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/MaxHealthUpgrade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/MysteryBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/MysteryBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/StrengthPot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/StrengthPot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/items/TreasureBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/items/TreasureBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entities/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/player/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/GameApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/GameApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/RoomManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/RoomManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rooms/BossRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rooms/BossRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rooms/CombatRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rooms/CombatRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rooms/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rooms/Door.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rooms/NormalRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rooms/NormalRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rooms/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rooms/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rooms/StoreRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rooms/StoreRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/rooms/TreasureRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rooms/TreasureRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/BGMManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/BGMManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/BulletUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/BulletUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/CharacterType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/CharacterType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/Input.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/SFXManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/SFXManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/BulletTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/BulletTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CharacterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CharacterTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +43,12 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="FinalProject" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="FinalProject" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
@@ -125,6 +100,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Gradle.BindingOfMyLife [:main.Main.main()].executor": "Run",
+    "Gradle.BindingOfMyLife [jar].executor": "Run",
     "Gradle.Binding_of_my_life [dependencies].executor": "Run",
     "Gradle.CoinTest.executor": "Run",
     "Gradle.Download Sources.executor": "Run",
@@ -137,19 +113,19 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "feature/items-rooms",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/08412/IdeaProjects/FinalProject/src/main/resources/sprites"
+    "last_opened_file_path": "C:/Users/velys/IdeaProjects/BindingOfMyLife/src/main/resources"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\velys\IdeaProjects\BindingOfMyLife\src\main\resources" />
+      <recent name="C:\Users\velys\IdeaProjects\BindingOfMyLife\src" />
       <recent name="C:\Users\08412\IdeaProjects\FinalProject\src\main\resources\sprites" />
       <recent name="C:\Users\velys\IdeaProjects\BindingOfMyLife\src\main\java\entities\bullets" />
       <recent name="C:\Users\velys\IdeaProjects\BindingOfMyLife\src\main\java\util" />
-      <recent name="C:\Users\velys\IdeaProjects\BindingOfMyLife" />
-      <recent name="C:\Users\velys\IdeaProjects\Binding_of_my_life" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\08412\IdeaProjects\FinalProject\src\main\resources\musics" />
@@ -158,6 +134,28 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration name="BindingOfMyLife [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="jar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="Binding_of_my_life [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -204,8 +202,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.FinalProject [test]" />
+        <item itemvalue="Gradle.BindingOfMyLife [jar]" />
         <item itemvalue="Gradle.Binding_of_my_life [dependencies]" />
+        <item itemvalue="Gradle.FinalProject [test]" />
       </list>
     </recent_temporary>
   </component>

@@ -84,7 +84,6 @@ public class Player extends Character implements Hittable, SpecialAbilityCapable
      * @param y Y coordinate
      * @param hp Initial health points
      * @param power Attack power
-     * @param cooldown Attack cooldown in ms
      * @param name Player name
      * @param diameter Diameter for hitbox rendering
      */
