@@ -11,7 +11,7 @@ import rooms.Room;
  * Handles health, damage reactions, damage flash, and room reference.
  * Every enemy must implement update and render methods (Some enemies do not use update() but will create its own thread.)
  */
-public abstract class Enemy extends Character implements Hittable {
+public abstract class Enemy extends Character  {
     /** Reference to the room where the enemy exists. */
     protected Room room;
 

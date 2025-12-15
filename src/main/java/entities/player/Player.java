@@ -16,7 +16,7 @@ import util.SFXManager;
  * Represents the player character in the game.
  * Handles movement, shooting, dashing, and special abilities.
  */
-public class Player extends Character implements Hittable, SpecialAbilityCapable {
+public class Player extends Character implements  SpecialAbilityCapable {
     /** Name of the player. */
     private String name;
 

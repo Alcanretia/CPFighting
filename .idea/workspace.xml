@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5981013e-5d90-4f57-83bd-68a94443fb5e" name="Changes" comment="Merge branch 'main' of https://github.com/2110215-ProgMeth/project-cp-2025-1-future-homeless into feature/items-rooms&#10;&#10;# Conflicts:&#10;#&#9;.gradle/8.14/executionHistory/executionHistory.lock&#10;#&#9;.gradle/8.14/fileHashes/fileHashes.bin&#10;#&#9;.gradle/8.14/fileHashes/fileHashes.lock&#10;#&#9;.gradle/buildOutputCleanup/buildOutputCleanup.lock&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/entities/enemies/Chaser.java&#10;#&#9;src/main/java/entities/enemies/Enemy.java&#10;#&#9;src/main/java/entities/items/Coin.java&#10;#&#9;src/main/java/entities/player/Player.java&#10;#&#9;src/main/java/game/GameApp.java&#10;#&#9;src/main/java/game/RoomManager.java&#10;#&#9;src/main/java/rooms/Room.java" />
+    <list default="true" id="5981013e-5d90-4f57-83bd-68a94443fb5e" name="Changes" comment="Merge branch 'main' of https://github.com/2110215-ProgMeth/project-cp-2025-1-future-homeless into feature/items-rooms&#10;&#10;# Conflicts:&#10;#&#9;.gradle/8.14/executionHistory/executionHistory.lock&#10;#&#9;.gradle/8.14/fileHashes/fileHashes.bin&#10;#&#9;.gradle/8.14/fileHashes/fileHashes.lock&#10;#&#9;.gradle/buildOutputCleanup/buildOutputCleanup.lock&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/entities/enemies/Chaser.java&#10;#&#9;src/main/java/entities/enemies/Enemy.java&#10;#&#9;src/main/java/entities/items/Coin.java&#10;#&#9;src/main/java/entities/player/Player.java&#10;#&#9;src/main/java/game/GameApp.java&#10;#&#9;src/main/java/game/RoomManager.java&#10;#&#9;src/main/java/rooms/Room.java">
+      <change afterPath="$PROJECT_DIR$/uml.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/enemies/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/enemies/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/player/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FinalProject-1-with-sources.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tmp1/FinalProject-1-with-sources.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/uml.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/uml.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/BulletTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/BulletTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/EnemyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/EnemyTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,28 +100,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.BindingOfMyLife [:main.Main.main()].executor": "Run",
-    "Gradle.BindingOfMyLife [jar].executor": "Run",
-    "Gradle.Binding_of_my_life [dependencies].executor": "Run",
-    "Gradle.CoinTest.executor": "Run",
-    "Gradle.Download Sources.executor": "Run",
-    "Gradle.EnemyTest.executor": "Run",
-    "Gradle.FinalProject [:game.GameApp.main()].executor": "Run",
-    "Gradle.FinalProject [:main.Main.main()].executor": "Run",
-    "Gradle.FinalProject [test].executor": "Run",
-    "Gradle.PlayerTest.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/velys/IdeaProjects/BindingOfMyLife/src/main/resources"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.BindingOfMyLife [:main.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.BindingOfMyLife [jar].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Binding_of_my_life [dependencies].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CoinTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.EnemyTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.FinalProject [:game.GameApp.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.FinalProject [:main.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.FinalProject [test].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.PlayerTest.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/velys/IdeaProjects/BindingOfMyLife/src/main/resources&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\velys\IdeaProjects\BindingOfMyLife\src\main\resources" />
@@ -117,12 +131,13 @@
       <recent name="C:\Users\velys\IdeaProjects\BindingOfMyLife\src\main\java\util" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\velys\IdeaProjects\BindingOfMyLife" />
       <recent name="C:\Users\08412\IdeaProjects\FinalProject\src\main\resources\musics" />
       <recent name="C:\Users\08412\IdeaProjects\FinalProject\src\main\resources\sounds" />
       <recent name="C:\Users\08412\IdeaProjects\FinalProject\src\main\resources\sprites" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Gradle.Binding_of_my_life [dependencies]">
     <configuration name="BindingOfMyLife [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />

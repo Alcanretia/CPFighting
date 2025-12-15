@@ -1,4 +1,4 @@
-package test;
+
 
 import entities.bullets.Bullet;
 import org.junit.jupiter.api.BeforeEach;
